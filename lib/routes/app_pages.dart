@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:vbt_sun_app_project/modules/dashboard/dashboard_binding.dart';
+import 'package:vbt_sun_app_project/modules/dashboard/dashboard_screen.dart';
 
 import '../modules/login/login_binding.dart';
 import '../modules/login/login_screen.dart';
@@ -14,5 +16,9 @@ class AppPages {
       page: () => LoginScreen(),
       binding: LoginBinding(),
     ),
+    GetPage(
+        name: Routes.DASHBOARD,
+        page: () => DashboardScreen(),
+        binding: DashboardBinding())
   ];
 }
