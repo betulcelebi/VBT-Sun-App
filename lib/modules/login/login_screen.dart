@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:vbt_sun_app_project/modules/login/login_controller.dart';
+
+import '../../utils/constant.dart';
 
 class LoginScreen extends GetView<LoginController> {
   LoginScreen({super.key});
@@ -18,22 +21,22 @@ class LoginScreen extends GetView<LoginController> {
               children: [
                 Image.asset("assets/login_top.png"),
                 Positioned(
-                    top: 48,
-                    right: 120,
-                    child: Image.asset(
-                      "assets/sun_logo.png",
-                      width: 130,
-                      color: Colors.white,
-                    )),
+                  top: 58,
+                  right: 120,
+                  child: Image.asset(
+                    "assets/sun_logo.png",
+                    width: 130,
+                    color: Colors.white,
+                  ),
+                ),
               ],
             ),
-
+            SizedBox(
+              height: 4.h,
+            ),
             Text(
               "Kullanıcı Girişi",
-              style: TextStyle(
-                  fontSize: 26,
-                  fontWeight: FontWeight.w600,
-                  color: Color(0xff3B48B0)),
+              style: LoginConstant().kullaniciGirisTitle,
             ),
             SizedBox(
               height: 4.h,
@@ -42,12 +45,11 @@ class LoginScreen extends GetView<LoginController> {
               padding: const EdgeInsets.only(left: 15, right: 15),
               child: GetBuilder<LoginController>(builder: (controller) {
                 return Container(
-                  decoration: const BoxDecoration(boxShadow: [
-                    BoxShadow(
-                        color: Colors.grey,
-                        blurRadius: 25,
-                        offset: Offset(0, 10)),
-                  ]),
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      LoginConstant().textFieldShadow,
+                    ],
+                  ),
                   width: MediaQuery.of(context).size.width,
                   child: DropdownButtonFormField<String>(
                     decoration: InputDecoration(
@@ -71,10 +73,8 @@ class LoginScreen extends GetView<LoginController> {
                         .map<DropdownMenuItem<String>>((String value) {
                       return DropdownMenuItem<String>(
                         value: value,
-                        child: Text(
-                          value,
-                          style: TextStyle(color: Colors.grey[700]),
-                        ),
+                        child:
+                            Text(value, style: LoginConstant().textFieldText),
                       );
                     }).toList(),
                     onChanged: (String? newValue) {
@@ -87,26 +87,26 @@ class LoginScreen extends GetView<LoginController> {
             Padding(
               padding: const EdgeInsets.only(top: 20, left: 15, right: 15),
               child: Container(
-                decoration: const BoxDecoration(boxShadow: [
-                  BoxShadow(
-                      color: Colors.grey,
-                      blurRadius: 25,
-                      offset: Offset(0, 10)),
-                ]),
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    LoginConstant().textFieldShadow,
+                  ],
+                ),
                 child: TextFormField(
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.white,
                     hintText: "Kullanıcı Adı",
+                    hintStyle: LoginConstant().textFieldText,
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Colors.white,
                       ),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(8),
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: Colors.white,
                       ),
                     ),
@@ -120,26 +120,26 @@ class LoginScreen extends GetView<LoginController> {
             Padding(
               padding: const EdgeInsets.only(top: 10, left: 15, right: 15),
               child: Container(
-                decoration: const BoxDecoration(boxShadow: [
-                  BoxShadow(
-                      color: Colors.grey,
-                      blurRadius: 25,
-                      offset: Offset(0, 10)),
-                ]),
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    LoginConstant().textFieldShadow,
+                  ],
+                ),
                 child: TextFormField(
                   decoration: InputDecoration(
                       filled: true,
                       fillColor: Colors.white,
                       hintText: "Şifre",
+                      hintStyle: LoginConstant().textFieldText,
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8),
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: Colors.white,
                         ),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8),
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: Colors.white,
                         ),
                       )),
@@ -150,23 +150,17 @@ class LoginScreen extends GetView<LoginController> {
             Padding(
               padding: const EdgeInsets.only(left: 15, right: 15),
               child: Container(
-                child: const Center(
+                // ignore: sort_child_properties_last
+                child: Center(
                   child: Text(
                     "Giriş",
-                    style: TextStyle(color: Colors.white, fontSize: 20),
+                    style: LoginConstant().girisText,
                   ),
                 ),
                 height: 55,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  color: const Color(0xff3B48B0),
-                ),
+                decoration: LoginConstant().buttonStyle,
               ),
             ),
-            const SizedBox(
-              height: 118,
-            ),
-            //Image.asset("assets/wave.png")
           ],
         ),
       ),
