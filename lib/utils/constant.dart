@@ -1,18 +1,41 @@
 //Constant---
 
-import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
-class DashboardColor {
-  static const Color mainColor=Color(0xff567DF4);
-  static const Color lightGreen = Color(0xffEDFAF3);
-  static const Color lightYellow = Color(0xffFDF2DE);
-  static const Color lightPurple = Color(0xffF4F2FD);
-   static const Color lightPink = Color(0xffFEF3F9);
-   static const Color lightBrown = Color(0xffEAFCFE);
-   static const Color darkGreen = Color(0xff66D7A9);
-   static const Color darkBlue = Color(0xff7AEBFD);
-   static const Color whiteC = Colors.white;
+class DashboardConstant {
+  static const Color mainColor = Color(0xff567DF4);
+  static const Color whiteC = Color.fromARGB(255, 229, 243, 246);
+  final decExpand = BoxDecoration(
+      borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(3.125.h),
+          topRight: Radius.circular(3.125.h)),
+      color: const Color(0xffEEF0FC));
+  final decType = BoxDecoration(
+      gradient: const LinearGradient(
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight,
+          colors: [
+            DashboardConstant.mainColor,
+            DashboardConstant.whiteC,
+          ]),
+      borderRadius: BorderRadius.circular(1.25.h));
+  final miniDec = BoxDecoration(
+      borderRadius: BorderRadius.circular(1.25.h), color: Colors.white70);
 
-
+  List<String> gimagePath = [
+    "assets/profile.png",
+    "assets/code.png",
+    "assets/stamp.png",
+    "assets/deadline.png"
+  ];
+  List<String> limagePath = [
+    "assets/turkish.png",
+    "assets/permision.png",
+  ];
+  List<String> gridTitle = ["Profilim", "Taleplerim", "Onaylarım", "İşlerim"];
+  List<String> listTitle = ["Bordrolarım", "İzinlerim"];
+  final gridText = GoogleFonts.poppins(
+      color: Colors.white, fontSize: 1.8.h, fontWeight: FontWeight.w600);
 }
