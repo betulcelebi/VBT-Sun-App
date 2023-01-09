@@ -8,29 +8,34 @@ class LoginConstant {
   final kullaniciGirisTitle = GoogleFonts.poppins(
     fontSize: 20.sp,
     fontWeight: FontWeight.w600,
-    color: Color(0xff567DF4),
+    color: const Color(0xff567DF4),
   );
   final textFieldText =
-      GoogleFonts.poppins(fontSize: 14.5.sp, color: Colors.grey.withOpacity(0.6));
+      GoogleFonts.poppins(fontSize: 14.5.sp, color: Colors.grey);
 
   final buttonStyle = BoxDecoration(
-    borderRadius: BorderRadius.circular(10),
-    color: Color(0xff567DF4).withOpacity(0.8),
-    boxShadow: [
-      BoxShadow(
-         color: Colors.grey.withOpacity(0.4),
-    blurRadius: 25,
-    offset: Offset(0,10),
-      )
-    ]
-  );
+      borderRadius: BorderRadius.circular(10),
+      color: const Color(0xFF011582),
+      boxShadow: const [
+        BoxShadow(
+          color: Color(0xFFE8E8E8),
+          blurRadius: 25,
+          offset: Offset(0, 10),
+        )
+      ]);
   final girisText = GoogleFonts.poppins(
-      color: Colors.white, fontWeight: FontWeight.w600, fontSize:  16.sp,);
-       final dilText = GoogleFonts.poppins(
-      color: Colors.white, fontWeight: FontWeight.w600, fontSize:  16.sp,);
+    color: Colors.white,
+    fontWeight: FontWeight.w600,
+    fontSize: 16.sp,
+  );
+  final dilText = GoogleFonts.poppins(
+    color: Colors.white,
+    fontWeight: FontWeight.w600,
+    fontSize: 16.sp,
+  );
 
-  final textFieldShadow =  BoxShadow(
-    color:Colors.grey.withOpacity(0.4),
+  final textFieldShadow = const BoxShadow(
+    color: Color(0Xffe8e8e8),
     blurRadius: 25,
     offset: Offset(0, 5),
   );
