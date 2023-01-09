@@ -118,7 +118,6 @@ class DashboardScreen extends GetView<DashboardController> {
                                               child: Image.asset(
                                                 DashboardConstant()
                                                     .gimagePath[index],
-                                                fit: BoxFit.cover,
                                               )),
                                           SizedBox(
                                             height: 1.h,

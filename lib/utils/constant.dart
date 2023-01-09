@@ -6,14 +6,14 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 class DashboardConstant {
   static const Color mainColor = Color(0xff567DF4);
-  static const Color whiteC = Color.fromARGB(255, 229, 243, 246);
+  static  Color whiteC = Color(0xff567DF4).withOpacity(0.7);
   final decExpand = BoxDecoration(
       borderRadius: BorderRadius.only(
           topLeft: Radius.circular(3.125.h),
           topRight: Radius.circular(3.125.h)),
       color: const Color(0xffEEF0FC));
   final decType = BoxDecoration(
-      gradient: const LinearGradient(
+      gradient:  LinearGradient(
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,
           colors: [
