@@ -17,7 +17,7 @@ class BordroDetailScreen extends GetView<BordroDetailController> {
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 55.0, left: 20.0),
+                padding:  EdgeInsets.only(top: 6.h, left: 4.h),
                 child: Container(
                     width: double.infinity,
                     height: 5.h,
@@ -28,7 +28,7 @@ class BordroDetailScreen extends GetView<BordroDetailController> {
                           width: 2.w,
                         ),
                         Text(
-                          "Payroll Page",
+                          "Bordro",
                           style:
                            //   TextStyle(color: Colors.white, fontSize: 16.sp),
                            BordroDetailConstant().appBarText
@@ -57,7 +57,7 @@ class BordroDetailScreen extends GetView<BordroDetailController> {
                       return Column(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.all(8.0),
+                            padding:  EdgeInsets.all(1.h),
                             child: Container(
                               decoration: BordroDetailConstant().insideCotainer,
                               // BoxDecoration(
@@ -71,13 +71,13 @@ class BordroDetailScreen extends GetView<BordroDetailController> {
                               width: 85.w,
                               height: 12.h,
                               child: Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 20.0, top: 17.0),
+                                padding:  EdgeInsets.only(
+                                    left: 2.h, top: 1.7.h),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      "Salary Summary",
+                                      "Bordro Özeti",
                                       style:BordroDetailConstant().salarytext1,
                                       // TextStyle(
                                       //   fontWeight: FontWeight.bold,
@@ -90,7 +90,7 @@ class BordroDetailScreen extends GetView<BordroDetailController> {
                                       children: [
                                         Container(
                                           width: 1.w,
-                                          height: 5.h,
+                                          height: 3.h,
                                          // color: Color(0xff567DF4),
                                         color: BordroDetailConstant.mainColor,
                                           
@@ -98,12 +98,12 @@ class BordroDetailScreen extends GetView<BordroDetailController> {
                                         SizedBox(
                                           width: 2.w,
                                         ),
-                                        Text("Due Date : 10/11/2022",
+                                        Text("Tarih : 10/11/2022",
                                         style:BordroDetailConstant().salarytext2 ,
                                         //TextStyle(fontSize: 16.sp),
                                         ),
                                         SizedBox(
-                                          width: 25.w,
+                                          width: 32.w,
                                         ),
                                         GestureDetector(
                                           onTap: () {},
@@ -117,7 +117,7 @@ class BordroDetailScreen extends GetView<BordroDetailController> {
                                             height: 4.h,
                                             child: Center(
                                                 child: Icon(
-                                              Icons.file_download,
+                                              Icons.file_download,size: 2.5.h,
                                               color: BordroDetailConstant.whiteC,
                                             )),
                                           ),

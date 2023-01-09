@@ -15,7 +15,7 @@ color: Colors.white, fontSize: 18.sp
   );
 
   final salarytext1 =GoogleFonts.poppins(fontWeight: FontWeight.bold,fontSize: 16.sp);
-  final salarytext2= GoogleFonts.poppins(fontSize: 15.sp);
+  final salarytext2= GoogleFonts.poppins(fontSize: 16.sp);
   final generalContainer = BoxDecoration(
                       //color: Color(0xffF6F6F7),
                       color:BordroDetailConstant.generalColor,
@@ -38,5 +38,7 @@ color: Colors.white, fontSize: 18.sp
    final downloadContainer  =   BoxDecoration(
                                                 color: BordroDetailConstant.mainColor,
                                                 borderRadius:
-                                                    BorderRadius.circular(40));                                              
+                                                   // BorderRadius.circular(40)
+                                                    BorderRadius.circular(7),
+                                                    );                                              
 }
