@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:vbt_sun_app_project/utils/constant.dart';
 
+import '../../routes/app_pages.dart';
 import 'bordro_detail_controller.dart';
 
 class BordroDetailScreen extends GetView<BordroDetailController> {
@@ -106,7 +107,9 @@ class BordroDetailScreen extends GetView<BordroDetailController> {
                                           width: 32.w,
                                         ),
                                         GestureDetector(
-                                          onTap: () {},
+                                          onTap: () {
+                                            Get.toNamed(Routes.BODRO);
+                                          },
                                           child: Container(
                                             decoration: BordroDetailConstant().downloadContainer,
                                             // BoxDecoration(
