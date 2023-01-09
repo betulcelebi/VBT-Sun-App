@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:vbt_sun_app_project/utils/constant.dart';
 
 import 'bordro_detail_controller.dart';
 
@@ -11,7 +12,7 @@ class BordroDetailScreen extends GetView<BordroDetailController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xff567DF4),
+        backgroundColor: BordroDetailConstant.mainColor,
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -22,14 +23,15 @@ class BordroDetailScreen extends GetView<BordroDetailController> {
                     height: 5.h,
                     child: Row(
                       children: [
-                        Icon(Icons.arrow_back, color: Colors.white),
+                        Icon(Icons.arrow_back, color: BordroDetailConstant.whiteC,),
                         SizedBox(
                           width: 2.w,
                         ),
                         Text(
-                          "Employee Attendance",
+                          "Payroll Page",
                           style:
-                              TextStyle(color: Colors.white, fontSize: 16.sp),
+                           //   TextStyle(color: Colors.white, fontSize: 16.sp),
+                           BordroDetailConstant().appBarText
                         )
                       ],
                     )),
@@ -40,13 +42,15 @@ class BordroDetailScreen extends GetView<BordroDetailController> {
 
               Container(
                   height: 100.h,
-                  decoration: BoxDecoration(
-                      color: Color(0xffF6F6F7),
-                      borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(40.0),
-                        topLeft: Radius.circular(40.0),
-                      )),
+                  decoration:BordroDetailConstant().generalContainer ,
+                  // BoxDecoration(
+                  //     color: Color(0xffF6F6F7),
+                  //     borderRadius: BorderRadius.only(
+                  //       topRight: Radius.circular(40.0),
+                  //       topLeft: Radius.circular(40.0),
+                  //     )),
                   child: ListView.builder(
+                    physics: NeverScrollableScrollPhysics(),
                     itemCount: 6,
                     scrollDirection: Axis.vertical,
                     itemBuilder: (context, index) {
@@ -55,14 +59,15 @@ class BordroDetailScreen extends GetView<BordroDetailController> {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  //color: Colors.red,
+                              decoration: BordroDetailConstant().insideCotainer,
+                              // BoxDecoration(
+                              //     color: Colors.white,
+                              //     //color: Colors.red,
 
-                                  borderRadius: BorderRadius.circular(15),
-                                  border: Border.all(
-                                      color: Colors.grey.shade300,
-                                      width: 0.5.w)),
+                              //     borderRadius: BorderRadius.circular(15),
+                              //     border: Border.all(
+                              //         color: Colors.grey.shade300,
+                              //         width: 0.5.w)),
                               width: 85.w,
                               height: 12.h,
                               child: Padding(
@@ -73,9 +78,10 @@ class BordroDetailScreen extends GetView<BordroDetailController> {
                                   children: [
                                     Text(
                                       "Salary Summary",
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                                      style:BordroDetailConstant().salarytext1,
+                                      // TextStyle(
+                                      //   fontWeight: FontWeight.bold,
+                                      // ),
                                     ),
                                     SizedBox(
                                       height: 1.h,
@@ -85,28 +91,34 @@ class BordroDetailScreen extends GetView<BordroDetailController> {
                                         Container(
                                           width: 1.w,
                                           height: 5.h,
-                                          color: Color(0xff567DF4),
+                                         // color: Color(0xff567DF4),
+                                        color: BordroDetailConstant.mainColor,
+                                          
                                         ),
                                         SizedBox(
                                           width: 2.w,
                                         ),
-                                        Text("Due Date : 10/11/2022"),
+                                        Text("Due Date : 10/11/2022",
+                                        style:BordroDetailConstant().salarytext2 ,
+                                        //TextStyle(fontSize: 16.sp),
+                                        ),
                                         SizedBox(
                                           width: 25.w,
                                         ),
                                         GestureDetector(
                                           onTap: () {},
                                           child: Container(
-                                            decoration: BoxDecoration(
-                                                color: Color(0xff567DF4),
-                                                borderRadius:
-                                                    BorderRadius.circular(40)),
-                                            width: 10.w,
-                                            height: 5.h,
+                                            decoration: BordroDetailConstant().downloadContainer,
+                                            // BoxDecoration(
+                                            //     color: BordroDetailConstant.mainColor,
+                                            //     borderRadius:
+                                            //         BorderRadius.circular(40)),
+                                            width: 8.w,
+                                            height: 4.h,
                                             child: Center(
                                                 child: Icon(
                                               Icons.file_download,
-                                              color: Colors.white,
+                                              color: BordroDetailConstant.whiteC,
                                             )),
                                           ),
                                         ),
