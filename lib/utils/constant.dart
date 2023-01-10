@@ -38,6 +38,8 @@ class DashboardConstant {
   final gridText = GoogleFonts.poppins(
       color: Colors.white, fontSize: 1.8.h, fontWeight: FontWeight.w600);
 
+}
+
 class LoginConstant {
   final kullaniciGirisTitle = GoogleFonts.poppins(
     fontSize: 20.sp,
@@ -74,6 +76,11 @@ class LoginConstant {
     offset: Offset(0, 5),
   );
 }
+
+
+
+
+
 
 class BordroDetailConstant{
   static const  Color mainColor =  Color(0xff567DF4);
