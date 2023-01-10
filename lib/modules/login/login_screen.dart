@@ -4,12 +4,14 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:vbt_sun_app_project/modules/login/login_controller.dart';
+import 'package:vbt_sun_app_project/shared/services/login_service.dart';
 
 import '../../utils/colors.dart';
 import '../../utils/constant.dart';
 
 class LoginScreen extends GetView<LoginController> {
-  const LoginScreen({super.key});
+   LoginScreen({super.key});
+  //Services servis=Services();
 
   @override
   Widget build(BuildContext context) {
@@ -26,20 +28,7 @@ class LoginScreen extends GetView<LoginController> {
           SizedBox(
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
-            /*
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Color(0xFF011689),
-                  Color(0xFF0008C1),
-                  Color(0xFF2146C7),
-                  Color(0xFF5837D0)
-                ],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-              ),
-            ),
-            */
+         
             child: SingleChildScrollView(
               child: Padding(
                 padding:
@@ -109,7 +98,7 @@ class LoginScreen extends GetView<LoginController> {
                                                 builder: (controller) {
                                               return Switch.adaptive(
                                                 activeColor:
-                                                    const Color(0xff567DF4),
+                                                    const Color(0xFF011582),
                                                 value: controller.isSmsSelected,
                                                 onChanged: (value) {
                                                   controller.isSmsSelected =
@@ -203,7 +192,7 @@ class LoginScreen extends GetView<LoginController> {
                                                   color:
                                                       const Color(0xFFE8E8E8))),
                                           child: TextFormField(
-                                            controller: controller.usernameController,
+                                         
                                             decoration: InputDecoration(
                                               suffixIcon:
                                                   const Icon(Icons.person),
@@ -288,8 +277,9 @@ class LoginScreen extends GetView<LoginController> {
                                         padding: const EdgeInsets.only(
                                             left: 15, right: 15,),
                                         child: GestureDetector(
-                                          onTap:() async {
-                                           await controller.login();
+                                          onTap:()  {
+                                           // controller.services.getToken();
+
                                           },
                                           child: Container(
                                             height: 45,
@@ -313,8 +303,8 @@ class LoginScreen extends GetView<LoginController> {
                                             "TEST v1.1.3",
                                             style: GoogleFonts.poppins(
                                               textStyle: const TextStyle(
-                                                color: Color(0xff567DF4),
-                                                fontSize: 12,
+                                                color: Color(0xFF011582),
+                                                fontSize: 12.5,
                                                 fontWeight: FontWeight.w600,
                                               ),
                                             ),
