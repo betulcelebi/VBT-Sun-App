@@ -25,7 +25,9 @@ class AppPages {
         name: Routes.DASHBOARD,
         page: () => DashboardScreen(),
         binding: DashboardBinding())
-        name: Routes.BORDRODETAIL,
+,
+        
+        GetPage(name: Routes.BORDRODETAIL,
         page: () => BordroDetailScreen(),
         binding: BordroDetailBinding()),
 
