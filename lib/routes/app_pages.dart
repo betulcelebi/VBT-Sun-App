@@ -1,4 +1,7 @@
 import 'package:get/get.dart';
+import 'package:vbt_sun_app_project/modules/dashboard/dashboard_binding.dart';
+import 'package:vbt_sun_app_project/modules/dashboard/dashboard_screen.dart';
+
 import 'package:vbt_sun_app_project/modules/bodro_detail/bordro_detail_binding.dart';
 
 import '../modules/bodro/bodro_binding.dart';
@@ -19,6 +22,9 @@ class AppPages {
       binding: LoginBinding(),
     ),
     GetPage(
+        name: Routes.DASHBOARD,
+        page: () => DashboardScreen(),
+        binding: DashboardBinding())
         name: Routes.BORDRODETAIL,
         page: () => BordroDetailScreen(),
         binding: BordroDetailBinding()),
