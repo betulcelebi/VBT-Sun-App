@@ -18,22 +18,27 @@ class BordroDetailScreen extends GetView<BordroDetailController> {
           child: Column(
             children: [
               Padding(
-                padding:  EdgeInsets.only(top: 6.h, left: 4.h),
+                padding: EdgeInsets.only(top: 6.h, left: 4.h),
                 child: Container(
                     width: double.infinity,
                     height: 5.h,
                     child: Row(
                       children: [
-                        Icon(Icons.arrow_back, color: BordroDetailConstant.whiteC,),
+                        GestureDetector(
+                            onTap: () {
+                              Get.back();
+                            },
+                            child: const Icon(
+                              Icons.arrow_back,
+                              color: BordroDetailConstant.whiteC,
+                            )),
                         SizedBox(
                           width: 2.w,
                         ),
-                        Text(
-                          "Bordro",
-                          style:
-                           //   TextStyle(color: Colors.white, fontSize: 16.sp),
-                           BordroDetailConstant().appBarText
-                        )
+                        Text("Bordro",
+                            style:
+                                //   TextStyle(color: Colors.white, fontSize: 16.sp),
+                                BordroDetailConstant().appBarText)
                       ],
                     )),
               ),
@@ -43,7 +48,7 @@ class BordroDetailScreen extends GetView<BordroDetailController> {
 
               Container(
                   height: 100.h,
-                  decoration:BordroDetailConstant().generalContainer ,
+                  decoration: BordroDetailConstant().generalContainer,
                   // BoxDecoration(
                   //     color: Color(0xffF6F6F7),
                   //     borderRadius: BorderRadius.only(
@@ -51,14 +56,14 @@ class BordroDetailScreen extends GetView<BordroDetailController> {
                   //       topLeft: Radius.circular(40.0),
                   //     )),
                   child: ListView.builder(
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     itemCount: 6,
                     scrollDirection: Axis.vertical,
                     itemBuilder: (context, index) {
                       return Column(
                         children: [
                           Padding(
-                            padding:  EdgeInsets.all(1.h),
+                            padding: EdgeInsets.all(1.h),
                             child: Container(
                               decoration: BordroDetailConstant().insideCotainer,
                               // BoxDecoration(
@@ -72,14 +77,13 @@ class BordroDetailScreen extends GetView<BordroDetailController> {
                               width: 85.w,
                               height: 12.h,
                               child: Padding(
-                                padding:  EdgeInsets.only(
-                                    left: 2.h, top: 1.7.h),
+                                padding: EdgeInsets.only(left: 2.h, top: 1.7.h),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
                                       "Bordro Özeti",
-                                      style:BordroDetailConstant().salarytext1,
+                                      style: BordroDetailConstant().salarytext1,
                                       // TextStyle(
                                       //   fontWeight: FontWeight.bold,
                                       // ),
@@ -92,16 +96,17 @@ class BordroDetailScreen extends GetView<BordroDetailController> {
                                         Container(
                                           width: 1.w,
                                           height: 3.h,
-                                         // color: Color(0xff567DF4),
-                                        color: BordroDetailConstant.mainColor,
-                                          
+                                          // color: Color(0xff567DF4),
+                                          color: BordroDetailConstant.mainColor,
                                         ),
                                         SizedBox(
                                           width: 2.w,
                                         ),
-                                        Text("Tarih : 10/11/2022",
-                                        style:BordroDetailConstant().salarytext2 ,
-                                        //TextStyle(fontSize: 16.sp),
+                                        Text(
+                                          "Tarih : 10/11/2022",
+                                          style: BordroDetailConstant()
+                                              .salarytext2,
+                                          //TextStyle(fontSize: 16.sp),
                                         ),
                                         SizedBox(
                                           width: 32.w,
@@ -111,7 +116,8 @@ class BordroDetailScreen extends GetView<BordroDetailController> {
                                             Get.toNamed(Routes.BODRO);
                                           },
                                           child: Container(
-                                            decoration: BordroDetailConstant().downloadContainer,
+                                            decoration: BordroDetailConstant()
+                                                .downloadContainer,
                                             // BoxDecoration(
                                             //     color: BordroDetailConstant.mainColor,
                                             //     borderRadius:
@@ -120,8 +126,10 @@ class BordroDetailScreen extends GetView<BordroDetailController> {
                                             height: 4.h,
                                             child: Center(
                                                 child: Icon(
-                                              Icons.file_download,size: 2.5.h,
-                                              color: BordroDetailConstant.whiteC,
+                                              Icons.file_download,
+                                              size: 2.5.h,
+                                              color:
+                                                  BordroDetailConstant.whiteC,
                                             )),
                                           ),
                                         ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -6,11 +7,12 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:vbt_sun_app_project/modules/login/login_controller.dart';
 import 'package:vbt_sun_app_project/shared/services/login_service.dart';
 
+import '../../routes/app_pages.dart';
 import '../../utils/colors.dart';
 import '../../utils/constant.dart';
 
 class LoginScreen extends GetView<LoginController> {
-   LoginScreen({super.key});
+  LoginScreen({super.key});
   //Services servis=Services();
 
   @override
@@ -28,7 +30,6 @@ class LoginScreen extends GetView<LoginController> {
           SizedBox(
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
-         
             child: SingleChildScrollView(
               child: Padding(
                 padding:
@@ -44,7 +45,7 @@ class LoginScreen extends GetView<LoginController> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(top: 3,right:5),
+                            padding: const EdgeInsets.only(top: 3, right: 5),
                             child: Container(
                               width: 2,
                               height: 2.h,
@@ -77,45 +78,121 @@ class LoginScreen extends GetView<LoginController> {
                                     boxShadow: kElevationToShadow[3],
                                     color: Colors.white,
                                   ),
-                                  child: Column(
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                            top: 8.h, left: 20, right: 15),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              "SMS ile şifre almak istiyorum",
-                                              style: GoogleFonts.poppins(
-                                                fontSize: 13,
-                                                fontWeight: FontWeight.w600,
-                                                color: Colors.grey.shade700,
+                                  child: Form(
+                                    key: controller.formKey,
+                                    child: Column(
+                                      children: [
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                              top: 8.h, left: 20, right: 15),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                "SMS ile şifre almak istiyorum",
+                                                style: GoogleFonts.poppins(
+                                                  fontSize: 13,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: Colors.grey.shade700,
+                                                ),
                                               ),
-                                            ),
-                                            GetBuilder<LoginController>(
-                                                builder: (controller) {
-                                              return Switch.adaptive(
-                                                activeColor:
-                                                    const Color(0xFF011582),
-                                                value: controller.isSmsSelected,
-                                                onChanged: (value) {
-                                                  controller.isSmsSelected =
-                                                      value;
-                                                  controller.update();
-                                                },
-                                              );
-                                            })
-                                          ],
+                                              GetBuilder<LoginController>(
+                                                  builder: (controller) {
+                                                return Switch.adaptive(
+                                                  activeColor:
+                                                      const Color(0xFF011582),
+                                                  value:
+                                                      controller.isSmsSelected,
+                                                  onChanged: (value) {
+                                                    controller.isSmsSelected =
+                                                        value;
+                                                    controller.update();
+                                                  },
+                                                );
+                                              })
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                            left: 15, right: 15, top: 1.5.h),
-                                        child: GetBuilder<LoginController>(
-                                            builder: (controller) {
-                                          return Container(
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                              left: 15, right: 15, top: 1.5.h),
+                                          child: GetBuilder<LoginController>(
+                                              builder: (controller) {
+                                            return Container(
+                                              decoration: BoxDecoration(
+                                                  boxShadow: [
+                                                    LoginConstant()
+                                                        .textFieldShadow,
+                                                  ],
+                                                  borderRadius:
+                                                      BorderRadius.circular(8),
+                                                  border: Border.all(
+                                                      color: const Color(
+                                                          0xFFE8E8E8))),
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
+                                              child: DropdownButtonFormField<
+                                                  String>(
+                                                decoration: InputDecoration(
+                                                  contentPadding:
+                                                      const EdgeInsets
+                                                              .symmetric(
+                                                          vertical: 10,
+                                                          horizontal: 10),
+                                                  filled: true,
+                                                  fillColor: Colors.white,
+                                                  enabledBorder:
+                                                      OutlineInputBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8),
+                                                    borderSide:
+                                                        const BorderSide(
+                                                      color: Colors.white,
+                                                    ),
+                                                  ),
+                                                  focusedBorder:
+                                                      OutlineInputBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8),
+                                                    borderSide:
+                                                        const BorderSide(
+                                                      color: Colors.white,
+                                                    ),
+                                                  ),
+                                                ),
+                                                value:
+                                                    controller.selectedOption,
+                                                items: [
+                                                  'Sun',
+                                                  'Şirket Seçin'
+                                                ].map<DropdownMenuItem<String>>(
+                                                    (String value) {
+                                                  return DropdownMenuItem<
+                                                      String>(
+                                                    value: value,
+                                                    child: Text(
+                                                      value,
+                                                      style: LoginConstant()
+                                                          .textFieldText,
+                                                    ),
+                                                  );
+                                                }).toList(),
+                                                onChanged: (String? newValue) {
+                                                  controller.selectedOption =
+                                                      newValue.toString();
+                                                },
+                                              ),
+                                            );
+                                          }),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              top: 20, left: 15, right: 15),
+                                          child: Container(
                                             decoration: BoxDecoration(
                                                 boxShadow: [
                                                   LoginConstant()
@@ -126,131 +203,26 @@ class LoginScreen extends GetView<LoginController> {
                                                 border: Border.all(
                                                     color: const Color(
                                                         0xFFE8E8E8))),
-                                            width: MediaQuery.of(context)
-                                                .size
-                                                .width,
-                                            child:
-                                                DropdownButtonFormField<String>(
-                                              decoration: InputDecoration(
-                                                contentPadding:
-                                                    const EdgeInsets.symmetric(
-                                                        vertical: 10,
-                                                        horizontal: 10),
-                                                filled: true,
-                                                fillColor: Colors.white,
-                                                enabledBorder:
-                                                    OutlineInputBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(8),
-                                                  borderSide: const BorderSide(
-                                                    color: Colors.white,
-                                                  ),
-                                                ),
-                                                focusedBorder:
-                                                    OutlineInputBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(8),
-                                                  borderSide: const BorderSide(
-                                                    color: Colors.white,
-                                                  ),
-                                                ),
-                                              ),
-                                              value: controller.selectedOption,
-                                              items: [
-                                                'Sun',
-                                                'Şirket Seçin'
-                                              ].map<DropdownMenuItem<String>>(
-                                                  (String value) {
-                                                return DropdownMenuItem<String>(
-                                                  value: value,
-                                                  child: Text(
-                                                    value,
-                                                    style: LoginConstant()
-                                                        .textFieldText,
-                                                  ),
-                                                );
-                                              }).toList(),
-                                              onChanged: (String? newValue) {
-                                                controller.selectedOption =
-                                                    newValue.toString();
+                                            child: TextFormField(
+                                              validator: (value) {
+                                                if (value == "") {
+                                                  return "Kullanıcı adı boş geçilemez";
+                                                }
+                                                return null;
                                               },
-                                            ),
-                                          );
-                                        }),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            top: 20, left: 15, right: 15),
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                              boxShadow: [
-                                                LoginConstant().textFieldShadow,
-                                              ],
-                                              borderRadius:
-                                                  BorderRadius.circular(8),
-                                              border: Border.all(
-                                                  color:
-                                                      const Color(0xFFE8E8E8))),
-                                          child: TextFormField(
-                                         
-                                            decoration: InputDecoration(
-                                              suffixIcon:
-                                                  const Icon(Icons.person),
-                                              contentPadding:
-                                                  const EdgeInsets.symmetric(
-                                                vertical: 10,
-                                                horizontal: 10,
-                                              ),
-                                              filled: true,
-                                              fillColor: Colors.white,
-                                              hintText: "Kullanıcı Adı",
-                                              hintStyle:
-                                                  LoginConstant().textFieldText,
-                                              enabledBorder: OutlineInputBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                                borderSide: const BorderSide(
-                                                  color: Colors.white,
-                                                ),
-                                              ),
-                                              focusedBorder: OutlineInputBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                                borderSide: const BorderSide(
-                                                  color: Colors.white,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 1.5.h,
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            top: 10, left: 15, right: 15),
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                              boxShadow: [
-                                                LoginConstant().textFieldShadow,
-                                              ],
-                                              borderRadius:
-                                                  BorderRadius.circular(8),
-                                              border: Border.all(
-                                                  color:
-                                                      const Color(0xFFE8E8E8))),
-                                          child: TextFormField(
-                                            decoration: InputDecoration(
-                                                suffixIcon: const Icon(Icons
-                                                    .remove_red_eye_rounded),
+                                              controller:
+                                                  controller.kullaniciAdi,
+                                              decoration: InputDecoration(
+                                                suffixIcon:
+                                                    const Icon(Icons.person),
                                                 contentPadding:
                                                     const EdgeInsets.symmetric(
-                                                        vertical: 10,
-                                                        horizontal: 10),
+                                                  vertical: 10,
+                                                  horizontal: 10,
+                                                ),
                                                 filled: true,
                                                 fillColor: Colors.white,
-                                                hintText: "Şifre",
+                                                hintText: "Kullanıcı Adı",
                                                 hintStyle: LoginConstant()
                                                     .textFieldText,
                                                 enabledBorder:
@@ -268,50 +240,134 @@ class LoginScreen extends GetView<LoginController> {
                                                   borderSide: const BorderSide(
                                                     color: Colors.white,
                                                   ),
-                                                )),
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(height: 3.h),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 15, right: 15,),
-                                        child: GestureDetector(
-                                          onTap:()  {
-                                           // controller.services.getToken();
-
-                                          },
-                                          child: Container(
-                                            height: 45,
-                                            decoration:
-                                                LoginConstant().buttonStyle,
-                                            child: Center(
-                                              child: Text(
-                                                "Giriş Yap",
-                                                style: LoginConstant().girisText,
+                                                ),
                                               ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                      Align(
-                                        alignment: Alignment.centerRight,
-                                        child: Padding(
+                                        SizedBox(
+                                          height: 1.5.h,
+                                        ),
+                                        Padding(
                                           padding: const EdgeInsets.only(
-                                              top: 20, right: 20, bottom: 12),
-                                          child: Text(
-                                            "TEST v1.1.3",
-                                            style: GoogleFonts.poppins(
-                                              textStyle: const TextStyle(
-                                                color: Color(0xFF011582),
-                                                fontSize: 12.5,
-                                                fontWeight: FontWeight.w600,
+                                              top: 10, left: 15, right: 15),
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              boxShadow: [
+                                                LoginConstant().textFieldShadow,
+                                              ],
+                                              borderRadius:
+                                                  BorderRadius.circular(8),
+                                              border: Border.all(
+                                                color: const Color(0xFFE8E8E8),
+                                              ),
+                                            ),
+                                            child: TextFormField(
+                                              obscureText:
+                                                  controller.passwordInVisible,
+                                              validator: (value) {
+                                                if (value == "") {
+                                                  return "Şifre alanı boş geçilemez";
+                                                } else if (value!.length < 8) {
+                                                  return "Şifre 8 karakterden küçük olamaz";
+                                                }
+                                                return null;
+                                              },
+                                              inputFormatters: [
+                                                LengthLimitingTextInputFormatter(
+                                                    8)
+                                              ],
+                                              controller: controller.sifre,
+                                              decoration: InputDecoration(
+                                                  suffixIcon: GestureDetector(
+                                                      onTap: () {
+                                                        controller
+                                                                .passwordInVisible =
+                                                            !controller
+                                                                .passwordInVisible;
+                                                      },
+                                                      child: Icon(controller
+                                                              .passwordInVisible
+                                                          ? Icons.visibility_off
+                                                          : Icons.visibility)),
+                                                  contentPadding:
+                                                      const EdgeInsets
+                                                              .symmetric(
+                                                          vertical: 10,
+                                                          horizontal: 10),
+                                                  filled: true,
+                                                  fillColor: Colors.white,
+                                                  hintText: "Şifre",
+                                                  hintStyle: LoginConstant()
+                                                      .textFieldText,
+                                                  enabledBorder:
+                                                      OutlineInputBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10),
+                                                    borderSide:
+                                                        const BorderSide(
+                                                      color: Colors.white,
+                                                    ),
+                                                  ),
+                                                  focusedBorder:
+                                                      OutlineInputBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10),
+                                                    borderSide:
+                                                        const BorderSide(
+                                                      color: Colors.white,
+                                                    ),
+                                                  )),
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(height: 3.h),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                            left: 15,
+                                            right: 15,
+                                          ),
+                                          child: GestureDetector(
+                                            onTap: () {
+                                              controller.onloginPressed();
+
+                                              // controller.services.getToken();
+                                            },
+                                            child: Container(
+                                              height: 45,
+                                              decoration:
+                                                  LoginConstant().buttonStyle,
+                                              child: Center(
+                                                child: Text(
+                                                  "Giriş Yap",
+                                                  style:
+                                                      LoginConstant().girisText,
+                                                ),
                                               ),
                                             ),
                                           ),
                                         ),
-                                      )
-                                    ],
+                                        Align(
+                                          alignment: Alignment.centerRight,
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(
+                                                top: 20, right: 20, bottom: 12),
+                                            child: Text(
+                                              "TEST v1.1.3",
+                                              style: GoogleFonts.poppins(
+                                                textStyle: const TextStyle(
+                                                  color: Color(0xFF011582),
+                                                  fontSize: 12.5,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
@@ -350,5 +406,3 @@ class LoginScreen extends GetView<LoginController> {
     );
   }
 }
-
-
