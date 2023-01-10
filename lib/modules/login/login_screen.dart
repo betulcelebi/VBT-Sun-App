@@ -262,64 +262,74 @@ class LoginScreen extends GetView<LoginController> {
                                                 color: const Color(0xFFE8E8E8),
                                               ),
                                             ),
-                                            child: TextFormField(
-                                              obscureText:
-                                                  controller.passwordInVisible,
-                                              validator: (value) {
-                                                if (value == "") {
-                                                  return "Şifre alanı boş geçilemez";
-                                                } else if (value!.length < 8) {
-                                                  return "Şifre 8 karakterden küçük olamaz";
-                                                }
-                                                return null;
+                                            child: GetBuilder<LoginController>(
+                                              builder: (controller) {
+                                                return TextFormField(
+                                                  obscureText: controller
+                                                      .passwordInVisible,
+                                                  validator: (value) {
+                                                    if (value == "") {
+                                                      return "Şifre alanı boş geçilemez";
+                                                    } else if (value!.length <
+                                                        8) {
+                                                      return "Şifre 8 karakterden küçük olamaz";
+                                                    }
+                                                    return null;
+                                                  },
+                                                  inputFormatters: [
+                                                    LengthLimitingTextInputFormatter(
+                                                        8)
+                                                  ],
+                                                  controller: controller.sifre,
+                                                  decoration: InputDecoration(
+                                                      suffixIcon:
+                                                          GestureDetector(
+                                                              onTap: () {
+                                                                controller
+                                                                        .passwordInVisible =
+                                                                    !controller
+                                                                        .passwordInVisible;
+                                                                controller
+                                                                    .update();
+                                                              },
+                                                              child: Icon(controller
+                                                                      .passwordInVisible
+                                                                  ? Icons
+                                                                      .visibility
+                                                                  : Icons
+                                                                      .visibility_off)),
+                                                      contentPadding:
+                                                          const EdgeInsets
+                                                                  .symmetric(
+                                                              vertical: 10,
+                                                              horizontal: 10),
+                                                      filled: true,
+                                                      fillColor: Colors.white,
+                                                      hintText: "Şifre",
+                                                      hintStyle: LoginConstant()
+                                                          .textFieldText,
+                                                      enabledBorder:
+                                                          OutlineInputBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(10),
+                                                        borderSide:
+                                                            const BorderSide(
+                                                          color: Colors.white,
+                                                        ),
+                                                      ),
+                                                      focusedBorder:
+                                                          OutlineInputBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(10),
+                                                        borderSide:
+                                                            const BorderSide(
+                                                          color: Colors.white,
+                                                        ),
+                                                      )),
+                                                );
                                               },
-                                              inputFormatters: [
-                                                LengthLimitingTextInputFormatter(
-                                                    8)
-                                              ],
-                                              controller: controller.sifre,
-                                              decoration: InputDecoration(
-                                                  suffixIcon: GestureDetector(
-                                                      onTap: () {
-                                                        controller
-                                                                .passwordInVisible =
-                                                            !controller
-                                                                .passwordInVisible;
-                                                      },
-                                                      child: Icon(controller
-                                                              .passwordInVisible
-                                                          ? Icons.visibility_off
-                                                          : Icons.visibility)),
-                                                  contentPadding:
-                                                      const EdgeInsets
-                                                              .symmetric(
-                                                          vertical: 10,
-                                                          horizontal: 10),
-                                                  filled: true,
-                                                  fillColor: Colors.white,
-                                                  hintText: "Şifre",
-                                                  hintStyle: LoginConstant()
-                                                      .textFieldText,
-                                                  enabledBorder:
-                                                      OutlineInputBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10),
-                                                    borderSide:
-                                                        const BorderSide(
-                                                      color: Colors.white,
-                                                    ),
-                                                  ),
-                                                  focusedBorder:
-                                                      OutlineInputBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10),
-                                                    borderSide:
-                                                        const BorderSide(
-                                                      color: Colors.white,
-                                                    ),
-                                                  )),
                                             ),
                                           ),
                                         ),

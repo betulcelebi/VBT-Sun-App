@@ -1,9 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../routes/app_pages.dart';
-import '../../shared/services/login_service.dart';
 
 class LoginController extends GetxController {
   TextEditingController kullaniciAdi = TextEditingController();
