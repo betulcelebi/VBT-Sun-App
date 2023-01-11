@@ -5,7 +5,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 class DashboardConstant {
   static const Color mainColor = Color(0xff567DF4);
-  static Color whiteC = Color(0xff567DF4).withOpacity(0.7);
+  static Color whiteC = const Color(0xff567DF4).withOpacity(0.7);
   final decExpand = BoxDecoration(
       borderRadius: BorderRadius.only(
           topLeft: Radius.circular(3.125.h),
@@ -90,7 +90,7 @@ class BordroDetailConstant {
   final salarytext1 =
       GoogleFonts.poppins(fontWeight: FontWeight.bold, fontSize: 16.sp);
   final salarytext2 = GoogleFonts.poppins(fontSize: 16.sp);
-  final generalContainer = BoxDecoration(
+  final generalContainer = const BoxDecoration(
       //color: Color(0xffF6F6F7),
       color: BordroDetailConstant.generalColor,
       borderRadius: BorderRadius.only(

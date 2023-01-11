@@ -20,7 +20,7 @@ class BordroDetailScreen extends GetView<BordroDetailController> {
             children: [
               Padding(
                 padding: EdgeInsets.only(top: 6.h, left: 4.h),
-                child: Container(
+                child: SizedBox(
                     width: double.infinity,
                     height: 5.h,
                     child: Row(

@@ -5,14 +5,11 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:vbt_sun_app_project/modules/login/login_controller.dart';
-import 'package:vbt_sun_app_project/shared/services/login_service.dart';
 
-import '../../routes/app_pages.dart';
-import '../../utils/colors.dart';
 import '../../utils/constant.dart';
 
 class LoginScreen extends GetView<LoginController> {
-  LoginScreen({super.key});
+  const LoginScreen({super.key});
   //Services servis=Services();
 
   @override

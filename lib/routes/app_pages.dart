@@ -18,7 +18,7 @@ class AppPages {
   static final routes = [
     GetPage(
       name: Routes.LOGIN,
-      page: () => LoginScreen(),
+      page: () => const LoginScreen(),
       binding: LoginBinding(),
     ),
     GetPage(
@@ -28,12 +28,12 @@ class AppPages {
 ,
         
         GetPage(name: Routes.BORDRODETAIL,
-        page: () => BordroDetailScreen(),
+        page: () => const BordroDetailScreen(),
         binding: BordroDetailBinding()),
 
         GetPage(
         name: Routes.BODRO,
-        page: () => Bodro(),
+        page: () => const Bodro(),
         binding: BodroBinding()),
   ];
 }
