@@ -8,7 +8,6 @@ import 'package:vbt_sun_app_project/modules/dashboard/dashboard_controller.dart'
 import 'package:vbt_sun_app_project/utils/constant.dart';
 
 import '../../routes/app_pages.dart';
-import '../bodro_detail/bordro_detail_screen.dart';
 
 class DashboardScreen extends GetView<DashboardController> {
   DashboardScreen({super.key});
@@ -96,48 +95,52 @@ class DashboardScreen extends GetView<DashboardController> {
                         SizedBox(
                           height: 34.h,
                           //color: Colors.red,
-                          child: GridView.builder(
-                              gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisCount: 2,
-                                      childAspectRatio: 0.18.h,
-                                      crossAxisSpacing: 2.5.h,
-                                      mainAxisSpacing: 2.5.h),
-                              itemCount: 4,
-                              itemBuilder: (BuildContext ctx, index) {
-                                return Container(
-                                    decoration: DashboardConstant().decType,
-                                    child: Padding(
-                                      padding: EdgeInsets.only(
-                                          left: 1.5.h, top: 2.5.h),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        children: [
-                                          Container(
-                                              padding: EdgeInsets.all(3),
-                                              width: 5.h,
-                                              height: 5.h,
-                                              decoration:
-                                                  DashboardConstant().miniDec,
-                                              child: Image.asset(
-                                                DashboardConstant()
-                                                    .gimagePath[index],
-                                              )),
-                                          SizedBox(
-                                            height: 1.h,
-                                          ),
-                                          Text(
-                                            DashboardConstant()
-                                                .gridTitle[index],
-                                            style: DashboardConstant().gridText,
-                                          )
-                                        ],
-                                      ),
-                                    ));
-                              }),
+                          child: Obx(
+                            () => controller.isPageInfoLoading.value? GridView.builder(
+                                gridDelegate:
+                                    SliverGridDelegateWithFixedCrossAxisCount(
+                                        crossAxisCount: 2,
+                                        childAspectRatio: 0.18.h,
+                                        crossAxisSpacing: 2.5.h,
+                                        mainAxisSpacing: 2.5.h),
+                                itemCount: controller
+                                    .homeInfoResponse?.data?.menuInfo?.length,
+                                itemBuilder: (BuildContext ctx, index) {
+                                  return Container(
+                                      decoration: DashboardConstant().decType,
+                                      child: Padding(
+                                        padding: EdgeInsets.only(
+                                            left: 1.5.h, top: 2.5.h),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          children: [
+                                            Container(
+                                                padding: EdgeInsets.all(3),
+                                                width: 5.h,
+                                                height: 5.h,
+                                                decoration:
+                                                    DashboardConstant().miniDec,
+                                                child: Image.asset(
+                                                  DashboardConstant()
+                                                      .gimagePath[index],
+                                                )),
+                                            SizedBox(
+                                              height: 1.h,
+                                            ),
+                                            Text(
+                                              DashboardConstant()
+                                                  .gridTitle[index],
+                                              style:
+                                                  DashboardConstant().gridText,
+                                            )
+                                          ],
+                                        ),
+                                      ));
+                                }):Center(child: CircularProgressIndicator()),
+                          ),
                         ),
                         ListView.builder(
                           itemCount: 2,

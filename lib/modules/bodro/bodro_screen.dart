@@ -9,10 +9,6 @@ class Bodro extends GetView<BordroController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-     appBar: AppBar(
-      title: Obx(() => controller.isLoading.value? Text(controller.documentResponse!.data![0].dOCUMENTPERIOD.toString()):CircularProgressIndicator(color: Colors.red,)),
-     ),
-    );
+    return Scaffold(appBar: AppBar());
   }
 }

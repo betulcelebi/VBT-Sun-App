@@ -13,6 +13,7 @@ class BordroDetailScreen extends GetView<BordroDetailController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        resizeToAvoidBottomInset: true,
         backgroundColor: BordroDetailConstant.mainColor,
         body: SingleChildScrollView(
           child: Column(
@@ -47,7 +48,7 @@ class BordroDetailScreen extends GetView<BordroDetailController> {
               ),
 
               Container(
-                  height: 100.h,
+                  height: MediaQuery.of(context).size.height,
                   decoration: BordroDetailConstant().generalContainer,
                   // BoxDecoration(
                   //     color: Color(0xffF6F6F7),
@@ -55,9 +56,10 @@ class BordroDetailScreen extends GetView<BordroDetailController> {
                   //       topRight: Radius.circular(40.0),
                   //       topLeft: Radius.circular(40.0),
                   //     )),
-                  child: ListView.builder(
+                  child: Obx(() => controller.isLoading.value
+                                            ?  ListView.builder(
                     physics: const NeverScrollableScrollPhysics(),
-                    itemCount: 6,
+                    itemCount: controller.documentResponse.data!.length,
                     scrollDirection: Axis.vertical,
                     itemBuilder: (context, index) {
                       return Column(
@@ -69,7 +71,7 @@ class BordroDetailScreen extends GetView<BordroDetailController> {
                               // BoxDecoration(
                               //     color: Colors.white,
                               //     //color: Colors.red,
-
+                  
                               //     borderRadius: BorderRadius.circular(15),
                               //     border: Border.all(
                               //         color: Colors.grey.shade300,
@@ -102,22 +104,17 @@ class BordroDetailScreen extends GetView<BordroDetailController> {
                                         SizedBox(
                                           width: 2.w,
                                         ),
-                                        Obx(() => controller.isLoading.value
-                                            ? Text(
-                                                controller.documentResponse!
+                                       Text(
+                                                controller.documentResponse
                                                     .data![index].dOCUMENTPERIOD
                                                     .toString(),
                                                 style: BordroDetailConstant()
                                                     .salarytext2,
                                                 //TextStyle(fontSize: 16.sp),
-                                              )
-                                            : const Center(
-                                                child:
-                                                    CircularProgressIndicator(strokeWidth: 2,
-                                                color: Colors.blue,
-                                              ))),
+                                              ),
+                                            
                                         SizedBox(
-                                          width: 32.w,
+                                          width: 5.w,
                                         ),
                                         GestureDetector(
                                           onTap: () {
@@ -151,7 +148,12 @@ class BordroDetailScreen extends GetView<BordroDetailController> {
                         ],
                       );
                     },
-                  ))
+                  ): const Center(
+                                                child:
+                                                    CircularProgressIndicator(
+                                                strokeWidth: 2,
+                                                color: Colors.blue,
+                                              ))),)
               // ),
             ],
           ),
