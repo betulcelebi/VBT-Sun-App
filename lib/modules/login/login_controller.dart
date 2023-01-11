@@ -23,8 +23,9 @@ class LoginController extends GetxController {
       Get.toNamed(Routes.DASHBOARD);
       Get.snackbar("Mesaj", "Başarıyla giriş yaptınız",
           snackPosition: SnackPosition.BOTTOM,
-          colorText: Colors.white,
-          backgroundColor: const Color(0xff567DF4).withOpacity(0.7));
+          colorText: Color(0xff567DF4),
+          snackStyle: SnackStyle.FLOATING,
+          backgroundColor: Colors.white.withOpacity(0.4));
     } else {
       if (kullaniciAdi.text.isEmpty && sifre.text.isEmpty) {
         Get.defaultDialog(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:vbt_sun_app_project/utils/constant.dart';
 
@@ -48,112 +49,105 @@ class BordroDetailScreen extends GetView<BordroDetailController> {
               ),
 
               Container(
-                  height: MediaQuery.of(context).size.height,
-                  decoration: BordroDetailConstant().generalContainer,
-                  // BoxDecoration(
-                  //     color: Color(0xffF6F6F7),
-                  //     borderRadius: BorderRadius.only(
-                  //       topRight: Radius.circular(40.0),
-                  //       topLeft: Radius.circular(40.0),
-                  //     )),
-                  child: Obx(() => controller.isLoading.value
-                                            ?  ListView.builder(
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: controller.documentResponse.data!.length,
-                    scrollDirection: Axis.vertical,
-                    itemBuilder: (context, index) {
-                      return Column(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.all(1.h),
-                            child: Container(
-                              decoration: BordroDetailConstant().insideCotainer,
-                              // BoxDecoration(
-                              //     color: Colors.white,
-                              //     //color: Colors.red,
-                  
-                              //     borderRadius: BorderRadius.circular(15),
-                              //     border: Border.all(
-                              //         color: Colors.grey.shade300,
-                              //         width: 0.5.w)),
-                              width: 85.w,
-                              height: 12.h,
-                              child: Padding(
-                                padding: EdgeInsets.only(left: 2.h, top: 1.7.h),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "Bordro Özeti",
-                                      style: BordroDetailConstant().salarytext1,
-                                      // TextStyle(
-                                      //   fontWeight: FontWeight.bold,
-                                      // ),
-                                    ),
-                                    SizedBox(
-                                      height: 1.h,
-                                    ),
-                                    Row(
+                height: MediaQuery.of(context).size.height,
+                decoration: BordroDetailConstant().generalContainer,
+                // BoxDecoration(
+                //     color: Color(0xffF6F6F7),
+                //     borderRadius: BorderRadius.only(
+                //       topRight: Radius.circular(40.0),
+                //       topLeft: Radius.circular(40.0),
+                //     )),
+                child: Obx(() => controller.isLoading.value
+                    ? ListView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: controller.documentResponse.data!.length,
+                        scrollDirection: Axis.vertical,
+                        itemBuilder: (context, index) {
+                          return Column(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.all(1.h),
+                                child: Container(
+                                  decoration:
+                                      BordroDetailConstant().insideCotainer,
+                                  // BoxDecoration(
+                                  //     color: Colors.white,
+                                  //     //color: Colors.red,
+
+                                  //     borderRadius: BorderRadius.circular(15),
+                                  //     border: Border.all(
+                                  //         color: Colors.grey.shade300,
+                                  //         width: 0.5.w)),
+                                  width: 85.w,
+                                  height: 12.h,
+                                  child: Padding(
+                                    padding:
+                                        EdgeInsets.only(left: 2.h, top: 1.7.h),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
-                                        Container(
-                                          width: 1.w,
-                                          height: 3.h,
-                                          // color: Color(0xff567DF4),
-                                          color: BordroDetailConstant.mainColor,
+                                        Text(
+                                          "Bordro Özeti",
+                                          style: BordroDetailConstant()
+                                              .salarytext1,
+                                          // TextStyle(
+                                          //   fontWeight: FontWeight.bold,
+                                          // ),
                                         ),
-                                        SizedBox(
-                                          width: 2.w,
-                                        ),
-                                       Text(
-                                                controller.documentResponse
-                                                    .data![index].dOCUMENTPERIOD
-                                                    .toString(),
-                                                style: BordroDetailConstant()
-                                                    .salarytext2,
-                                                //TextStyle(fontSize: 16.sp),
-                                              ),
-                                            
-                                        SizedBox(
-                                          width: 5.w,
-                                        ),
-                                        GestureDetector(
-                                          onTap: () {
-                                            Get.toNamed(Routes.BODRO);
-                                          },
-                                          child: Container(
-                                            decoration: BordroDetailConstant()
-                                                .downloadContainer,
-                                            // BoxDecoration(
-                                            //     color: BordroDetailConstant.mainColor,
-                                            //     borderRadius:
-                                            //         BorderRadius.circular(40)),
-                                            width: 8.w,
-                                            height: 4.h,
-                                            child: Center(
-                                                child: Icon(
-                                              Icons.file_download,
-                                              size: 2.5.h,
-                                              color:
-                                                  BordroDetailConstant.whiteC,
-                                            )),
+                                        ListTile(
+                                          contentPadding:
+                                              const EdgeInsets.only(right: 25),
+                                          minLeadingWidth: 2,
+                                          enabled: true,
+                                          leading: Container(
+                                            width: 1.w,
+                                            height: 3.h,
+                                            // color: Color(0xff567DF4),
+                                            color:
+                                                BordroDetailConstant.mainColor,
+                                          ),
+                                          title: Text(
+                                            controller.documentResponse
+                                                .data![index].dOCUMENTPERIOD
+                                                .toString(),
+                                            style: BordroDetailConstant()
+                                                .salarytext2,
+                                          ),
+                                          trailing: GestureDetector(
+                                            onTap: () {
+                                              Get.toNamed(Routes.BODRO);
+                                            },
+                                            child: Container(
+                                              decoration: BordroDetailConstant()
+                                                  .downloadContainer,
+                                              width: 8.w,
+                                              height: 4.h,
+                                              child: Center(
+                                                  child: Icon(
+                                                Icons.visibility_outlined,
+                                                size: 2.8.h,
+                                                color:
+                                                    BordroDetailConstant.whiteC,
+                                              )),
+                                            ),
                                           ),
                                         ),
                                       ],
                                     ),
-                                  ],
+                                  ),
                                 ),
-                              ),
-                            ),
-                          )
-                        ],
-                      );
-                    },
-                  ): const Center(
-                                                child:
-                                                    CircularProgressIndicator(
-                                                strokeWidth: 2,
-                                                color: Colors.blue,
-                                              ))),)
+                              )
+                            ],
+                          );
+                        },
+                      )
+                    : const Center(
+                        child: CircularProgressIndicator(
+                        strokeWidth: 2,
+                        color: Colors.blue,
+                      ))),
+              )
               // ),
             ],
           ),
