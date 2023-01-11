@@ -102,12 +102,20 @@ class BordroDetailScreen extends GetView<BordroDetailController> {
                                         SizedBox(
                                           width: 2.w,
                                         ),
-                                        Text(
-                                          "Tarih : 10/11/2022",
-                                          style: BordroDetailConstant()
-                                              .salarytext2,
-                                          //TextStyle(fontSize: 16.sp),
-                                        ),
+                                        Obx(() => controller.isLoading.value
+                                            ? Text(
+                                                controller.documentResponse!
+                                                    .data![index].dOCUMENTPERIOD
+                                                    .toString(),
+                                                style: BordroDetailConstant()
+                                                    .salarytext2,
+                                                //TextStyle(fontSize: 16.sp),
+                                              )
+                                            : const Center(
+                                                child:
+                                                    CircularProgressIndicator(strokeWidth: 2,
+                                                color: Colors.blue,
+                                              ))),
                                         SizedBox(
                                           width: 32.w,
                                         ),
