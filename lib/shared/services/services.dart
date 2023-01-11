@@ -11,7 +11,7 @@ class Services extends GetConnect {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       'vbtauthorization':
-          'pp8b/s+ShFscq0EPHTySL9JRpxEvoHGLk1JN2jbgKIpAW+6caC71oBKjo2qJDI6r~241~string~638090412102844310',
+          'AOLckeXRXPSmRwcTutJ+ymGD93PF5eaoHEGlzM4L7y0trs3EN5CZyQ8/GcyUA3+1~241~string~638090647143868248',
     };
 
     var data = {"Date": "2023-01-11T06:07:11.199Z"};
@@ -33,7 +33,7 @@ class Services extends GetConnect {
     var headers = {
       'Accept': 'application/json',
       'vbtauthorization':
-          'pp8b/s+ShFscq0EPHTySL9JRpxEvoHGLk1JN2jbgKIpAW+6caC71oBKjo2qJDI6r~241~string~638090412102844310',
+          'AOLckeXRXPSmRwcTutJ+ymGD93PF5eaoHEGlzM4L7y0trs3EN5CZyQ8/GcyUA3+1~241~string~638090647143868248',
     };
 
     var params = {

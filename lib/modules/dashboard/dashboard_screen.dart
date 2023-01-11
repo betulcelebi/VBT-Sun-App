@@ -93,116 +93,130 @@ class DashboardScreen extends GetView<DashboardController> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(
-                          height: 34.h,
+                          height: 70.h,
                           //color: Colors.red,
                           child: Obx(
-                            () => controller.isPageInfoLoading.value? GridView.builder(
-                                gridDelegate:
-                                    SliverGridDelegateWithFixedCrossAxisCount(
-                                        crossAxisCount: 2,
-                                        childAspectRatio: 0.18.h,
-                                        crossAxisSpacing: 2.5.h,
-                                        mainAxisSpacing: 2.5.h),
-                                itemCount: controller
-                                    .homeInfoResponse?.data?.menuInfo?.length,
-                                itemBuilder: (BuildContext ctx, index) {
-                                  return Container(
-                                      decoration: DashboardConstant().decType,
-                                      child: Padding(
-                                        padding: EdgeInsets.only(
-                                            left: 1.5.h, top: 2.5.h),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          children: [
-                                            Container(
-                                                padding: EdgeInsets.all(3),
-                                                width: 5.h,
-                                                height: 5.h,
-                                                decoration:
-                                                    DashboardConstant().miniDec,
-                                                child: Image.asset(
-                                                  DashboardConstant()
-                                                      .gimagePath[index],
-                                                )),
-                                            SizedBox(
-                                              height: 1.h,
-                                            ),
-                                            Text(
-                                              DashboardConstant()
-                                                  .gridTitle[index],
-                                              style:
-                                                  DashboardConstant().gridText,
-                                            )
-                                          ],
-                                        ),
-                                      ));
-                                }):Center(child: CircularProgressIndicator()),
+                            () => controller.isPageInfoLoading.value
+                                ? GridView.builder(
+                                    gridDelegate:
+                                        SliverGridDelegateWithFixedCrossAxisCount(
+                                            crossAxisCount: 2,
+                                            childAspectRatio: 0.18.h,
+                                            crossAxisSpacing: 2.5.h,
+                                            mainAxisSpacing: 2.5.h),
+                                    itemCount: controller.homeInfoResponse!
+                                        .data!.menuInfo!.length,
+                                    itemBuilder: (BuildContext ctx, index) {
+                                      return controller.homeInfoResponse!.data!
+                                                  .menuInfo![index].mENUTYPE ==
+                                              "Matriks"
+                                          ? Container(
+                                              decoration:
+                                                  DashboardConstant().decType,
+                                              child: Padding(
+                                                padding: EdgeInsets.only(
+                                                    left: 1.5.h, top: 2.5.h),
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  children: [
+                                                    Container(
+                                                        padding:
+                                                            EdgeInsets.all(3),
+                                                        width: 5.h,
+                                                        height: 5.h,
+                                                        decoration:
+                                                            DashboardConstant()
+                                                                .miniDec,
+                                                        child: Image.asset(
+                                                          DashboardConstant()
+                                                                  .gimagePath[
+                                                              index],
+                                                        )),
+                                                    SizedBox(
+                                                      height: 1.h,
+                                                    ),
+                                                    Text(
+                                                      controller
+                                                          .homeInfoResponse!
+                                                          .data!
+                                                          .menuInfo![index]
+                                                          .mENUNAME
+                                                          .toString(),
+                                                      style: DashboardConstant()
+                                                          .gridText,
+                                                    )
+                                                  ],
+                                                ),
+                                              ))
+                                          : Container();
+                                    })
+                                : Center(child: CircularProgressIndicator()),
                           ),
                         ),
-                        ListView.builder(
-                          itemCount: 2,
-                          shrinkWrap: true,
-                          scrollDirection: Axis.vertical,
-                          itemBuilder: (context, index) {
-                            return GestureDetector(
-                              onTap: index == 0
-                                  ? () {
-                                      Get.toNamed(Routes.BORDRODETAIL);
-                                    }
-                                  : () {
-                                      null;
-                                    },
-                              child: Container(
-                                alignment: Alignment.center,
-                                width: 43.75.h,
-                                height: 10.h,
-                                margin: EdgeInsets.only(bottom: 1.875.h),
-                                decoration: DashboardConstant().decType,
-                                child: Padding(
-                                  padding: EdgeInsets.only(
-                                      left: 1.5.h, right: 1.5.h),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Container(
-                                            width: 5.h,
-                                            height: 5.h,
-                                            padding: EdgeInsets.all(3),
-                                            decoration:
-                                                DashboardConstant().miniDec,
-                                            child: Image.asset(
-                                              DashboardConstant()
-                                                  .limagePath[index],
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            width: 0.8.h,
-                                          ),
-                                          Text(
-                                            DashboardConstant()
-                                                .listTitle[index],
-                                            style: DashboardConstant().gridText,
-                                          )
-                                        ],
-                                      ),
-                                      Icon(
-                                        Icons.chevron_right,
-                                        size: 3.75.h,
-                                        color: DashboardConstant.mainColor,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            );
-                          },
-                        )
+                        // ListView.builder(
+                        //   itemCount: 2,
+                        //   shrinkWrap: true,
+                        //   scrollDirection: Axis.vertical,
+                        //   itemBuilder: (context, index) {
+                        //     return GestureDetector(
+                        //       onTap: index == 0
+                        //           ? () {
+                        //               Get.toNamed(Routes.BORDRODETAIL);
+                        //             }
+                        //           : () {
+                        //               null;
+                        //             },
+                        //       child: Container(
+                        //         alignment: Alignment.center,
+                        //         width: 43.75.h,
+                        //         height: 10.h,
+                        //         margin: EdgeInsets.only(bottom: 1.875.h),
+                        //         decoration: DashboardConstant().decType,
+                        //         child: Padding(
+                        //           padding: EdgeInsets.only(
+                        //               left: 1.5.h, right: 1.5.h),
+                        //           child: Row(
+                        //             mainAxisAlignment:
+                        //                 MainAxisAlignment.spaceBetween,
+                        //             children: [
+                        //               Row(
+                        //                 children: [
+                        //                   Container(
+                        //                     width: 5.h,
+                        //                     height: 5.h,
+                        //                     padding: EdgeInsets.all(3),
+                        //                     decoration:
+                        //                         DashboardConstant().miniDec,
+                        //                     child: Image.asset(
+                        //                       DashboardConstant()
+                        //                           .limagePath[index],
+                        //                     ),
+                        //                   ),
+                        //                   SizedBox(
+                        //                     width: 0.8.h,
+                        //                   ),
+                        //                   Text(
+                        //                     DashboardConstant()
+                        //                         .listTitle[index],
+                        //                     style: DashboardConstant().gridText,
+                        //                   )
+                        //                 ],
+                        //               ),
+                        //               Icon(
+                        //                 Icons.chevron_right,
+                        //                 size: 3.75.h,
+                        //                 color: DashboardConstant.mainColor,
+                        //               ),
+                        //             ],
+                        //           ),
+                        //         ),
+                        //       ),
+                        //     );
+                        //   },
+                        // )
                       ],
                     ),
                   ),
