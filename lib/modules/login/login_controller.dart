@@ -21,23 +21,67 @@ class LoginController extends GetxController {
       // ozaman yönlendirme yapabilirsin
       //}
       Get.toNamed(Routes.DASHBOARD);
-      Get.snackbar("Başarılı", "Başarıyla giriş yaptınız",
+      Get.snackbar("Mesaj", "Başarıyla giriş yaptınız",
           snackPosition: SnackPosition.BOTTOM,
           colorText: Colors.white,
-          backgroundColor: Color(0xff567DF4).withOpacity(0.7));
+          backgroundColor: const Color(0xff567DF4).withOpacity(0.7));
     } else {
       if (kullaniciAdi.text.isEmpty && sifre.text.isEmpty) {
         Get.defaultDialog(
-            title: "uyarı", middleText: "Kullanıcı adı ve şifre boş gecilemez");
+          title: "Uyarı",
+          titleStyle: const TextStyle(color: Color(0xff567DF4)),
+          middleText: "Kullanıcı adı ve şifre boş gecilemez",
+          confirm: TextButton(
+              onPressed: () {
+                Get.back();
+              },
+              child: const Text(
+                "Tamam",
+                style: TextStyle(color: Color(0xff567DF4)),
+              )),
+        );
       } else if (kullaniciAdi.text.isEmpty) {
         Get.defaultDialog(
-            title: "uyarı", middleText: "Kullanıcı adı boş gecilemez");
+          title: "Uyarı",
+          titleStyle: const TextStyle(color: Color(0xff567DF4)),
+          middleText: "Kullanıcı adı boş gecilemez",
+          confirm: TextButton(
+              onPressed: () {
+                Get.back();
+              },
+              child: const Text(
+                "Tamam",
+                style: TextStyle(color: Color(0xff567DF4)),
+              )),
+        );
       } else if (sifre.text.isEmpty) {
         Get.defaultDialog(
-            title: "uyarı", middleText: "şifre alanı boş gecilemez");
+          title: "Uyarı",
+          titleStyle: const TextStyle(color: Color(0xff567DF4)),
+          middleText: "şifre alanı boş gecilemez",
+          confirm: TextButton(
+              onPressed: () {
+                Get.back();
+              },
+              child: const Text(
+                "Tamam",
+                style: TextStyle(color: Color(0xff567DF4)),
+              )),
+        );
       } else if (sifre.text.length < 8) {
         Get.defaultDialog(
-            title: "uyarı", middleText: "Şifre 8 karakterden küçük olamaz");
+          title: "Uyarı",
+          titleStyle: const TextStyle(color: Color(0xff567DF4)),
+          middleText: "Şifre 8 karakterden küçük olamaz",
+          confirm: TextButton(
+              onPressed: () {
+                Get.back();
+              },
+              child: const Text(
+                "Tamam",
+                style: TextStyle(color: Color(0xff567DF4)),
+              )),
+        );
       }
     }
   }
