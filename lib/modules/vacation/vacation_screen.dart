@@ -20,12 +20,12 @@ class Vacation extends GetView<VacationController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff567DF4),
+      backgroundColor: const Color(0xff567DF4),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.only(top: 15.0.h),
           child: Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Color(0xffF6F6F7),
               borderRadius: BorderRadius.only(
                 topRight: Radius.circular(40.0),
@@ -40,11 +40,12 @@ class Vacation extends GetView<VacationController> {
                   padding: EdgeInsets.only(top: 8.0.h),
                   child: Container(
                     decoration: BoxDecoration(
-                        color: Colors.white,
-                        border: Border.all(
-                          width: 0.45.w,
-                          color: Colors.grey.shade300,
-                        )),
+                      color: Colors.white,
+                      border: Border.all(
+                        width: 0.45.w,
+                        color: Colors.grey.shade300,
+                      ),
+                    ),
                     width: 90.w,
                     height: 5.h,
                     child: Row(
@@ -80,10 +81,11 @@ class Vacation extends GetView<VacationController> {
                               .nEXTLEAVEALLOWANCEDATE
                               .toString(),
                           style: GoogleFonts.poppins(
-                              textStyle: TextStyle(
-                            fontSize: 16.sp,
-                            color: Color(0xff567DF4),
-                          )),
+                            textStyle: TextStyle(
+                              fontSize: 16.sp,
+                              color: Color(0xff567DF4),
+                            ),
+                          ),
                         ),
                       ],
                     ),
@@ -121,10 +123,11 @@ class Vacation extends GetView<VacationController> {
                               Text(
                                 " İzin hak ediş gün sayısı      : ",
                                 style: GoogleFonts.poppins(
-                                    textStyle: TextStyle(
-                                  fontSize: 15.sp,
-                                  color: Colors.black,
-                                )),
+                                  textStyle: TextStyle(
+                                    fontSize: 15.sp,
+                                    color: Colors.black,
+                                  ),
+                                ),
                               ),
                               Text(
                                 controller
@@ -136,10 +139,11 @@ class Vacation extends GetView<VacationController> {
                                     .aNNUALLEAVEBALANCE
                                     .toString(),
                                 style: GoogleFonts.poppins(
-                                    textStyle: TextStyle(
-                                  fontSize: 15.sp,
-                                  color: Color(0xff567DF4),
-                                )),
+                                  textStyle: TextStyle(
+                                    fontSize: 15.sp,
+                                    color: Color(0xff567DF4),
+                                  ),
+                                ),
                               ),
                             ],
                           ),
@@ -151,10 +155,11 @@ class Vacation extends GetView<VacationController> {
                               Text(
                                 " İzin bakiyesi                          : ",
                                 style: GoogleFonts.poppins(
-                                    textStyle: TextStyle(
-                                  fontSize: 15.sp,
-                                  color: Colors.black,
-                                )),
+                                  textStyle: TextStyle(
+                                    fontSize: 15.sp,
+                                    color: Colors.black,
+                                  ),
+                                ),
                               ),
                               Text(
                                 controller
@@ -166,10 +171,11 @@ class Vacation extends GetView<VacationController> {
                                     .nEXTLEAVEALLOWANCEDAYS
                                     .toString(),
                                 style: GoogleFonts.poppins(
-                                    textStyle: TextStyle(
-                                  fontSize: 15.sp,
-                                  color: Color(0xff567DF4),
-                                )),
+                                  textStyle: TextStyle(
+                                    fontSize: 15.sp,
+                                    color: Color(0xff567DF4),
+                                  ),
+                                ),
                               ),
                             ],
                           ),
@@ -180,11 +186,12 @@ class Vacation extends GetView<VacationController> {
                 ),
                 Container(
                   decoration: BoxDecoration(
-                      color: Colors.white,
-                      border: Border.all(
-                        width: 0.45.w,
-                        color: Colors.grey.shade300,
-                      )),
+                    color: Colors.white,
+                    border: Border.all(
+                      width: 0.45.w,
+                      color: Colors.grey.shade300,
+                    ),
+                  ),
                   width: 90.w,
                   child: ListView.builder(
                     shrinkWrap: true,
@@ -192,53 +199,61 @@ class Vacation extends GetView<VacationController> {
                     scrollDirection: Axis.vertical,
                     itemBuilder: (context, index) {
                       return Card(
-                        child: ListTile(
-                          contentPadding: EdgeInsets.all(20),
-                          leading: Container(
-                            height: 70.h,
-                            color: Colors.amber,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "İdari izin",
-                                  style: GoogleFonts.poppins(
-                                      textStyle: TextStyle(
-                                    fontSize: 15.sp,
-                                  )),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "İdari izin",
+                                      style: GoogleFonts.poppins(
+                                        textStyle: TextStyle(
+                                          fontSize: 15.sp,
+                                        ),
+                                      ),
+                                    ),
+                                    Text(
+                                      "29.09.2022",
+                                      style: GoogleFonts.poppins(
+                                        textStyle: TextStyle(
+                                          fontSize: 14.sp,
+                                        ),
+                                      ),
+                                    ),
+                                    Text(
+                                      "Kullandım",
+                                      style: GoogleFonts.poppins(
+                                        textStyle: TextStyle(
+                                          fontSize: 15.sp,
+                                        ),
+                                      ),
+                                    )
+                                  ],
                                 ),
-                                Text(
-                                  "29.09.2022",
-                                  style: GoogleFonts.poppins(
-                                      textStyle: TextStyle(
-                                    fontSize: 14.sp,
-                                  )),
+                              ),
+                              Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  color: Color(0xff48D380),
                                 ),
-                                Text(
-                                  "Kullandım",
-                                  style: GoogleFonts.poppins(
+                                width: 18.w,
+                                height: 5.h,
+                                child: Center(
+                                  child: Text(
+                                    "2.0 Gün",
+                                    style: GoogleFonts.poppins(
                                       textStyle: TextStyle(
-                                    fontSize: 14.sp,
-                                  )),
-                                )
-                              ],
-                            ),
-                          ),
-                          trailing: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              color: Color(0xff48D380),
-                            ),
-                            width: 18.w,
-                            height: 5.h,
-                            child: Center(
-                                child: Text(
-                              "2.0 Gün",
-                              style: GoogleFonts.poppins(
-                                  textStyle: TextStyle(
-                                fontSize: 16.sp,
-                              )),
-                            )),
+                                        fontSize: 16.sp,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       );
