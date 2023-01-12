@@ -193,72 +193,87 @@ class Vacation extends GetView<VacationController> {
                     ),
                   ),
                   width: 90.w,
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: 2,
-                    scrollDirection: Axis.vertical,
-                    itemBuilder: (context, index) {
-                      return Card(
-                        child: Padding(
-                          padding: const EdgeInsets.all(8),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                  child: GetBuilder<VacationController>(
+                      init: VacationController(),
+                      builder: (controller) {
+                        // if (controller.employeeLeaveResponse!.data == null) {
+                        //   return const Center(
+                        //     child: CircularProgressIndicator(),
+                        //   );
+                        // }
+
+                        return ListView.builder(
+                          shrinkWrap: true,
+                          itemCount:
+                              2, //controller.employeeLeaveResponse!.data!
+                          //     .employeeLeaveList!.length,
+
+                          scrollDirection: Axis.vertical,
+                          itemBuilder: (context, index) {
+                            return Card(
+                              child: Padding(
+                                padding: const EdgeInsets.all(8),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text(
-                                      "İdari izin",
-                                      style: GoogleFonts.poppins(
-                                        textStyle: TextStyle(
-                                          fontSize: 15.sp,
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "İdari izin",
+                                            style: GoogleFonts.poppins(
+                                              textStyle: TextStyle(
+                                                fontSize: 15.sp,
+                                              ),
+                                            ),
+                                          ),
+                                          Text(
+                                            "29.09.2022",
+                                            style: GoogleFonts.poppins(
+                                              textStyle: TextStyle(
+                                                fontSize: 14.sp,
+                                              ),
+                                            ),
+                                          ),
+                                          Text(
+                                            "Kullandım",
+                                            style: GoogleFonts.poppins(
+                                              textStyle: TextStyle(
+                                                fontSize: 15.sp,
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                    Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(5),
+                                        color: Color(0xff48D380),
+                                      ),
+                                      width: 18.w,
+                                      height: 5.h,
+                                      child: Center(
+                                        child: Text(
+                                          "2.0 Gün",
+                                          style: GoogleFonts.poppins(
+                                            textStyle: TextStyle(
+                                              fontSize: 16.sp,
+                                            ),
+                                          ),
                                         ),
                                       ),
                                     ),
-                                    Text(
-                                      "29.09.2022",
-                                      style: GoogleFonts.poppins(
-                                        textStyle: TextStyle(
-                                          fontSize: 14.sp,
-                                        ),
-                                      ),
-                                    ),
-                                    Text(
-                                      "Kullandım",
-                                      style: GoogleFonts.poppins(
-                                        textStyle: TextStyle(
-                                          fontSize: 15.sp,
-                                        ),
-                                      ),
-                                    )
                                   ],
                                 ),
                               ),
-                              Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(5),
-                                  color: Color(0xff48D380),
-                                ),
-                                width: 18.w,
-                                height: 5.h,
-                                child: Center(
-                                  child: Text(
-                                    "2.0 Gün",
-                                    style: GoogleFonts.poppins(
-                                      textStyle: TextStyle(
-                                        fontSize: 16.sp,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      );
-                    },
-                  ),
+                            );
+                          },
+                        );
+                      }),
                 ),
               ],
             ),
