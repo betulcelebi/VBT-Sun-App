@@ -12,14 +12,14 @@ class Vacation extends GetView<VacationController> {
   
   //const
    Vacation({super.key});
-List<String>firsttile=[
-  "İdari izin",
-  "İdari izin2"
-];
-List<String>date=[
-  "09.02.2022",
-  "01.02.2022"
-];
+// List<String>firsttile=[
+//   "İdari izin",
+//   "İdari izin2"
+// ];
+// List<String>date=[
+//   "09.02.2022",
+//   "01.02.2022"
+// ];
 
   @override
   
@@ -136,37 +136,41 @@ List<String>date=[
                   ),
                 ),
                 Container(
+                  decoration: BoxDecoration(
+                      
+                      color: Colors.white,
+                      border: Border.all(
+                        width: 0.45.w,
+                         color: Colors.grey.shade300,
+                      )
+                    ),
                   width: 90.w,
                   height: 65.h,
-                  color: Colors.white,
-                  child: ListView.builder(itemCount:firsttile.length,
+                  
+                  child: ListView.builder(itemCount:2,
                   scrollDirection: Axis.vertical,itemBuilder: (context, index) {
-                    return Padding(
-                      padding:  EdgeInsets.only(left:3.0.h),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(firsttile[index]),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Padding(
-                                padding:  EdgeInsets.only(right:1.0.h),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    color: Color(0xff48D380),
-                                    borderRadius: BorderRadius.circular(5),
-                                  ),
-                                width: 18.w,
-                                height: 5.h,
-                                
-                            ),
-                              )],
-                          ),
-                          Text(date[index]),
-                          
-                        ],
-                        
+                    return Card(
+                      child: ListTile(
+                       
+                                    leading:Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                      Text("İdari izin",style: GoogleFonts.poppins(textStyle: TextStyle(fontSize: 15.sp,)),),
+                      
+                      Text("29.09.2022",style: GoogleFonts.poppins(textStyle: TextStyle(fontSize: 14.sp,)),),
+                      Text("Kullandım",style: GoogleFonts.poppins(textStyle: TextStyle(fontSize: 15.sp,)),)
+                                      ],
+                                    ) ,
+                                    trailing:Container(
+                                      decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                       color: Color(0xff48D380),
+                                      ),
+                            width: 18.w,
+                            height: 5.h,
+                           
+                            child: Center(child: Text("2.0 Gün",style: GoogleFonts.poppins(textStyle: TextStyle(fontSize: 16.sp,)),)),
+                          ) ,
                       ),
                     );
                    
