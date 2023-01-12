@@ -5,4 +5,5 @@ abstract class Routes {
   static const DASHBOARD = '/dashboard';
     static const BORDRODETAIL = '/bordro_detail';
     static const BODRO = '/bodro';
+    static const VACATION = '/vacation';
 }
