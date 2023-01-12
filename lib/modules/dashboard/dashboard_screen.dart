@@ -182,13 +182,20 @@ class DashboardScreen extends GetView<DashboardController> {
                                       return const SizedBox();
                                     }
                                     return GestureDetector(
-                                      onTap: index == 0
-                                          ? () {
-                                              Get.toNamed(Routes.BORDRODETAIL);
-                                            }
-                                          : () {
-                                              null;
-                                            },
+                                      // onTap: index == 0
+                                      //     ? () {
+                                      //         Get.toNamed(Routes.BORDRODETAIL);
+                                      //       }
+                                      //     : () {
+                                      //         null;
+                                      //       },
+                                      onTap: () {
+                                        if (index == 0) {
+                                          Get.toNamed(Routes.BORDRODETAIL);
+                                        } else if (index == 1) {
+                                          Get.toNamed(Routes.VACATION);
+                                        }
+                                      },
                                       child: Container(
                                         alignment: Alignment.center,
                                         width: 43.75.h,
