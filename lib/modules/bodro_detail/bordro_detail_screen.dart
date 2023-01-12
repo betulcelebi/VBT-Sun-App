@@ -116,6 +116,20 @@ class BordroDetailScreen extends GetView<BordroDetailController> {
                                           ),
                                           trailing: GestureDetector(
                                             onTap: () {
+                                              controller.bordro
+                                                  .getPayrollViewDocument(
+                                                      controller
+                                                          .documentResponse
+                                                          .data![index]
+                                                          .dOCUMENTYEAR,
+                                                      controller
+                                                          .documentResponse
+                                                          .data![index]
+                                                          .dOCUMENTMONTH,
+                                                      controller
+                                                          .documentResponse
+                                                          .data![index]
+                                                          .uID);
                                               Get.toNamed(Routes.BODRO);
                                             },
                                             child: Container(

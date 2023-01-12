@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:vbt_sun_app_project/models/home_page_info_model.dart';
 
 import '../../models/payroll_document_model.dart';
+import '../../models/payroll_view_model.dart';
 
 class Services extends GetConnect {
   Future<PayrollDocumentResponse?> getPayroll() async {
@@ -11,7 +12,7 @@ class Services extends GetConnect {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       'vbtauthorization':
-          'AOLckeXRXPSmRwcTutJ+ymGD93PF5eaoHEGlzM4L7y0trs3EN5CZyQ8/GcyUA3+1~241~string~638090647143868248',
+          'QRROcIj6qcLbl6sg3ylur3ARX4i/MHtayDD3s7Kj3YSZOn260OfAnROBSYb8nIjO~241~string~638091265609344035',
     };
 
     var data = {"Date": "2023-01-11T06:07:11.199Z"};
@@ -33,7 +34,7 @@ class Services extends GetConnect {
     var headers = {
       'Accept': 'application/json',
       'vbtauthorization':
-          'AOLckeXRXPSmRwcTutJ+ymGD93PF5eaoHEGlzM4L7y0trs3EN5CZyQ8/GcyUA3+1~241~string~638090647143868248',
+          'QRROcIj6qcLbl6sg3ylur3ARX4i/MHtayDD3s7Kj3YSZOn260OfAnROBSYb8nIjO~241~string~638091265609344035',
     };
 
     var params = {
@@ -50,5 +51,26 @@ class Services extends GetConnect {
     }
     print(res.body);
     return HomePageInfoResponse.fromJson(res.body);
+  }
+
+  ///////////////////////////////
+  Future<PayrollViewResponse?> getPayrollView(
+      int? year, int? month, String? uid) async {
+    var headers = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'vbtauthorization':
+          'QRROcIj6qcLbl6sg3ylur3ARX4i/MHtayDD3s7Kj3YSZOn260OfAnROBSYb8nIjO~241~string~638091265609344035',
+    };
+
+    var data = {"YEAR": year, "MONTH": month, "DOCUMENTUID": uid};
+    var url =
+        'https://suniktest.suntekstil.com.tr/mobileapi/api/EmployeeDocuments/EmployeePayrollDownload';
+    var res = await post(url,jsonEncode(data), headers: headers, );
+    if (res.statusCode != 200) {
+      throw Exception('http.post error: statusCode= ${res.statusCode}');
+    }
+    print(res.body);
+    return PayrollViewResponse.fromJson(res.body);
   }
 }

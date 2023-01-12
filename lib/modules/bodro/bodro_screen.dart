@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 import 'package:vbt_sun_app_project/modules/bodro/bodro_controller.dart';
 
 class Bodro extends GetView<BordroController> {
@@ -7,6 +8,10 @@ class Bodro extends GetView<BordroController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar());
+    return Scaffold(
+      appBar: AppBar(),
+      body: Obx(
+          () =>controller.isBordroViewLoading.value? Container(child: SfPdfViewer.memory(controller.resultPdf!)):Center(child: CircularProgressIndicator())),
+    );
   }
 }
