@@ -3,8 +3,8 @@ import 'package:vbt_sun_app_project/modules/dashboard/dashboard_binding.dart';
 import 'package:vbt_sun_app_project/modules/dashboard/dashboard_screen.dart';
 
 import 'package:vbt_sun_app_project/modules/bodro_detail/bordro_detail_binding.dart';
-import 'package:vbt_sun_app_project/modules/taleplerim/taleplerim_binding.dart';
-import 'package:vbt_sun_app_project/modules/taleplerim/taleplerim_screen.dart';
+import 'package:vbt_sun_app_project/modules/my_request/my_request_binding.dart';
+import 'package:vbt_sun_app_project/modules/my_request/my_request_screen.dart';
 import 'package:vbt_sun_app_project/modules/vacation/vacation_screen.dart';
 
 import '../modules/bodro/bodro_binding.dart';
@@ -48,8 +48,8 @@ class AppPages {
         binding: VacationBinding()),
 
         GetPage(
-        name: Routes.TALEPLERIM,
-        page: () => const Taleplerim(),
-        binding: TaleplerimBinding()),
+        name: Routes.MYREQUEST,
+        page: () => const MyRequestScreen(),
+        binding: MyRequestBinding()),
   ];
 }
