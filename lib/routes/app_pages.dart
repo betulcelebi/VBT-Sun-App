@@ -3,6 +3,8 @@ import 'package:vbt_sun_app_project/modules/dashboard/dashboard_binding.dart';
 import 'package:vbt_sun_app_project/modules/dashboard/dashboard_screen.dart';
 
 import 'package:vbt_sun_app_project/modules/bodro_detail/bordro_detail_binding.dart';
+import 'package:vbt_sun_app_project/modules/my_request/my_request_binding.dart';
+import 'package:vbt_sun_app_project/modules/my_request/my_request_screen.dart';
 import 'package:vbt_sun_app_project/modules/vacation/vacation_screen.dart';
 import 'package:vbt_sun_app_project/modules/works/works_screen.dart';
 
@@ -51,5 +53,10 @@ class AppPages {
         name: Routes.WORKS,
         page: () => const Works(),
         binding: WorksBinding()),
+         GetPage(
+        name: Routes.MYREQUEST,
+        page: () => const MyRequestScreen(),
+        binding: MyRequestBinding()),
+
   ];
 }

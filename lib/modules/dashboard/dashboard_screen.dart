@@ -73,7 +73,37 @@ class DashboardScreen extends GetView<DashboardController> {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(1.25.h),
                         color: Colors.white.withOpacity(0.15)),
-                    child: const Icon(Icons.menu, color: Colors.white),
+                    child: GetBuilder<DashboardController>(
+                        init: DashboardController(),
+                        builder: (controller) {
+                          if (controller.homeInfoResponse?.data == null) {
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          }
+                          return GestureDetector(
+                            onTap: () {},
+                            child:
+                                Stack(alignment: Alignment.topRight, children: [
+                              const Center(
+                                  child: Icon(Icons.notifications,
+                                      color: Colors.white)),
+                              CircleAvatar(
+                                backgroundColor: Colors.red.withOpacity(0.9),
+                                radius: 9,
+                                child: Text(
+                                  controller.homeInfoResponse!.data!
+                                      .unReadedNotificationCount
+                                      .toString(),
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            ]),
+                          );
+                        }),
                   )
                 ],
               ),
@@ -122,37 +152,45 @@ class DashboardScreen extends GetView<DashboardController> {
                                     if (list.isEmpty) {
                                       return const SizedBox();
                                     }
-                                    return Container(
-                                      decoration: DashboardConstant().decType,
-                                      child: Padding(
-                                        padding: EdgeInsets.only(
-                                            left: 1.5.h, top: 2.5.h),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          children: [
-                                            Container(
-                                                padding:
-                                                    const EdgeInsets.all(3),
-                                                width: 5.h,
-                                                height: 5.h,
-                                                decoration:
-                                                    DashboardConstant().miniDec,
-                                                child: Image.asset(
-                                                  DashboardConstant()
-                                                      .gimagePath[index],
-                                                )),
-                                            SizedBox(
-                                              height: 1.h,
-                                            ),
-                                            Text(
-                                              list[index].mENUNAME ?? "",
-                                              style:
-                                                  DashboardConstant().gridText,
-                                            )
-                                          ],
+                                    return GestureDetector(
+                                      onTap: () {
+                                        if (index == 0) {
+                                          Get.toNamed(Routes.MYREQUEST);
+                                        }
+                                      },
+                                      child: Container(
+                                        decoration: DashboardConstant().decType,
+                                        child: Padding(
+                                          padding: EdgeInsets.only(
+                                              left: 1.5.h, top: 2.5.h),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            children: [
+                                              Container(
+                                                  padding:
+                                                      const EdgeInsets.all(3),
+                                                  width: 5.h,
+                                                  height: 5.h,
+                                                  decoration:
+                                                      DashboardConstant()
+                                                          .miniDec,
+                                                  child: Image.asset(
+                                                    DashboardConstant()
+                                                        .gimagePath[index],
+                                                  )),
+                                              SizedBox(
+                                                height: 1.h,
+                                              ),
+                                              Text(
+                                                list[index].mENUNAME ?? "",
+                                                style: DashboardConstant()
+                                                    .gridText,
+                                              )
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     );
