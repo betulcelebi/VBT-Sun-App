@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:vbt_sun_app_project/models/employee_leave_model.dart';
 import 'package:vbt_sun_app_project/models/home_page_info_model.dart';
 
+import '../../models/my_request_model.dart';
 import '../../models/payroll_document_model.dart';
 import '../../models/payroll_view_model.dart';
 
@@ -13,7 +14,7 @@ class Services extends GetConnect {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       'vbtauthorization':
-          'bZyd8u9j08klTTMghs3H6tx64kTo6U74PeVP3NJk0fAW7GXMH871bYx+JNM+MnX7~241~string~638092013498496128',
+          'wy41x4TvOlC5osTISSsJ28IUqgwGDOo0YjSVThIR80ceoeDz3Jb3tmZnWsRu3IX+~241~string~638092077901544239',
     };
 
     var data = {"Date": "2023-01-11T06:07:11.199Z"};
@@ -35,7 +36,7 @@ class Services extends GetConnect {
     var headers = {
       'Accept': 'application/json',
       'vbtauthorization':
-          'bZyd8u9j08klTTMghs3H6tx64kTo6U74PeVP3NJk0fAW7GXMH871bYx+JNM+MnX7~241~string~638092013498496128',
+          'wy41x4TvOlC5osTISSsJ28IUqgwGDOo0YjSVThIR80ceoeDz3Jb3tmZnWsRu3IX+~241~string~638092077901544239',
     };
 
     var params = {
@@ -61,7 +62,7 @@ class Services extends GetConnect {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       'vbtauthorization':
-          'bZyd8u9j08klTTMghs3H6tx64kTo6U74PeVP3NJk0fAW7GXMH871bYx+JNM+MnX7~241~string~638092013498496128',
+          'wy41x4TvOlC5osTISSsJ28IUqgwGDOo0YjSVThIR80ceoeDz3Jb3tmZnWsRu3IX+~241~string~638092077901544239',
     };
 
     var data = {"YEAR": year, "MONTH": month, "DOCUMENTUID": uid};
@@ -83,15 +84,36 @@ class Services extends GetConnect {
     var headers = {
       'Accept': 'application/json',
       'vbtauthorization':
-          'bZyd8u9j08klTTMghs3H6tx64kTo6U74PeVP3NJk0fAW7GXMH871bYx+JNM+MnX7~241~string~638092013498496128',
+          'wy41x4TvOlC5osTISSsJ28IUqgwGDOo0YjSVThIR80ceoeDz3Jb3tmZnWsRu3IX+~241~string~638092077901544239',
     };
 
     var url =
         'https://suniktest.suntekstil.com.tr/mobileapi/api/EmployeeLeave/GetEmployeeLeave';
-    var res = await post(url,"", headers: headers);
+    var res = await post(url, "", headers: headers);
     if (res.statusCode != 200)
       throw Exception('http.post error: statusCode= ${res.statusCode}');
     print(res.body);
     return EmployeeLeave.fromJson(res.body);
+  }
+
+  Future<MyRequestResponse?> getMyRequest(String statuArray) async {
+    var headers = {
+      'Accept': 'application/json',
+      'vbtauthorization':
+          'wy41x4TvOlC5osTISSsJ28IUqgwGDOo0YjSVThIR80ceoeDz3Jb3tmZnWsRu3IX+~241~string~638092077901544239',
+    };
+
+    var params = {
+      'statuArray': statuArray,
+    };
+    var query = params.entries.map((p) => '${p.key}=${p.value}').join('&');
+
+    var url =
+        'https://suniktest.suntekstil.com.tr/mobileapi/api/RequestManagement/GetMyRequestMasterMobile?$query';
+    var res = await post(url, "", headers: headers);
+    if (res.statusCode != 200)
+      throw Exception('http.post error: statusCode= ${res.statusCode}');
+    print(res.body);
+    return MyRequestResponse.fromJson(res.body);
   }
 }
