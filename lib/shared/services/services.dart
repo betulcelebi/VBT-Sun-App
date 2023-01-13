@@ -5,6 +5,7 @@ import 'package:vbt_sun_app_project/models/employee_leave_model.dart';
 import 'package:vbt_sun_app_project/models/home_page_info_model.dart';
 
 import '../../models/my_request_model.dart';
+import '../../models/my_works_model.dart';
 import '../../models/payroll_document_model.dart';
 import '../../models/payroll_view_model.dart';
 
@@ -136,5 +137,28 @@ class Services extends GetConnect {
       throw Exception('http.post error: statusCode= ${res.statusCode}');
     print(res.body);
     return MyRequestResponse.fromJson(res.body);
+  }
+  ////////////////////MyJobs Service////////////////////
+
+  Future<MyWorksResponse?> getMyWorks() async {
+    var headers = {
+      'Accept': 'application/json',
+      'vbtauthorization':
+          'YXe8fh7rc5TUyaTKX+gi8YrbMhqITBbgUShiojy1A+RUMcmItk+jXw6faTNVnTwU~1~string~638092548506589188',
+    };
+
+    var params = {
+      'ID_WORK_STATUS_ARRAY': '1',
+    };
+    var query = params.entries.map((p) => '${p.key}=${p.value}').join('&');
+
+    var url =
+        'https://suniktest.suntekstil.com.tr/mobileapi/api/RequestManagement/GetPendingJobs?$query';
+    var res = await post(url, "", headers: headers);
+    if (res.statusCode != 200) {
+      throw Exception('http.post error: statusCode= ${res.statusCode}');
+    }
+    print(res.body);
+    return MyWorksResponse.fromJson(res.body);
   }
 }
