@@ -9,4 +9,5 @@ abstract class Routes {
   static const VACATION = '/vacation';
   static const WORKS = '/works';
   static const MYREQUEST = '/my_request';
+  static const MYREQUESTDETAIL = '/my_request_detail';
 }
