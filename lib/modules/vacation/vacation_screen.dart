@@ -196,18 +196,16 @@ class Vacation extends GetView<VacationController> {
                   child: GetBuilder<VacationController>(
                       init: VacationController(),
                       builder: (controller) {
-                        // if (controller.employeeLeaveResponse!.data == null) {
-                        //   return const Center(
-                        //     child: CircularProgressIndicator(),
-                        //   );
-                        // }
+                        if (controller.employeeLeaveResponse!.data == null) {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
 
                         return ListView.builder(
                           shrinkWrap: true,
-                          itemCount:
-                              2, //controller.employeeLeaveResponse!.data!
-                          //     .employeeLeaveList!.length,
-
+                          itemCount: controller.employeeLeaveResponse!.data!
+                              .employeeLeaveList!.length,
                           scrollDirection: Axis.vertical,
                           itemBuilder: (context, index) {
                             return Card(

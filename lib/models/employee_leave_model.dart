@@ -1,239 +1,220 @@
-// To parse this JSON data, do
-//
-//     final employeeLeaveResponse = employeeLeaveResponseFromJson(jsonString);
-
-import 'dart:convert';
-
-EmployeeLeaveResponse? employeeLeaveResponseFromJson(String str) =>
-    EmployeeLeaveResponse.fromJson(json.decode(str));
-
-String employeeLeaveResponseToJson(EmployeeLeaveResponse? data) =>
-    json.encode(data!.toJson());
-
-class EmployeeLeaveResponse {
-  EmployeeLeaveResponse({
-    this.refreshToken,
-    this.token,
-    this.data,
-  });
-
+class EmployeeLeave {
   String? refreshToken;
   String? token;
   Data? data;
 
-  factory EmployeeLeaveResponse.fromJson(Map<String, dynamic> json) =>
-      EmployeeLeaveResponse(
-        refreshToken: json["RefreshToken"],
-        token: json["Token"],
-        data: json["Data"],
-      );
+  EmployeeLeave({this.refreshToken, this.token, this.data});
 
-  Map<String, dynamic> toJson() => {
-        "RefreshToken": refreshToken,
-        "Token": token,
-        "Data": data,
-      };
+  EmployeeLeave.fromJson(Map<String, dynamic> json) {
+    refreshToken = json['RefreshToken'];
+    token = json['Token'];
+    data = json['Data'] != null ? new Data.fromJson(json['Data']) : null;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['RefreshToken'] = this.refreshToken;
+    data['Token'] = this.token;
+    if (this.data != null) {
+      data['Data'] = this.data!.toJson();
+    }
+    return data;
+  }
 }
 
 class Data {
-  Data({
-    this.employeeEarnedRightsList,
-    this.employeeLeaveList,
-  });
+  List<EmployeeEarnedRightsList>? employeeEarnedRightsList;
+  List<EmployeeLeaveList>? employeeLeaveList;
 
-  List<EmployeeEarnedRightsList?>? employeeEarnedRightsList;
-  List<EmployeeLeaveList?>? employeeLeaveList;
+  Data({this.employeeEarnedRightsList, this.employeeLeaveList});
 
-  factory Data.fromJson(Map<String, dynamic> json) => Data(
-        employeeEarnedRightsList: json["EmployeeEarnedRightsList"] == null
-            ? []
-            : json["EmployeeEarnedRightsList"] == null
-                ? []
-                : List<EmployeeEarnedRightsList?>.from(
-                    json["EmployeeEarnedRightsList"]!
-                        .map((x) => EmployeeEarnedRightsList.fromJson(x))),
-        employeeLeaveList: json["EmployeeLeaveList"] == null
-            ? []
-            : json["EmployeeLeaveList"] == null
-                ? []
-                : List<EmployeeLeaveList?>.from(json["EmployeeLeaveList"]!
-                    .map((x) => EmployeeLeaveList.fromJson(x))),
-      );
+  Data.fromJson(Map<String, dynamic> json) {
+    if (json['EmployeeEarnedRightsList'] != null) {
+      employeeEarnedRightsList = <EmployeeEarnedRightsList>[];
+      json['EmployeeEarnedRightsList'].forEach((v) {
+        employeeEarnedRightsList!.add(new EmployeeEarnedRightsList.fromJson(v));
+      });
+    }
+    if (json['EmployeeLeaveList'] != null) {
+      employeeLeaveList = <EmployeeLeaveList>[];
+      json['EmployeeLeaveList'].forEach((v) {
+        employeeLeaveList!.add(new EmployeeLeaveList.fromJson(v));
+      });
+    }
+  }
 
-  Map<String, dynamic> toJson() => {
-        "EmployeeEarnedRightsList": employeeEarnedRightsList == null
-            ? []
-            : employeeEarnedRightsList == null
-                ? []
-                : List<dynamic>.from(
-                    employeeEarnedRightsList!.map((x) => x!.toJson())),
-        "EmployeeLeaveList": employeeLeaveList == null
-            ? []
-            : employeeLeaveList == null
-                ? []
-                : List<dynamic>.from(
-                    employeeLeaveList!.map((x) => x!.toJson())),
-      };
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.employeeEarnedRightsList != null) {
+      data['EmployeeEarnedRightsList'] =
+          this.employeeEarnedRightsList!.map((v) => v.toJson()).toList();
+    }
+    if (this.employeeLeaveList != null) {
+      data['EmployeeLeaveList'] =
+          this.employeeLeaveList!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
 }
 
 class EmployeeEarnedRightsList {
-  EmployeeEarnedRightsList({
-    this.idHrEmployee,
-    this.employeeName,
-    this.employeeSurname,
-    this.annualLeaveBalance,
-    this.nextLeaveAllowanceDate,
-    this.nextLeaveAllowanceDays,
-    this.isHead,
-    this.positionName,
-    this.photoAddress,
-  });
+  dynamic? iDHREMPLOYEE;
+  String? eMPLOYEENAME;
+  String? eMPLOYEESURNAME;
+  dynamic? aNNUALLEAVEBALANCE;
+  String? nEXTLEAVEALLOWANCEDATE;
+  dynamic? nEXTLEAVEALLOWANCEDAYS;
+  bool? iSHEAD;
+  String? pOSITIONNAME;
+  String? pHOTOADDRESS;
 
-  int? idHrEmployee;
-  String? employeeName;
-  String? employeeSurname;
-  int? annualLeaveBalance;
-  String? nextLeaveAllowanceDate;
-  int? nextLeaveAllowanceDays;
-  bool? isHead;
-  dynamic positionName;
-  dynamic photoAddress;
+  EmployeeEarnedRightsList(
+      {this.iDHREMPLOYEE,
+      this.eMPLOYEENAME,
+      this.eMPLOYEESURNAME,
+      this.aNNUALLEAVEBALANCE,
+      this.nEXTLEAVEALLOWANCEDATE,
+      this.nEXTLEAVEALLOWANCEDAYS,
+      this.iSHEAD,
+      this.pOSITIONNAME,
+      this.pHOTOADDRESS});
 
-  factory EmployeeEarnedRightsList.fromJson(Map<String, dynamic> json) =>
-      EmployeeEarnedRightsList(
-        idHrEmployee: json["ID_HR_EMPLOYEE"],
-        employeeName: json["EMPLOYEE_NAME"],
-        employeeSurname: json["EMPLOYEE_SURNAME"],
-        annualLeaveBalance: json["ANNUAL_LEAVE_BALANCE"],
-        nextLeaveAllowanceDate: json["NEXT_LEAVE_ALLOWANCE_DATE"],
-        nextLeaveAllowanceDays: json["NEXT_LEAVE_ALLOWANCE_DAYS"],
-        isHead: json["IS_HEAD"],
-        positionName: json["POSITION_NAME"],
-        photoAddress: json["PHOTO_ADDRESS"],
-      );
+  EmployeeEarnedRightsList.fromJson(Map<String, dynamic> json) {
+    iDHREMPLOYEE = json['ID_HR_EMPLOYEE'];
+    eMPLOYEENAME = json['EMPLOYEE_NAME'];
+    eMPLOYEESURNAME = json['EMPLOYEE_SURNAME'];
+    aNNUALLEAVEBALANCE = json['ANNUAL_LEAVE_BALANCE'];
+    nEXTLEAVEALLOWANCEDATE = json['NEXT_LEAVE_ALLOWANCE_DATE'];
+    nEXTLEAVEALLOWANCEDAYS = json['NEXT_LEAVE_ALLOWANCE_DAYS'];
+    iSHEAD = json['IS_HEAD'];
+    pOSITIONNAME = json['POSITION_NAME'];
+    pHOTOADDRESS = json['PHOTO_ADDRESS'];
+  }
 
-  Map<String, dynamic> toJson() => {
-        "ID_HR_EMPLOYEE": idHrEmployee,
-        "EMPLOYEE_NAME": employeeName,
-        "EMPLOYEE_SURNAME": employeeSurname,
-        "ANNUAL_LEAVE_BALANCE": annualLeaveBalance,
-        "NEXT_LEAVE_ALLOWANCE_DATE": nextLeaveAllowanceDate,
-        "NEXT_LEAVE_ALLOWANCE_DAYS": nextLeaveAllowanceDays,
-        "IS_HEAD": isHead,
-        "POSITION_NAME": positionName,
-        "PHOTO_ADDRESS": photoAddress,
-      };
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['ID_HR_EMPLOYEE'] = this.iDHREMPLOYEE;
+    data['EMPLOYEE_NAME'] = this.eMPLOYEENAME;
+    data['EMPLOYEE_SURNAME'] = this.eMPLOYEESURNAME;
+    data['ANNUAL_LEAVE_BALANCE'] = this.aNNUALLEAVEBALANCE;
+    data['NEXT_LEAVE_ALLOWANCE_DATE'] = this.nEXTLEAVEALLOWANCEDATE;
+    data['NEXT_LEAVE_ALLOWANCE_DAYS'] = this.nEXTLEAVEALLOWANCEDAYS;
+    data['IS_HEAD'] = this.iSHEAD;
+    data['POSITION_NAME'] = this.pOSITIONNAME;
+    data['PHOTO_ADDRESS'] = this.pHOTOADDRESS;
+    return data;
+  }
 }
 
 class EmployeeLeaveList {
-  EmployeeLeaveList({
-    this.idEmployeeVacation,
-    this.idHrEmployee,
-    this.employeeName,
-    this.employeeSurname,
-    this.isDocument,
-    this.picklistVacationTypeId,
-    this.picklistVacationTypeName,
-    this.earnedDate,
-    this.earnedDay,
-    this.sdate,
-    this.edate,
-    this.wdate,
-    this.shour,
-    this.ehour,
-    this.day,
-    this.hour,
-    this.minute,
-    this.hourMinute,
-    this.address,
-    this.comment,
-    this.isUsed,
-    this.usedDate,
-    this.usedDescription,
-    this.isUsedParamater,
-    this.buttonType,
-  });
+  dynamic? iDEMPLOYEEVACATION;
+  dynamic? iDHREMPLOYEE;
+  String? eMPLOYEENAME;
+  String? eMPLOYEESURNAME;
+  bool? iSDOCUMENT;
+  dynamic? pICKLISTVACATIONTYPEID;
+  String? pICKLISTVACATIONTYPENAME;
+  String? eARNEDDATE;
+  dynamic? eARNEDDAY;
+  String? sDATE;
+  String? eDATE;
+  String? wDATE;
+  String? sHOUR;
+  String? eHOUR;
+  dynamic? dAY;
+  dynamic? hOUR;
+  dynamic? mINUTE;
+  String? hOURMINUTE;
+  String? aDDRESS;
+  String? cOMMENT;
+  bool? iSUSED;
+  String? uSEDDATE;
+  String? uSEDDESCRIPTION;
+  bool? iSUSEDPARAMATER;
+  String? bUTTONTYPE;
 
-  int? idEmployeeVacation;
-  int? idHrEmployee;
-  String? employeeName;
-  String? employeeSurname;
-  bool? isDocument;
-  int? picklistVacationTypeId;
-  String? picklistVacationTypeName;
-  String? earnedDate;
-  int? earnedDay;
-  String? sdate;
-  String? edate;
-  String? wdate;
-  dynamic shour;
-  dynamic ehour;
-  int? day;
-  int? hour;
-  int? minute;
-  String? hourMinute;
-  dynamic address;
-  dynamic comment;
-  bool? isUsed;
-  String? usedDate;
-  dynamic usedDescription;
-  bool? isUsedParamater;
-  String? buttonType;
+  EmployeeLeaveList(
+      {this.iDEMPLOYEEVACATION,
+      this.iDHREMPLOYEE,
+      this.eMPLOYEENAME,
+      this.eMPLOYEESURNAME,
+      this.iSDOCUMENT,
+      this.pICKLISTVACATIONTYPEID,
+      this.pICKLISTVACATIONTYPENAME,
+      this.eARNEDDATE,
+      this.eARNEDDAY,
+      this.sDATE,
+      this.eDATE,
+      this.wDATE,
+      this.sHOUR,
+      this.eHOUR,
+      this.dAY,
+      this.hOUR,
+      this.mINUTE,
+      this.hOURMINUTE,
+      this.aDDRESS,
+      this.cOMMENT,
+      this.iSUSED,
+      this.uSEDDATE,
+      this.uSEDDESCRIPTION,
+      this.iSUSEDPARAMATER,
+      this.bUTTONTYPE});
 
-  factory EmployeeLeaveList.fromJson(Map<String, dynamic> json) =>
-      EmployeeLeaveList(
-        idEmployeeVacation: json["ID_EMPLOYEE_VACATION"],
-        idHrEmployee: json["ID_HR_EMPLOYEE"],
-        employeeName: json["EMPLOYEE_NAME"],
-        employeeSurname: json["EMPLOYEE_SURNAME"],
-        isDocument: json["IS_DOCUMENT"],
-        picklistVacationTypeId: json["PICKLIST_VACATION_TYPE_ID"],
-        picklistVacationTypeName: json["PICKLIST_VACATION_TYPE_NAME"],
-        earnedDate: json["EARNED_DATE"],
-        earnedDay: json["EARNED_DAY"],
-        sdate: json["SDATE"],
-        edate: json["EDATE"],
-        wdate: json["WDATE"],
-        shour: json["SHOUR"],
-        ehour: json["EHOUR"],
-        day: json["DAY"],
-        hour: json["HOUR"],
-        minute: json["MINUTE"],
-        hourMinute: json["HOUR_MINUTE"],
-        address: json["ADDRESS"],
-        comment: json["COMMENT"],
-        isUsed: json["IS_USED"],
-        usedDate: json["USED_DATE"],
-        usedDescription: json["USED_DESCRIPTION"],
-        isUsedParamater: json["IS_USED_PARAMATER"],
-        buttonType: json["BUTTON_TYPE"],
-      );
+  EmployeeLeaveList.fromJson(Map<String, dynamic> json) {
+    iDEMPLOYEEVACATION = json['ID_EMPLOYEE_VACATION'];
+    iDHREMPLOYEE = json['ID_HR_EMPLOYEE'];
+    eMPLOYEENAME = json['EMPLOYEE_NAME'];
+    eMPLOYEESURNAME = json['EMPLOYEE_SURNAME'];
+    iSDOCUMENT = json['IS_DOCUMENT'];
+    pICKLISTVACATIONTYPEID = json['PICKLIST_VACATION_TYPE_ID'];
+    pICKLISTVACATIONTYPENAME = json['PICKLIST_VACATION_TYPE_NAME'];
+    eARNEDDATE = json['EARNED_DATE'];
+    eARNEDDAY = json['EARNED_DAY'];
+    sDATE = json['SDATE'];
+    eDATE = json['EDATE'];
+    wDATE = json['WDATE'];
+    sHOUR = json['SHOUR'];
+    eHOUR = json['EHOUR'];
+    dAY = json['DAY'];
+    hOUR = json['HOUR'];
+    mINUTE = json['MINUTE'];
+    hOURMINUTE = json['HOUR_MINUTE'];
+    aDDRESS = json['ADDRESS'];
+    cOMMENT = json['COMMENT'];
+    iSUSED = json['IS_USED'];
+    uSEDDATE = json['USED_DATE'];
+    uSEDDESCRIPTION = json['USED_DESCRIPTION'];
+    iSUSEDPARAMATER = json['IS_USED_PARAMATER'];
+    bUTTONTYPE = json['BUTTON_TYPE'];
+  }
 
-  Map<String, dynamic> toJson() => {
-        "ID_EMPLOYEE_VACATION": idEmployeeVacation,
-        "ID_HR_EMPLOYEE": idHrEmployee,
-        "EMPLOYEE_NAME": employeeName,
-        "EMPLOYEE_SURNAME": employeeSurname,
-        "IS_DOCUMENT": isDocument,
-        "PICKLIST_VACATION_TYPE_ID": picklistVacationTypeId,
-        "PICKLIST_VACATION_TYPE_NAME": picklistVacationTypeName,
-        "EARNED_DATE": earnedDate,
-        "EARNED_DAY": earnedDay,
-        "SDATE": sdate,
-        "EDATE": edate,
-        "WDATE": wdate,
-        "SHOUR": shour,
-        "EHOUR": ehour,
-        "DAY": day,
-        "HOUR": hour,
-        "MINUTE": minute,
-        "HOUR_MINUTE": hourMinute,
-        "ADDRESS": address,
-        "COMMENT": comment,
-        "IS_USED": isUsed,
-        "USED_DATE": usedDate,
-        "USED_DESCRIPTION": usedDescription,
-        "IS_USED_PARAMATER": isUsedParamater,
-        "BUTTON_TYPE": buttonType,
-      };
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['ID_EMPLOYEE_VACATION'] = this.iDEMPLOYEEVACATION;
+    data['ID_HR_EMPLOYEE'] = this.iDHREMPLOYEE;
+    data['EMPLOYEE_NAME'] = this.eMPLOYEENAME;
+    data['EMPLOYEE_SURNAME'] = this.eMPLOYEESURNAME;
+    data['IS_DOCUMENT'] = this.iSDOCUMENT;
+    data['PICKLIST_VACATION_TYPE_ID'] = this.pICKLISTVACATIONTYPEID;
+    data['PICKLIST_VACATION_TYPE_NAME'] = this.pICKLISTVACATIONTYPENAME;
+    data['EARNED_DATE'] = this.eARNEDDATE;
+    data['EARNED_DAY'] = this.eARNEDDAY;
+    data['SDATE'] = this.sDATE;
+    data['EDATE'] = this.eDATE;
+    data['WDATE'] = this.wDATE;
+    data['SHOUR'] = this.sHOUR;
+    data['EHOUR'] = this.eHOUR;
+    data['DAY'] = this.dAY;
+    data['HOUR'] = this.hOUR;
+    data['MINUTE'] = this.mINUTE;
+    data['HOUR_MINUTE'] = this.hOURMINUTE;
+    data['ADDRESS'] = this.aDDRESS;
+    data['COMMENT'] = this.cOMMENT;
+    data['IS_USED'] = this.iSUSED;
+    data['USED_DATE'] = this.uSEDDATE;
+    data['USED_DESCRIPTION'] = this.uSEDDESCRIPTION;
+    data['IS_USED_PARAMATER'] = this.iSUSEDPARAMATER;
+    data['BUTTON_TYPE'] = this.bUTTONTYPE;
+    return data;
+  }
 }

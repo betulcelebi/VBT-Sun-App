@@ -73,7 +73,27 @@ class DashboardScreen extends GetView<DashboardController> {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(1.25.h),
                         color: Colors.white.withOpacity(0.15)),
-                    child: const Icon(Icons.menu, color: Colors.white),
+                    child: Stack(
+                      alignment: Alignment.topRight,
+                      children: [
+                      Center(
+                          child: const Icon(Icons.notifications,
+                              color: Colors.white)),
+                      CircleAvatar(
+                        
+                        backgroundColor: Colors.red.withOpacity(0.9),
+                        radius: 9,
+                        child: Text(
+                          controller
+                              .homeInfoResponse!.data!.unReadedNotificationCount
+                              .toString(),
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ]),
                   )
                 ],
               ),
