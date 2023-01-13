@@ -14,7 +14,7 @@ class Services extends GetConnect {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       'vbtauthorization':
-          'wy41x4TvOlC5osTISSsJ28IUqgwGDOo0YjSVThIR80ceoeDz3Jb3tmZnWsRu3IX+~241~string~638092077901544239',
+          'xpRydl/3Xt9v1wWOX/2YiueTW8JtRZDCO4dK2G265o0V4gS560113Cr6zps9fn5K~241~string~638092417769767153',
     };
 
     var data = {"Date": "2023-01-11T06:07:11.199Z"};
@@ -36,7 +36,7 @@ class Services extends GetConnect {
     var headers = {
       'Accept': 'application/json',
       'vbtauthorization':
-          'wy41x4TvOlC5osTISSsJ28IUqgwGDOo0YjSVThIR80ceoeDz3Jb3tmZnWsRu3IX+~241~string~638092077901544239',
+          'xpRydl/3Xt9v1wWOX/2YiueTW8JtRZDCO4dK2G265o0V4gS560113Cr6zps9fn5K~241~string~638092417769767153',
     };
 
     var params = {
@@ -62,7 +62,7 @@ class Services extends GetConnect {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       'vbtauthorization':
-          'wy41x4TvOlC5osTISSsJ28IUqgwGDOo0YjSVThIR80ceoeDz3Jb3tmZnWsRu3IX+~241~string~638092077901544239',
+          'xpRydl/3Xt9v1wWOX/2YiueTW8JtRZDCO4dK2G265o0V4gS560113Cr6zps9fn5K~241~string~638092417769767153',
     };
 
     var data = {"YEAR": year, "MONTH": month, "DOCUMENTUID": uid};
@@ -84,7 +84,7 @@ class Services extends GetConnect {
     var headers = {
       'Accept': 'application/json',
       'vbtauthorization':
-          'wy41x4TvOlC5osTISSsJ28IUqgwGDOo0YjSVThIR80ceoeDz3Jb3tmZnWsRu3IX+~241~string~638092077901544239',
+          'xpRydl/3Xt9v1wWOX/2YiueTW8JtRZDCO4dK2G265o0V4gS560113Cr6zps9fn5K~241~string~638092417769767153',
     };
 
     var url =
@@ -95,16 +95,37 @@ class Services extends GetConnect {
     print(res.body);
     return EmployeeLeave.fromJson(res.body);
   }
+  //BURASI FİLTERELEME İŞLEMİ YAPARKEN BAK  MY_REQUEST
+  // Future<MyRequestResponse?> getMyRequest(String statuArray) async {
+  //   var headers = {
+  //     'Accept': 'application/json',
+  //     'vbtauthorization':
+  //         'xpRydl/3Xt9v1wWOX/2YiueTW8JtRZDCO4dK2G265o0V4gS560113Cr6zps9fn5K~241~string~638092417769767153',
+  //   };
 
-  Future<MyRequestResponse?> getMyRequest(String statuArray) async {
+  //   var params = {
+  //     'statuArray': statuArray,
+  //   };
+  //   var query = params.entries.map((p) => '${p.key}=${p.value}').join('&');
+
+  //   var url =
+  //       'https://suniktest.suntekstil.com.tr/mobileapi/api/RequestManagement/GetMyRequestMasterMobile?$query';
+  //   var res = await post(url, "", headers: headers);
+  //   if (res.statusCode != 200)
+  //     throw Exception('http.post error: statusCode= ${res.statusCode}');
+  //   print(res.body);
+  //   return MyRequestResponse.fromJson(res.body);
+  // }
+
+  Future<MyRequestResponse?> getMyRequest() async {
     var headers = {
       'Accept': 'application/json',
       'vbtauthorization':
-          'wy41x4TvOlC5osTISSsJ28IUqgwGDOo0YjSVThIR80ceoeDz3Jb3tmZnWsRu3IX+~241~string~638092077901544239',
+          'xpRydl/3Xt9v1wWOX/2YiueTW8JtRZDCO4dK2G265o0V4gS560113Cr6zps9fn5K~241~string~638092417769767153',
     };
 
     var params = {
-      'statuArray': statuArray,
+      'statuArray': '-1',
     };
     var query = params.entries.map((p) => '${p.key}=${p.value}').join('&');
 
