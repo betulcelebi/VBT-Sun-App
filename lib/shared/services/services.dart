@@ -82,7 +82,7 @@ class Services extends GetConnect {
   }
 
   Future<EmployeeLeave?> getEmployeeLeave() async {
-    String token = CacheManager.instance.getValue("token");
+    //String token = CacheManager.instance.getValue("token");
 
     var url =
         'https://suniktest.suntekstil.com.tr/mobileapi/api/EmployeeLeave/GetEmployeeLeave';
@@ -115,7 +115,7 @@ class Services extends GetConnect {
   // }
 
   Future<MyRequestResponse?> getMyRequest() async {
-    String token = CacheManager.instance.getValue("token");
+    //String token = CacheManager.instance.getValue("token");
 
     var params = {
       'statuArray': '-1',
@@ -132,9 +132,9 @@ class Services extends GetConnect {
   }
   ////////////////////MyJobs Service////////////////////
 
-  Future<MyWorksResponse?> getMyWorks() async {
+  Future<MyWorksResponse?> getMyWorks(String workStatuArray) async {
     var params = {
-      'ID_WORK_STATUS_ARRAY': '1',
+      'ID_WORK_STATUS_ARRAY': workStatuArray,
     };
     var query = params.entries.map((p) => '${p.key}=${p.value}').join('&');
 

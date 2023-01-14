@@ -1,4 +1,4 @@
-import 'dart:ui';
+// ignore_for_file: unnecessary_string_interpolations
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,25 +14,58 @@ class Works extends GetView<WorksController> {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       backgroundColor: const Color(0xff567DF4),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              width: 43.75.h,
-              height: 13.h,
-              color: const Color(0xff567DF4),
-              child: Padding(
-                padding: EdgeInsets.only(top: 3.h, left: 1.h, right: 1.8.h),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    GestureDetector(
-                        onTap: () {
-                          Get.back();
-                        },
-                        child: Icon(Icons.arrow_back,
-                            size: 4.h, color: Colors.white)),
-                    Container(
+      body: Column(
+        children: [
+          Container(
+            width: 43.75.h,
+            height: 13.h,
+            color: const Color(0xff567DF4),
+            child: Padding(
+              padding: EdgeInsets.only(top: 3.h, left: 1.h, right: 1.8.h),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  GestureDetector(
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: Icon(Icons.arrow_back,
+                          size: 4.h, color: Colors.white)),
+                  GestureDetector(
+                    onTap: () {
+                      Get.defaultDialog(
+                          backgroundColor: Colors.grey.shade200,
+                          title: "",
+                          content: SizedBox(
+                            height: 13.h,
+                            width: 13.h,
+                            child: ListView.builder(
+                              itemCount: controller.filters.length,
+                              itemBuilder: (context, index) {
+                                return Container(
+                                  width: 7.5.h,
+                                  height: 3.125.h,
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      controller.getMyWorkInfo(
+                                          controller.filters[index]["id"]);
+
+                                      Get.back();
+                                    },
+                                    child: Text(
+                                      controller.filters[index]["description"],
+                                      style: GoogleFonts.poppins(
+                                          color: Colors.black,
+                                          fontSize: 16.sp,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                          ));
+                    },
+                    child: Container(
                         padding: EdgeInsets.all(1.3.h),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(1.25.h),
@@ -42,12 +75,14 @@ class Works extends GetView<WorksController> {
                         child: Image.asset(
                           "assets/filter.png",
                           color: Colors.white,
-                        ))
-                  ],
-                ),
+                        )),
+                  )
+                ],
               ),
             ),
-            Container(
+          ),
+          Expanded(
+            child: Container(
               decoration: BoxDecoration(
                   color: const Color(0xffEEF0FC),
                   borderRadius: BorderRadius.only(
@@ -62,7 +97,7 @@ class Works extends GetView<WorksController> {
                     }
                     return ListView.builder(
                       shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
+                      // physics: const NeverScrollableScrollPhysics(),
                       itemCount: controller
                           .myWorksResponse!.data!.pendingJobsList!.length,
                       scrollDirection: Axis.vertical,
@@ -86,7 +121,7 @@ class Works extends GetView<WorksController> {
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(2.5.h)),
                             //width:double.infinity,
-                            height: 26.h,
+                            height: 30.h,
 
                             child: Padding(
                               padding: EdgeInsets.only(
@@ -99,11 +134,11 @@ class Works extends GetView<WorksController> {
                                     color: Colors.blue,
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(
-                                        left: 1.5.h, bottom: 2.h),
+                                    padding:
+                                        EdgeInsets.only(left: 2.h, bottom: 1.h),
                                     child: Column(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
+                                          MainAxisAlignment.spaceBetween,
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
@@ -113,7 +148,7 @@ class Works extends GetView<WorksController> {
                                               "İş No",
                                               style: GoogleFonts.poppins(
                                                   textStyle: TextStyle(
-                                                      fontSize: 14.sp,
+                                                      fontSize: 15.sp,
                                                       color: Colors
                                                           .grey.shade400)),
                                             ),
@@ -153,7 +188,7 @@ class Works extends GetView<WorksController> {
                                           "Talep Eden",
                                           style: GoogleFonts.poppins(
                                               textStyle: TextStyle(
-                                                  fontSize: 14.sp,
+                                                  fontSize: 15.sp,
                                                   color: Colors.grey.shade400)),
                                         ),
                                         Text(
@@ -167,19 +202,38 @@ class Works extends GetView<WorksController> {
                                           "Durumu",
                                           style: GoogleFonts.poppins(
                                               textStyle: TextStyle(
-                                                  fontSize: 14.sp,
+                                                  fontSize: 15.sp,
                                                   color: Colors.grey.shade400)),
                                         ),
                                         Text(
-                                          controller
-                                              .myWorksResponse!
-                                              .data!
-                                              .pendingJobsList![index]
-                                              .wORKSTATUSNAME
-                                              .toString(),
+                                          '${controller.myWorksResponse!.data!.pendingJobsList![index].wORKSTATUSNAME ?? " "}',
                                           style: GoogleFonts.poppins(
                                               textStyle:
                                                   TextStyle(fontSize: 16.sp)),
+                                        ),
+                                        Text(
+                                          "Tarih",
+                                          style: GoogleFonts.poppins(
+                                              textStyle: TextStyle(
+                                                  fontSize: 15.sp,
+                                                  color: Colors.grey.shade400)),
+                                        ),
+                                        Row(
+                                          children: [
+                                            Text(
+                                              '${controller.myWorksResponse?.data?.pendingJobsList?[index].wORKCREATIONDATE!.split(" ").first.substring(0, 10) ?? " "}',
+                                              style: GoogleFonts.poppins(
+                                                  textStyle: TextStyle(
+                                                      fontSize: 16.sp)),
+                                            ),
+                                            SizedBox(width: 0.8.h),
+                                            Text(
+                                              '${controller.myWorksResponse?.data?.pendingJobsList?[index].wORKCREATIONDATE!.split(" ").first.substring(11, 19) ?? " "}',
+                                              style: GoogleFonts.poppins(
+                                                  textStyle: TextStyle(
+                                                      fontSize: 16.sp)),
+                                            ),
+                                          ],
                                         ),
                                       ],
                                     ),
@@ -192,9 +246,9 @@ class Works extends GetView<WorksController> {
                       },
                     );
                   }),
-            )
-          ],
-        ),
+            ),
+          )
+        ],
       ),
     );
   }
