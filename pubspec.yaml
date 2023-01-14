@@ -40,6 +40,9 @@ dependencies:
   flutter_svg:
   http: ^0.13.5
   syncfusion_flutter_pdfviewer: ^20.4.43
+  intl:
+  permission_handler: ^10.2.0
+  get_storage:
 
 dev_dependencies:
   flutter_test:

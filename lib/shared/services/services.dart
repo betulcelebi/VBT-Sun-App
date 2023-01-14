@@ -1,21 +1,30 @@
 import 'dart:convert';
 
 import 'package:get/get.dart';
+import 'package:vbt_sun_app_project/init/cache_manager.dart';
 import 'package:vbt_sun_app_project/models/employee_leave_model.dart';
 import 'package:vbt_sun_app_project/models/home_page_info_model.dart';
 
+import '../../models/firms_model.dart';
+import '../../models/login_model.dart';
 import '../../models/my_request_model.dart';
 import '../../models/my_works_model.dart';
+import '../../models/notifications_model.dart';
 import '../../models/payroll_document_model.dart';
 import '../../models/payroll_view_model.dart';
 
 class Services extends GetConnect {
+  String token = CacheManager.instance.getValue("token");
+  Services() {
+    timeout = const Duration(seconds: 60);
+    maxAuthRetries = 3;
+  }
+
   Future<PayrollDocumentResponse?> getPayroll() async {
     var headers = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'vbtauthorization':
-          'xpRydl/3Xt9v1wWOX/2YiueTW8JtRZDCO4dK2G265o0V4gS560113Cr6zps9fn5K~241~string~638092417769767153',
+      'vbtauthorization': token,
     };
 
     var data = {"Date": "2023-01-11T06:07:11.199Z"};
@@ -34,10 +43,10 @@ class Services extends GetConnect {
   ///////////////////////////////////////////////////////////////////////////
 
   Future<HomePageInfoResponse?> getHomePageInfo() async {
+    // String token = CacheManager.instance.getValue("token");
     var headers = {
       'Accept': 'application/json',
-      'vbtauthorization':
-          'xpRydl/3Xt9v1wWOX/2YiueTW8JtRZDCO4dK2G265o0V4gS560113Cr6zps9fn5K~241~string~638092417769767153',
+      'vbtauthorization': token,
     };
 
     var params = {
@@ -62,8 +71,7 @@ class Services extends GetConnect {
     var headers = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
-      'vbtauthorization':
-          'xpRydl/3Xt9v1wWOX/2YiueTW8JtRZDCO4dK2G265o0V4gS560113Cr6zps9fn5K~241~string~638092417769767153',
+      'vbtauthorization': token,
     };
 
     var data = {"YEAR": year, "MONTH": month, "DOCUMENTUID": uid};
@@ -84,8 +92,7 @@ class Services extends GetConnect {
   Future<EmployeeLeave?> getEmployeeLeave() async {
     var headers = {
       'Accept': 'application/json',
-      'vbtauthorization':
-          'xpRydl/3Xt9v1wWOX/2YiueTW8JtRZDCO4dK2G265o0V4gS560113Cr6zps9fn5K~241~string~638092417769767153',
+      'vbtauthorization': token,
     };
 
     var url =
@@ -121,8 +128,7 @@ class Services extends GetConnect {
   Future<MyRequestResponse?> getMyRequest() async {
     var headers = {
       'Accept': 'application/json',
-      'vbtauthorization':
-          'xpRydl/3Xt9v1wWOX/2YiueTW8JtRZDCO4dK2G265o0V4gS560113Cr6zps9fn5K~241~string~638092417769767153',
+      'vbtauthorization': token,
     };
 
     var params = {
@@ -143,8 +149,7 @@ class Services extends GetConnect {
   Future<MyWorksResponse?> getMyWorks() async {
     var headers = {
       'Accept': 'application/json',
-      'vbtauthorization':
-          'YXe8fh7rc5TUyaTKX+gi8YrbMhqITBbgUShiojy1A+RUMcmItk+jXw6faTNVnTwU~1~string~638092548506589188',
+      'vbtauthorization': token,
     };
 
     var params = {
@@ -160,5 +165,63 @@ class Services extends GetConnect {
     }
     print(res.body);
     return MyWorksResponse.fromJson(res.body);
+  }
+
+  Future<NotificationResponse> getNotifications() async {
+    var headers = {
+      'Accept': 'application/json',
+      'vbtauthorization': token,
+    };
+
+    var url =
+        'https://suniktest.suntekstil.com.tr/mobileapi/api/PushNotification/GetPushMessages';
+    var res = await post(url, "", headers: headers);
+    if (res.statusCode != 200) {
+      throw Exception('http.post error: statusCode= ${res.statusCode}');
+    }
+    print(res.body);
+    return NotificationResponse.fromJson(res.body);
+  }
+
+  Future<FirmsResponse> getFirms() async {
+    var headers = {
+      'Accept': 'application/json',
+    };
+
+    var url =
+        'https://suniktest.suntekstil.com.tr/mobileapi/api/Account/GetAllDomainFirms';
+    var res = await get(url, headers: headers);
+    if (res.statusCode != 200)
+      throw Exception('http.get error: statusCode= ${res.statusCode}');
+    print(res.body);
+    return FirmsResponse.fromJson(res.body.first);
+  }
+
+  Future<AccountResponse> getAccount(
+    String email,
+    String password,
+    int id,
+  ) async {
+    var headers = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    };
+
+    var data = {
+      "SelectedIdLanguage": 0,
+      "Email": email,
+      "Password": password,
+      "FirmId": id,
+      "PinCode": "string",
+      "DeviceID": "string",
+      "DomainFirmId": 0
+    };
+
+    var url = 'https://suniktest.suntekstil.com.tr/mobileapi/api/Account/Token';
+    var res = await post(url, data, headers: headers);
+    if (res.statusCode != 200)
+      throw Exception('http.post error: statusCode= ${res.statusCode}');
+    print(res.body);
+    return AccountResponse.fromJson(res.body);
   }
 }

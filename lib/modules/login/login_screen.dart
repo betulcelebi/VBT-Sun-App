@@ -4,13 +4,14 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:vbt_sun_app_project/init/cache_manager.dart';
+import 'package:vbt_sun_app_project/main.dart';
 import 'package:vbt_sun_app_project/modules/login/login_controller.dart';
 
 import '../../utils/constant.dart';
 
 class LoginScreen extends GetView<LoginController> {
   const LoginScreen({super.key});
-  //Services servis=Services();
 
   @override
   Widget build(BuildContext context) {
@@ -164,20 +165,28 @@ class LoginScreen extends GetView<LoginController> {
                                                 value:
                                                     controller.selectedOption,
                                                 items: [
-                                                  'Sun',
-                                                  'Şirket Seçin'
-                                                ].map<DropdownMenuItem<String>>(
-                                                    (String value) {
-                                                  return DropdownMenuItem<
-                                                      String>(
-                                                    value: value,
+                                                  DropdownMenuItem<String>(
+                                                    value: "Şirket Seçin",
                                                     child: Text(
-                                                      value,
+                                                      "Şirket Seçin",
                                                       style: LoginConstant()
                                                           .textFieldText,
                                                     ),
-                                                  );
-                                                }).toList(),
+                                                  ),
+                                                  DropdownMenuItem<String>(
+                                                    value:
+                                                        controller.firms != null
+                                                            ? controller.firms
+                                                                    ?.name ??
+                                                                ""
+                                                            : "",
+                                                    child: Text(
+                                                      "${controller.firms?.name}",
+                                                      style: LoginConstant()
+                                                          .textFieldText,
+                                                    ),
+                                                  ),
+                                                ],
                                                 onChanged: (String? newValue) {
                                                   controller.selectedOption =
                                                       newValue.toString();
@@ -339,8 +348,6 @@ class LoginScreen extends GetView<LoginController> {
                                           child: GestureDetector(
                                             onTap: () {
                                               controller.onloginPressed();
-
-                                              // controller.services.getToken();
                                             },
                                             child: Container(
                                               height: 45,

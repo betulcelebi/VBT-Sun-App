@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:vbt_sun_app_project/init/cache_manager.dart';
 import 'package:vbt_sun_app_project/modules/dashboard/dashboard_controller.dart';
 import 'package:vbt_sun_app_project/utils/constant.dart';
 
@@ -82,7 +83,9 @@ class DashboardScreen extends GetView<DashboardController> {
                             );
                           }
                           return GestureDetector(
-                            onTap: () {},
+                            onTap: () {
+                              Get.toNamed(Routes.NOTIFICATION);
+                            },
                             child:
                                 Stack(alignment: Alignment.topRight, children: [
                               const Center(
@@ -137,6 +140,16 @@ class DashboardScreen extends GetView<DashboardController> {
                                     ?.where((element) =>
                                         element.mENUTYPE == "Matriks")
                                     .toList();
+                                bool isManager =
+                                    CacheManager.instance.getValue("isManager");
+                                if (!isManager) {
+                                  list?.removeWhere((element) =>
+                                      element.mENUNAME == "MyTeam");
+                                }
+
+                                list?.removeWhere((element) =>
+                                    element.mENUNAME == "MyProfile" ||
+                                    element.mENUNAME == "SunAkademi");
                                 return GridView.builder(
                                   physics: const NeverScrollableScrollPhysics(),
                                   gridDelegate:
