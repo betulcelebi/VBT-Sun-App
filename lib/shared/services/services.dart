@@ -4,7 +4,9 @@ import 'package:get/get.dart';
 import 'package:vbt_sun_app_project/init/cache_manager.dart';
 import 'package:vbt_sun_app_project/models/employee_leave_model.dart';
 import 'package:vbt_sun_app_project/models/home_page_info_model.dart';
+import 'package:vbt_sun_app_project/modules/approve/approve_screen.dart';
 
+import '../../models/approve_model.dart';
 import '../../models/firms_model.dart';
 import '../../models/login_model.dart';
 import '../../models/my_request_model.dart';
@@ -199,5 +201,20 @@ class Services extends GetConnect {
       throw Exception('http.post error: statusCode= ${res.statusCode}');
     print(res.body);
     return AccountResponse.fromJson(res.body);
+  }
+
+  Future<ApproveResponse?> getApprove() async {
+    var params = {
+      'statu': '-1',
+    };
+    var query = params.entries.map((p) => '${p.key}=${p.value}').join('&');
+
+    var url =
+        'https://suniktest.suntekstil.com.tr/mobileapi/api/RequestManagement/GetPendingRequestMasterMobile?$query';
+    var res = await post(url, '', headers: getHeader());
+    if (res.statusCode != 200)
+      throw Exception('http.post error: statusCode= ${res.statusCode}');
+    print(res.body);
+    return ApproveResponse.fromJson(res.body);
   }
 }

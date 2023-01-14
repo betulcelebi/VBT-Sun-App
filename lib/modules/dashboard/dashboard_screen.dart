@@ -169,7 +169,11 @@ class DashboardScreen extends GetView<DashboardController> {
                                       onTap: () {
                                         if (index == 0) {
                                           Get.toNamed(Routes.MYREQUEST);
-                                        } else if (index == 2) {
+                                        } 
+                                        else if (index == 1) {
+                                          Get.toNamed(Routes.APPROVE);
+                                        }
+                                        else if (index == 2) {
                                           Get.toNamed(Routes.WORKS);
                                         }
                                       },
