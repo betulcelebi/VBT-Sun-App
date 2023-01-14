@@ -49,7 +49,7 @@ class LoginController extends GetxController {
           "Mesaj",
           "Lütfen şirket seçiniz",
           snackPosition: SnackPosition.BOTTOM,
-          colorText: Color(0xff567DF4),
+          colorText: const Color(0xff567DF4),
           snackStyle: SnackStyle.FLOATING,
           backgroundColor: Colors.white,
         );
