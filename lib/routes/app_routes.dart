@@ -7,6 +7,9 @@ abstract class Routes {
     static const BORDRODETAIL = '/bordro_detail';
     static const BODRO = '/bodro';
     static const VACATION = '/vacation';
+
+    static const APPROVE = '/approve';
+
     static const NOTIFICATION = '/notification';
 
 
