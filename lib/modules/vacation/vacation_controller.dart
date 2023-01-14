@@ -6,17 +6,18 @@ import '../../shared/services/services.dart';
 
 class VacationController extends GetxController {
   DashboardController dashboardController = Get.put(DashboardController());
-  // Services servis = Services();
+  Services servis = Services();
 
-  // EmployeeLeaveResponse? employeeLeaveResponse = EmployeeLeaveResponse();
-  // @override
-  // void onInit() {
-  //   getEmployeeLeaveInfo();
-  //   super.onInit();
-  // }
+  EmployeeLeave? employeeLeaveResponse = EmployeeLeave();
+  @override
 
-  // getEmployeeLeaveInfo() async {
-  //   employeeLeaveResponse = await servis.getEmployeeLeave();
-  //   update();
-  // }
+  void onInit() {
+    getEmployeeLeaveInfo();
+    super.onInit();
+  }
+
+  getEmployeeLeaveInfo() async {
+    employeeLeaveResponse = await servis.getEmployeeLeave();
+    update();
+  }
 }
