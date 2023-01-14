@@ -3,8 +3,11 @@ import 'package:vbt_sun_app_project/modules/dashboard/dashboard_binding.dart';
 import 'package:vbt_sun_app_project/modules/dashboard/dashboard_screen.dart';
 
 import 'package:vbt_sun_app_project/modules/bodro_detail/bordro_detail_binding.dart';
+
+import 'package:vbt_sun_app_project/modules/notification/notification_screen.dart';
 import 'package:vbt_sun_app_project/modules/my_request/my_request_binding.dart';
 import 'package:vbt_sun_app_project/modules/my_request/my_request_screen.dart';
+
 import 'package:vbt_sun_app_project/modules/vacation/vacation_screen.dart';
 import 'package:vbt_sun_app_project/modules/works/works_screen.dart';
 
@@ -13,6 +16,7 @@ import '../modules/bodro/bodro_screen.dart';
 import '../modules/bodro_detail/bordro_detail_screen.dart';
 import '../modules/login/login_binding.dart';
 import '../modules/login/login_screen.dart';
+import '../modules/notification/notification_binding.dart';
 import '../modules/vacation/vacation_binding.dart';
 import '../modules/works/works_binding.dart';
 
@@ -50,6 +54,11 @@ class AppPages {
         binding: VacationBinding()),
 
         GetPage(
+
+        name: Routes.NOTIFICATION,
+        page: () => const Notification(),
+        binding: NotificationBinding()),
+  GetPage(
         name: Routes.WORKS,
         page: () => const Works(),
         binding: WorksBinding()),
@@ -57,6 +66,7 @@ class AppPages {
         name: Routes.MYREQUEST,
         page: () => const MyRequestScreen(),
         binding: MyRequestBinding()),
+
 
   ];
 }
