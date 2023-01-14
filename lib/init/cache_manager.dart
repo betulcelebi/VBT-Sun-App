@@ -27,7 +27,9 @@ class CacheManager {
     await _preferences?.write(key, value);
   }
 
-  dynamic getValue(String key) => _preferences?.read(key.toString());
+  dynamic getValue(String key) {
+    return _preferences?.read(key) ?? "";
+  }
 
   Future<void> clearKey(String key) async {
     await _preferences?.remove(key);

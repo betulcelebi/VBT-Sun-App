@@ -14,19 +14,23 @@ import '../../models/payroll_document_model.dart';
 import '../../models/payroll_view_model.dart';
 
 class Services extends GetConnect {
-  String token = CacheManager.instance.getValue("token");
   Services() {
     timeout = const Duration(seconds: 60);
+
     maxAuthRetries = 3;
   }
 
-  Future<PayrollDocumentResponse?> getPayroll() async {
-    var headers = {
+  Map<String, String>? getHeader() {
+    String token = CacheManager.instance.getValue("token");
+
+    return {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       'vbtauthorization': token,
     };
+  }
 
+  Future<PayrollDocumentResponse?> getPayroll() async {
     var data = {"Date": "2023-01-11T06:07:11.199Z"};
 
     var url =
@@ -34,7 +38,7 @@ class Services extends GetConnect {
     var res = await post(
       url,
       jsonEncode(data),
-      headers: headers,
+      headers: getHeader(),
     );
     print(res.body);
     return PayrollDocumentResponse.fromJson(res.body);
@@ -43,12 +47,6 @@ class Services extends GetConnect {
   ///////////////////////////////////////////////////////////////////////////
 
   Future<HomePageInfoResponse?> getHomePageInfo() async {
-    // String token = CacheManager.instance.getValue("token");
-    var headers = {
-      'Accept': 'application/json',
-      'vbtauthorization': token,
-    };
-
     var params = {
       'isFirstLogin': 'true',
     };
@@ -57,7 +55,7 @@ class Services extends GetConnect {
 
     var url =
         'https://suniktest.suntekstil.com.tr/mobileapi/api/EmployeeReport/GetLandingPageInfo?$query';
-    var res = await get(url, headers: headers);
+    var res = await get(url, headers: getHeader());
     if (res.statusCode != 200) {
       throw Exception('http.get error: statusCode= ${res.statusCode}');
     }
@@ -68,19 +66,13 @@ class Services extends GetConnect {
   ///////////////////////////////
   Future<PayrollViewResponse?> getPayrollView(
       int? year, int? month, String? uid) async {
-    var headers = {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'vbtauthorization': token,
-    };
-
     var data = {"YEAR": year, "MONTH": month, "DOCUMENTUID": uid};
     var url =
         'https://suniktest.suntekstil.com.tr/mobileapi/api/EmployeeDocuments/EmployeePayrollDownload';
     var res = await post(
       url,
       jsonEncode(data),
-      headers: headers,
+      headers: getHeader(),
     );
     if (res.statusCode != 200) {
       throw Exception('http.post error: statusCode= ${res.statusCode}');
@@ -90,14 +82,11 @@ class Services extends GetConnect {
   }
 
   Future<EmployeeLeave?> getEmployeeLeave() async {
-    var headers = {
-      'Accept': 'application/json',
-      'vbtauthorization': token,
-    };
+    String token = CacheManager.instance.getValue("token");
 
     var url =
         'https://suniktest.suntekstil.com.tr/mobileapi/api/EmployeeLeave/GetEmployeeLeave';
-    var res = await post(url, "", headers: headers);
+    var res = await post(url, "", headers: getHeader());
     if (res.statusCode != 200)
       throw Exception('http.post error: statusCode= ${res.statusCode}');
     print(res.body);
@@ -126,10 +115,7 @@ class Services extends GetConnect {
   // }
 
   Future<MyRequestResponse?> getMyRequest() async {
-    var headers = {
-      'Accept': 'application/json',
-      'vbtauthorization': token,
-    };
+    String token = CacheManager.instance.getValue("token");
 
     var params = {
       'statuArray': '-1',
@@ -138,7 +124,7 @@ class Services extends GetConnect {
 
     var url =
         'https://suniktest.suntekstil.com.tr/mobileapi/api/RequestManagement/GetMyRequestMasterMobile?$query';
-    var res = await post(url, "", headers: headers);
+    var res = await post(url, "", headers: getHeader());
     if (res.statusCode != 200)
       throw Exception('http.post error: statusCode= ${res.statusCode}');
     print(res.body);
@@ -147,11 +133,6 @@ class Services extends GetConnect {
   ////////////////////MyJobs Service////////////////////
 
   Future<MyWorksResponse?> getMyWorks() async {
-    var headers = {
-      'Accept': 'application/json',
-      'vbtauthorization': token,
-    };
-
     var params = {
       'ID_WORK_STATUS_ARRAY': '1',
     };
@@ -159,7 +140,7 @@ class Services extends GetConnect {
 
     var url =
         'https://suniktest.suntekstil.com.tr/mobileapi/api/RequestManagement/GetPendingJobs?$query';
-    var res = await post(url, "", headers: headers);
+    var res = await post(url, "", headers: getHeader());
     if (res.statusCode != 200) {
       throw Exception('http.post error: statusCode= ${res.statusCode}');
     }
@@ -168,14 +149,9 @@ class Services extends GetConnect {
   }
 
   Future<NotificationResponse> getNotifications() async {
-    var headers = {
-      'Accept': 'application/json',
-      'vbtauthorization': token,
-    };
-
     var url =
         'https://suniktest.suntekstil.com.tr/mobileapi/api/PushNotification/GetPushMessages';
-    var res = await post(url, "", headers: headers);
+    var res = await post(url, "", headers: getHeader());
     if (res.statusCode != 200) {
       throw Exception('http.post error: statusCode= ${res.statusCode}');
     }
