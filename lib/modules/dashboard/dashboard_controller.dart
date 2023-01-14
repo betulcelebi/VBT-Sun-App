@@ -13,6 +13,6 @@ class DashboardController extends GetxController {
 
   getHomeInfo() async {
     homeInfoResponse = await servis.getHomePageInfo();
-    update()
-;  }
+    update();
+  }
 }

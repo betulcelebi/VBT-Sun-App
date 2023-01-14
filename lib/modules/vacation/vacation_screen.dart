@@ -51,15 +51,16 @@ class Vacation extends GetView<VacationController> {
                     child: Row(
                       children: [
                         Container(
-                            decoration: BoxDecoration(
-                                color: Color(0xff48D380),
-                                borderRadius: BorderRadius.circular(15)),
-                            width: 7.w,
-                            height: 3.5.h,
-                            child: Icon(
-                              Icons.check,
-                              color: Colors.white,
-                            )),
+                          decoration: BoxDecoration(
+                              color: const Color(0xff48D380),
+                              borderRadius: BorderRadius.circular(15)),
+                          width: 7.w,
+                          height: 3.5.h,
+                          child: const Icon(
+                            Icons.check,
+                            color: Colors.white,
+                          ),
+                        ),
                         Padding(
                           padding: EdgeInsets.only(left: 2.0.h),
                           child: Text(
@@ -67,7 +68,7 @@ class Vacation extends GetView<VacationController> {
                             style: GoogleFonts.poppins(
                                 textStyle: TextStyle(
                               fontSize: 16.sp,
-                              color: Color(0xff48D380),
+                              color: const Color(0xff48D380),
                             )),
                           ),
                         ),
@@ -196,18 +197,16 @@ class Vacation extends GetView<VacationController> {
                   child: GetBuilder<VacationController>(
                       init: VacationController(),
                       builder: (controller) {
-                        // if (controller.employeeLeaveResponse!.data == null) {
-                        //   return const Center(
-                        //     child: CircularProgressIndicator(),
-                        //   );
-                        // }
+                        if (controller.employeeLeaveResponse!.data == null) {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
 
                         return ListView.builder(
                           shrinkWrap: true,
-                          itemCount:
-                              2, //controller.employeeLeaveResponse!.data!
-                          //     .employeeLeaveList!.length,
-
+                          itemCount: controller.employeeLeaveResponse!.data!
+                              .employeeLeaveList!.length,
                           scrollDirection: Axis.vertical,
                           itemBuilder: (context, index) {
                             return Card(
