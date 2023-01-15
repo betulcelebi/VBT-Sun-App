@@ -13,13 +13,13 @@ class Approve extends GetView<ApproveController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff567DF4),
+      backgroundColor: const Color(0xff567DF4),
       body: Column(
         children: [
           Container(
             width: double.infinity,
-            height: 10.h,
-            color: Color(0xff567DF4),
+            height: 12.5.h,
+            color: const Color(0xff567DF4),
             child: Padding(
               padding: EdgeInsets.only(top: 3.h, left: 1.h, right: 1.8.h),
               child: Row(
@@ -27,12 +27,12 @@ class Approve extends GetView<ApproveController> {
                 children: [
                   Padding(
                     padding: EdgeInsets.only(left: 3.0.h),
-                    child:
-                        GestureDetector(
-                          onTap: () {
+                    child: GestureDetector(
+                        onTap: () {
                           Get.back();
                         },
-                          child: Icon(Icons.arrow_back, size: 4.h, color: Colors.white)),
+                        child: Icon(Icons.arrow_back,
+                            size: 4.h, color: Colors.white)),
                   ),
                   //  Padding(
                   //    padding:  EdgeInsets.only(left:2.0.h),
@@ -54,19 +54,15 @@ class Approve extends GetView<ApproveController> {
               ),
             ),
           ),
-          // Text("Süreç devam ediyor",style: GoogleFonts.poppins(textStyle: TextStyle(fontSize: 16.sp,color: Colors.white))),
           Expanded(
             child: Container(
-              decoration: BoxDecoration(
-                  color: Color(0xffF6F6F7),
-
-                  //color: Color(0xffF6F6F7),
-
-                  borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(40.0),
-                    topLeft: Radius.circular(40.0),
-                  )),
-              //height: 90.h,
+              decoration: const BoxDecoration(
+                color: Color(0xffF6F6F7),
+                borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(40.0),
+                  topLeft: Radius.circular(40.0),
+                ),
+              ),
               child: GetBuilder<ApproveController>(
                 init: ApproveController(),
                 builder: (controller) {
@@ -76,6 +72,7 @@ class Approve extends GetView<ApproveController> {
                     );
                   }
                   return ListView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     itemCount: controller.approveResponse?.data
                             ?.pendingRequestList?.length ??
@@ -86,25 +83,24 @@ class Approve extends GetView<ApproveController> {
                         padding: EdgeInsets.all(2.0.h),
                         child: Container(
                           decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey.shade200,
-                                  blurRadius: 10.0,
-                                  spreadRadius: 5,
-                                  offset: Offset(
-                                    20,
-                                    20,
-                                  ),
-                                )
-                              ],
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(20)),
-                          //width:double.infinity,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.shade200,
+                                blurRadius: 10.0,
+                                spreadRadius: 5,
+                                offset: const Offset(
+                                  20,
+                                  20,
+                                ),
+                              )
+                            ],
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
                           height: 40.h,
-
                           child: Padding(
                             padding: EdgeInsets.only(
-                                left: 2.0.h, top: 2.h, bottom: 2.h),
+                                left: 1.5.h, top: 3.h, bottom: 2.h),
                             child: Row(
                               children: [
                                 Container(
@@ -119,36 +115,36 @@ class Approve extends GetView<ApproveController> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Row(
-                                        //mainAxisAlignment:
-                                           // MainAxisAlignment.spaceBetween,
                                         children: [
                                           Text(
-                                            //"02.12.2022 19.45",
                                             "${controller.approveResponse?.data?.pendingRequestList?[index].rEQDATE?.split(" ").first.substring(0, 10) ?? " "}",
                                             style: GoogleFonts.poppins(
                                                 textStyle: TextStyle(
                                                     fontSize: 16.sp,
-                                                    color: Colors
-                                                        .grey.shade400)),
+                                                    color:
+                                                        Colors.grey.shade400)),
                                           ),
-SizedBox(width: 0.8.w,),
+                                          SizedBox(
+                                            width: 0.8.w,
+                                          ),
                                           Text(
                                             //"02.12.2022 19.45",
                                             "${controller.approveResponse?.data?.pendingRequestList?[index].rEQDATE?.split(" ").first.substring(11, 19) ?? " "}",
                                             style: GoogleFonts.poppins(
                                                 textStyle: TextStyle(
                                                     fontSize: 16.sp,
-                                                    color: Colors
-                                                        .grey.shade400)),
+                                                    color:
+                                                        Colors.grey.shade400)),
                                           ),
-                                          SizedBox(width: 38.w,),
+                                          SizedBox(
+                                            width: 38.w,
+                                          ),
                                           Icon(
                                             Icons.check_box_outlined,
                                             size: 4.5.h,
                                             color: Color(0xff567DF4),
                                           )
                                         ],
-
                                       ),
                                       Text(
                                         //"Performans Yönetimi",
