@@ -219,19 +219,22 @@ class Services extends GetConnect {
     return ApproveResponse.fromJson(res.body);
   }
 
-  Future<MyRequestDetailResponse> getRequestDetail(int idMaster) async {
-    var params = {
-      'IdMaster': idMaster,
-      'DetailType': '1',
+  Future<Map> getRequestDetail(int idMaster) async {
+    String token = CacheManager.instance.getValue("token");
+    var headers = {
+      'Accept': 'application/json',
+      'vbtauthorization': token,
     };
-    var query = params.entries.map((p) => '${p.key}=${p.value}').join('&');
-
     var url =
-        'https://suniktest.suntekstil.com.tr/mobileapi/api/RequestManagement/GetRequestById?$query';
-    var res = await post(url, "", headers: getHeader());
+        'https://suniktest.suntekstil.com.tr/mobileapi/api/RequestManagement/GetRequestById?IdMaster=$idMaster&DetailType=1';
+    var res = await post(
+      url,
+      {},
+      headers: headers,
+    );
     if (res.statusCode != 200)
       throw Exception('http.post error: statusCode= ${res.statusCode}');
     print(res.body);
-    return MyRequestDetailResponse.fromJson(res.body);
+    return res.body;
   }
 }

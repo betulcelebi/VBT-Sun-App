@@ -5,6 +5,9 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:vbt_sun_app_project/modules/my_request/my_request_controller.dart';
+import 'package:vbt_sun_app_project/modules/my_request_detail/my_request_detail_binding.dart';
+import 'package:vbt_sun_app_project/modules/my_request_detail/my_request_detail_controller.dart';
+import 'package:vbt_sun_app_project/modules/my_request_detail/my_request_detail_screen.dart';
 import 'package:vbt_sun_app_project/routes/app_pages.dart';
 
 class MyRequestScreen extends GetView<MyRequestController> {
@@ -115,9 +118,17 @@ class MyRequestScreen extends GetView<MyRequestController> {
                             const EdgeInsets.only(right: 5, top: 10, left: 5),
                         child: GestureDetector(
                           onTap: () {
-                            Get.toNamed(Routes.MYREQUESTDETAIL,
-                                arguments: controller.myRequestResponse!.data!
-                                    .myRequestList![index].iDMASTER);
+                            Get.put(
+                              MyRequestDetailController(
+                                  idMaster: controller.myRequestResponse!.data!
+                                      .myRequestList![index].iDMASTER!),
+                            );
+                            Get.to(
+                              () => MyRequestDetail(
+                                idMaster: controller.myRequestResponse!.data!
+                                    .myRequestList![index].iDMASTER!,
+                              ),
+                            );
                           },
                           child: Container(
                             decoration: BoxDecoration(

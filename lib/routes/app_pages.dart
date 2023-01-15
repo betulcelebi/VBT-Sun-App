@@ -70,10 +70,7 @@ class AppPages {
         name: Routes.MYREQUEST,
         page: () => const MyRequestScreen(),
         binding: MyRequestBinding()),
-    GetPage(
-        name: Routes.MYREQUESTDETAIL,
-        page: () => const MyRequestDetail(),
-        binding: MyRequestDetailBinding()),
+   
     GetPage(
         name: Routes.WORKSDETAIL,
         page: () => const WorksDetailScreen(),
