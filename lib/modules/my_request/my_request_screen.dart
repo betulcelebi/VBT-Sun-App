@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_string_interpolations
+
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -16,87 +18,86 @@ class MyRequestScreen extends GetView<MyRequestController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       backgroundColor: const Color(0xff567DF4),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              width: double.infinity,
-              height: 12.5.h,
-              color: Color(0xff567DF4),
-              child: Padding(
-                padding: const EdgeInsets.only(top: 20, left: 5, right: 15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(left: 3.0.h),
-                      child: GestureDetector(
-                        onTap: () {
-                          Get.back();
-                        },
-                        child: Icon(Icons.arrow_back,
-                            size: 4.h, color: Colors.white),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Get.defaultDialog(
-                          backgroundColor: Colors.grey.shade200,
-                          title: "",
-                          content: Container(
-                            height: 350,
-                            width: 320,
-                            color: Colors.red,
-                            child: ListView.builder(
-                              itemCount: controller.filters.length,
-                              itemBuilder: (context, index) {
-                                return Container(
-                                  width: 7.5.h,
-                                  height: 3.125.h,
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      controller.getMyRequest(
-                                          controller.filters[index]["id"]);
+      body: Column(
+        children: [
+          Container(
+            width: 43.75.h,
+            height: 13.h,
+            color: Color(0xff567DF4),
+            child: Padding(
+              padding: EdgeInsets.only(top: 3.h, left: 1.h, right: 1.8.h),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      Get.back();
+                    },
+                    child:
+                        Icon(Icons.arrow_back, size: 4.h, color: Colors.white),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Get.defaultDialog(
+                        contentPadding: EdgeInsets.all(2.5.h),
+                        backgroundColor: Colors.grey.shade200,
+                        title: "",
+                        content: SizedBox(
+                          height: 25.h,
+                          width: 40.h,
+                          child: ListView.builder(
+                            itemCount: controller.filters.length,
+                            itemBuilder: (context, index) {
+                              return Container(
+                                width: 10.w,
+                                height: 3.5.h,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    controller.getMyRequest(
+                                        controller.filters[index]["id"]);
 
-                                      Get.back();
-                                    },
-                                    child: Text(
-                                      controller.filters[index]["description"],
-                                      style: GoogleFonts.poppins(
-                                          color: Colors.black,
-                                          fontSize: 16.sp,
-                                          fontWeight: FontWeight.w500),
-                                    ),
+                                    Get.back();
+                                  },
+                                  child: Text(
+                                    controller.filters[index]["description"],
+                                    style: GoogleFonts.poppins(
+                                        color: Colors.black,
+                                        fontSize: 16.sp,
+                                        fontWeight: FontWeight.w500),
                                   ),
-                                );
-                              },
-                            ),
+                                ),
+                              );
+                            },
                           ),
-                        );
-                      },
-                      child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            color: Colors.white12,
-                          ),
-                          width: 10.w,
-                          height: 5.h,
-                          child: Icon(Icons.filter_alt,
-                              size: 4.h, color: Colors.white)),
-                    )
-                  ],
-                ),
+                        ),
+                      );
+                    },
+                    child: Container(
+                        padding: EdgeInsets.all(1.3.h),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(1.25.h),
+                            color: Colors.white.withOpacity(0.15)),
+                        width: 5.h,
+                        height: 5.h,
+                        child: Image.asset(
+                          "assets/filter.png",
+                          color: Colors.white,
+                        )),
+                  ),
+                ],
               ),
             ),
-            Container(
-              decoration: const BoxDecoration(
-                color: Color(0xffF6F6F7),
-                borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(40.0),
-                  topLeft: Radius.circular(40.0),
-                ),
-              ),
+          ),
+          Expanded(
+            child: Container(
+              decoration: BoxDecoration(
+                  color: const Color(0xffEEF0FC),
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(3.125.h),
+                    topLeft: Radius.circular(3.125.h),
+                  )),
               child: GetBuilder<MyRequestController>(
                 init: MyRequestController(),
                 builder: (controller) {
@@ -107,15 +108,15 @@ class MyRequestScreen extends GetView<MyRequestController> {
                   }
                   return ListView.builder(
                     shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
+                    // physics: const NeverScrollableScrollPhysics(),
                     itemCount: controller
                             .myRequestResponse?.data?.myRequestList?.length ??
                         0,
                     scrollDirection: Axis.vertical,
                     itemBuilder: (context, index) {
                       return Padding(
-                        padding:
-                            const EdgeInsets.only(right: 5, top: 10, left: 5),
+                        padding: EdgeInsets.symmetric(
+                            vertical: 1.25.h, horizontal: 2.8.h),
                         child: GestureDetector(
                           onTap: () {
                             Get.put(
@@ -131,25 +132,24 @@ class MyRequestScreen extends GetView<MyRequestController> {
                             );
                           },
                           child: Container(
+                            height: 35.h,
                             decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey.shade200,
-                                  blurRadius: 10.0,
-                                  spreadRadius: 5,
-                                  offset: const Offset(
-                                    20,
-                                    20,
-                                  ),
-                                )
-                              ],
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            height: 40.h,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.shade200,
+                                    blurRadius: 1.25.h,
+                                    spreadRadius: 0.625.h,
+                                    offset: Offset(
+                                      2.5.h,
+                                      2.5.h,
+                                    ),
+                                  )
+                                ],
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(2.5.h)),
                             child: Padding(
                               padding: EdgeInsets.only(
-                                  left: 2.0.h, top: 2.h, bottom: 2.h),
+                                  left: 2.h, top: 2.h, bottom: 2.h),
                               child: Row(
                                 children: [
                                   Container(
@@ -158,68 +158,95 @@ class MyRequestScreen extends GetView<MyRequestController> {
                                     color: Colors.blue,
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.only(left: 10),
+                                    padding:
+                                        EdgeInsets.only(left: 2.h, bottom: 1.h),
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
                                       children: [
-                                        SizedBox(
-                                          width: 85.w,
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Text(
-                                                controller
-                                                        .myRequestResponse
-                                                        ?.data
-                                                        ?.myRequestList?[index]
-                                                        .rEQDATE ??
-                                                    "",
-                                                style: GoogleFonts.poppins(
-                                                  textStyle: TextStyle(
-                                                      fontSize: 16.sp,
-                                                      color:
-                                                          Colors.grey.shade400),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Row(
+                                                  children: [
+                                                    Text(
+                                                      '${controller.myRequestResponse?.data?.myRequestList?[index].rEQDATE?.split(" ").first.substring(0, 10) ?? ""}',
+                                                      style:
+                                                          GoogleFonts.poppins(
+                                                        textStyle: TextStyle(
+                                                            fontSize: 15.sp,
+                                                            color: Colors
+                                                                .grey.shade400),
+                                                      ),
+                                                    ),
+                                                    SizedBox(width: 0.8.h),
+                                                    Text(
+                                                      '${controller.myRequestResponse?.data?.myRequestList?[index].rEQDATE?.split(" ").first.substring(11, 19) ?? ""}',
+                                                      style:
+                                                          GoogleFonts.poppins(
+                                                        textStyle: TextStyle(
+                                                            fontSize: 15.sp,
+                                                            color: Colors
+                                                                .grey.shade400),
+                                                      ),
+                                                    ),
+                                                  ],
                                                 ),
-                                              ),
-                                              Icon(
-                                                Icons.file_copy_outlined,
-                                                size: 4.3.h,
-                                                color: const Color(0xff567DF4),
-                                              )
-                                            ],
-                                          ),
+                                                Text(
+                                                  controller
+                                                          .myRequestResponse
+                                                          ?.data
+                                                          ?.myRequestList?[
+                                                              index]
+                                                          .rEQNAME ??
+                                                      "",
+                                                  style: GoogleFonts.poppins(
+                                                      textStyle: TextStyle(
+                                                          fontSize: 16.sp,
+                                                          fontWeight:
+                                                              FontWeight.w600)),
+                                                ),
+                                              ],
+                                            ),
+                                            SizedBox(
+                                              width: 33.w,
+                                            ),
+                                            Container(
+                                                height: 6.h,
+                                                width: 6.h,
+                                                child: Image.asset(
+                                                    "assets/request.png"))
+                                          ],
                                         ),
-                                        Text(
-                                          controller
-                                                  .myRequestResponse
-                                                  ?.data
-                                                  ?.myRequestList?[index]
-                                                  .rEQNAME ??
-                                              "",
-                                          style: GoogleFonts.poppins(
-                                              textStyle:
-                                                  TextStyle(fontSize: 18.sp)),
-                                        ),
+                                        SizedBox(height: 1.h),
                                         Text(
                                           "Talep No",
                                           style: GoogleFonts.poppins(
                                               textStyle: TextStyle(
-                                                  fontSize: 16.sp,
+                                                  fontSize: 15.sp,
                                                   color: Colors.grey.shade400)),
                                         ),
                                         Text(
                                           "${controller.myRequestResponse?.data?.myRequestList?[index].iDMASTER ?? ""}",
                                           style: GoogleFonts.poppins(
                                               textStyle:
-                                                  TextStyle(fontSize: 18.sp)),
+                                                  TextStyle(fontSize: 16.sp)),
                                         ),
                                         Text(
                                           "Atanan kişi",
                                           style: GoogleFonts.poppins(
                                               textStyle: TextStyle(
-                                                  fontSize: 16.sp,
+                                                  fontSize: 15.sp,
                                                   color: Colors.grey.shade400)),
                                         ),
                                         Text(
@@ -231,13 +258,13 @@ class MyRequestScreen extends GetView<MyRequestController> {
                                               "",
                                           style: GoogleFonts.poppins(
                                               textStyle:
-                                                  TextStyle(fontSize: 18.sp)),
+                                                  TextStyle(fontSize: 16.sp)),
                                         ),
                                         Text(
                                           "Açıklama",
                                           style: GoogleFonts.poppins(
                                               textStyle: TextStyle(
-                                                  fontSize: 16.sp,
+                                                  fontSize: 15.sp,
                                                   color: Colors.grey.shade400)),
                                         ),
                                         Text(
@@ -249,13 +276,13 @@ class MyRequestScreen extends GetView<MyRequestController> {
                                               " ",
                                           style: GoogleFonts.poppins(
                                               textStyle:
-                                                  TextStyle(fontSize: 18.sp)),
+                                                  TextStyle(fontSize: 16.sp)),
                                         ),
                                         Text(
                                           "Durum",
                                           style: GoogleFonts.poppins(
                                               textStyle: TextStyle(
-                                                  fontSize: 16.sp,
+                                                  fontSize: 15.sp,
                                                   color: Colors.grey.shade400)),
                                         ),
                                         Text(
@@ -267,7 +294,7 @@ class MyRequestScreen extends GetView<MyRequestController> {
                                               "",
                                           style: GoogleFonts.poppins(
                                             textStyle:
-                                                TextStyle(fontSize: 18.sp),
+                                                TextStyle(fontSize: 16.sp),
                                           ),
                                         ),
                                       ],
@@ -283,9 +310,9 @@ class MyRequestScreen extends GetView<MyRequestController> {
                   );
                 },
               ),
-            )
-          ],
-        ),
+            ),
+          )
+        ],
       ),
     );
   }

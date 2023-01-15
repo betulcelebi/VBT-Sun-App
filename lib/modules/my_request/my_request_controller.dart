@@ -11,7 +11,7 @@ class MyRequestController extends GetxController {
     {"id": "0", "description": "Süreç Devam Ediliyor"},
     {"id": "1", "description": "Onaylandı"},
     {"id": "2", "description": "Reddedildi"},
-    {"id": "4", "description": "Revize Edilsi"},
+    {"id": "4", "description": "Revize Edildi"},
     {"id": "6", "description": "Geri Gönderildi"},
   ];
 
