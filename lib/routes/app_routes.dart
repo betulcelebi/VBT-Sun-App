@@ -14,4 +14,6 @@ abstract class Routes {
 
   static const WORKS = '/works';
   static const MYREQUEST = '/my_request';
+
+  static const WORKSDETAIL = '/work_detail';
 }
