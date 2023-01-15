@@ -73,14 +73,7 @@ class Vacation extends GetView<VacationController> {
                           ),
                         ),
                         Text(
-                          controller
-                              .dashboardController
-                              .homeInfoResponse!
-                              .data!
-                              .vacationInfo!
-                              .employeeEarnedRightsList![0]
-                              .nEXTLEAVEALLOWANCEDATE
-                              .toString(),
+                          '${controller.dashboardController.homeInfoResponse?.data?.vacationInfo?.employeeEarnedRightsList?[0].nEXTLEAVEALLOWANCEDATE?.split(" ").first.substring(0, 10) ?? ""}',
                           style: GoogleFonts.poppins(
                             textStyle: TextStyle(
                               fontSize: 16.sp,
@@ -222,7 +215,12 @@ class Vacation extends GetView<VacationController> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            "İdari izin",
+                                            controller
+                                                    .employeeLeaveResponse!
+                                                    .data!
+                                                    .employeeLeaveList![index]
+                                                    .pICKLISTVACATIONTYPENAME ??
+                                                "",
                                             style: GoogleFonts.poppins(
                                               textStyle: TextStyle(
                                                 fontSize: 15.sp,
@@ -230,7 +228,7 @@ class Vacation extends GetView<VacationController> {
                                             ),
                                           ),
                                           Text(
-                                            "29.09.2022",
+                                            '${controller.employeeLeaveResponse?.data?.employeeLeaveList?[index].sDATE?.split(" ").first.substring(0, 10) ?? " "} / ${controller.employeeLeaveResponse?.data?.employeeLeaveList?[index].eDATE?.split(" ").first.substring(0, 10) ?? " "} ',
                                             style: GoogleFonts.poppins(
                                               textStyle: TextStyle(
                                                 fontSize: 14.sp,
@@ -238,11 +236,19 @@ class Vacation extends GetView<VacationController> {
                                             ),
                                           ),
                                           Text(
-                                            "Kullandım",
+                                            controller
+                                                        .employeeLeaveResponse!
+                                                        .data!
+                                                        .employeeLeaveList![
+                                                            index]
+                                                        .iSUSED ==
+                                                    true
+                                                ? "Kullandım"
+                                                : "Kullanmadım",
                                             style: GoogleFonts.poppins(
                                               textStyle: TextStyle(
-                                                fontSize: 15.sp,
-                                              ),
+                                                  fontSize: 15.sp,
+                                                  fontWeight: FontWeight.bold),
                                             ),
                                           )
                                         ],
@@ -257,7 +263,7 @@ class Vacation extends GetView<VacationController> {
                                       height: 5.h,
                                       child: Center(
                                         child: Text(
-                                          "2.0 Gün",
+                                          '${controller.employeeLeaveResponse?.data?.employeeLeaveList?[index].dAY ?? ""}',
                                           style: GoogleFonts.poppins(
                                             textStyle: TextStyle(
                                               fontSize: 16.sp,

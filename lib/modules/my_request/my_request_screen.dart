@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:vbt_sun_app_project/modules/my_request/my_request_controller.dart';
+import 'package:vbt_sun_app_project/routes/app_pages.dart';
 
 class MyRequestScreen extends GetView<MyRequestController> {
   const MyRequestScreen({super.key});
@@ -112,149 +113,157 @@ class MyRequestScreen extends GetView<MyRequestController> {
                       return Padding(
                         padding:
                             const EdgeInsets.only(right: 5, top: 10, left: 5),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.shade200,
-                                blurRadius: 10.0,
-                                spreadRadius: 5,
-                                offset: const Offset(
-                                  20,
-                                  20,
-                                ),
-                              )
-                            ],
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          height: 40.h,
-                          child: Padding(
-                            padding: EdgeInsets.only(
-                                left: 2.0.h, top: 2.h, bottom: 2.h),
-                            child: Row(
-                              children: [
-                                Container(
-                                  width: 1.w,
-                                  height: 40.h,
-                                  color: Colors.blue,
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 10),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      SizedBox(
-                                        width: 85.w,
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              controller
-                                                      .myRequestResponse
-                                                      ?.data
-                                                      ?.myRequestList?[index]
-                                                      .rEQDATE ??
-                                                  "",
-                                              style: GoogleFonts.poppins(
-                                                textStyle: TextStyle(
-                                                    fontSize: 16.sp,
-                                                    color:
-                                                        Colors.grey.shade400),
-                                              ),
-                                            ),
-                                            Icon(
-                                              Icons.file_copy_outlined,
-                                              size: 4.3.h,
-                                              color: const Color(0xff567DF4),
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                      Text(
-                                        controller
-                                                .myRequestResponse
-                                                ?.data
-                                                ?.myRequestList?[index]
-                                                .rEQNAME ??
-                                            "",
-                                        style: GoogleFonts.poppins(
-                                            textStyle:
-                                                TextStyle(fontSize: 18.sp)),
-                                      ),
-                                      Text(
-                                        "Talep No",
-                                        style: GoogleFonts.poppins(
-                                            textStyle: TextStyle(
-                                                fontSize: 16.sp,
-                                                color: Colors.grey.shade400)),
-                                      ),
-                                      Text(
-                                        "${controller.myRequestResponse?.data?.myRequestList?[index].iDMASTER ?? ""}",
-                                        style: GoogleFonts.poppins(
-                                            textStyle:
-                                                TextStyle(fontSize: 18.sp)),
-                                      ),
-                                      Text(
-                                        "Atanan kişi",
-                                        style: GoogleFonts.poppins(
-                                            textStyle: TextStyle(
-                                                fontSize: 16.sp,
-                                                color: Colors.grey.shade400)),
-                                      ),
-                                      Text(
-                                        controller
-                                                .myRequestResponse
-                                                ?.data
-                                                ?.myRequestList?[index]
-                                                .aSSIGNEMPLOYEE ??
-                                            "",
-                                        style: GoogleFonts.poppins(
-                                            textStyle:
-                                                TextStyle(fontSize: 18.sp)),
-                                      ),
-                                      Text(
-                                        "Açıklama",
-                                        style: GoogleFonts.poppins(
-                                            textStyle: TextStyle(
-                                                fontSize: 16.sp,
-                                                color: Colors.grey.shade400)),
-                                      ),
-                                      Text(
-                                        controller
-                                                .myRequestResponse
-                                                ?.data
-                                                ?.myRequestList?[index]
-                                                .rEQEMPLOYEE ??
-                                            " ",
-                                        style: GoogleFonts.poppins(
-                                            textStyle:
-                                                TextStyle(fontSize: 18.sp)),
-                                      ),
-                                      Text(
-                                        "Durum",
-                                        style: GoogleFonts.poppins(
-                                            textStyle: TextStyle(
-                                                fontSize: 16.sp,
-                                                color: Colors.grey.shade400)),
-                                      ),
-                                      Text(
-                                        controller
-                                                .myRequestResponse
-                                                ?.data
-                                                ?.myRequestList?[index]
-                                                .sTATUNAME ??
-                                            "",
-                                        style: GoogleFonts.poppins(
-                                          textStyle: TextStyle(fontSize: 18.sp),
-                                        ),
-                                      ),
-                                    ],
+                        child: GestureDetector(
+                          onTap: () {
+                            Get.toNamed(Routes.MYREQUESTDETAIL,
+                                arguments: controller.myRequestResponse!.data!
+                                    .myRequestList![index].iDMASTER);
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.shade200,
+                                  blurRadius: 10.0,
+                                  spreadRadius: 5,
+                                  offset: const Offset(
+                                    20,
+                                    20,
                                   ),
-                                ),
+                                )
                               ],
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            height: 40.h,
+                            child: Padding(
+                              padding: EdgeInsets.only(
+                                  left: 2.0.h, top: 2.h, bottom: 2.h),
+                              child: Row(
+                                children: [
+                                  Container(
+                                    width: 1.w,
+                                    height: 40.h,
+                                    color: Colors.blue,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 10),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        SizedBox(
+                                          width: 85.w,
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                controller
+                                                        .myRequestResponse
+                                                        ?.data
+                                                        ?.myRequestList?[index]
+                                                        .rEQDATE ??
+                                                    "",
+                                                style: GoogleFonts.poppins(
+                                                  textStyle: TextStyle(
+                                                      fontSize: 16.sp,
+                                                      color:
+                                                          Colors.grey.shade400),
+                                                ),
+                                              ),
+                                              Icon(
+                                                Icons.file_copy_outlined,
+                                                size: 4.3.h,
+                                                color: const Color(0xff567DF4),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                        Text(
+                                          controller
+                                                  .myRequestResponse
+                                                  ?.data
+                                                  ?.myRequestList?[index]
+                                                  .rEQNAME ??
+                                              "",
+                                          style: GoogleFonts.poppins(
+                                              textStyle:
+                                                  TextStyle(fontSize: 18.sp)),
+                                        ),
+                                        Text(
+                                          "Talep No",
+                                          style: GoogleFonts.poppins(
+                                              textStyle: TextStyle(
+                                                  fontSize: 16.sp,
+                                                  color: Colors.grey.shade400)),
+                                        ),
+                                        Text(
+                                          "${controller.myRequestResponse?.data?.myRequestList?[index].iDMASTER ?? ""}",
+                                          style: GoogleFonts.poppins(
+                                              textStyle:
+                                                  TextStyle(fontSize: 18.sp)),
+                                        ),
+                                        Text(
+                                          "Atanan kişi",
+                                          style: GoogleFonts.poppins(
+                                              textStyle: TextStyle(
+                                                  fontSize: 16.sp,
+                                                  color: Colors.grey.shade400)),
+                                        ),
+                                        Text(
+                                          controller
+                                                  .myRequestResponse
+                                                  ?.data
+                                                  ?.myRequestList?[index]
+                                                  .aSSIGNEMPLOYEE ??
+                                              "",
+                                          style: GoogleFonts.poppins(
+                                              textStyle:
+                                                  TextStyle(fontSize: 18.sp)),
+                                        ),
+                                        Text(
+                                          "Açıklama",
+                                          style: GoogleFonts.poppins(
+                                              textStyle: TextStyle(
+                                                  fontSize: 16.sp,
+                                                  color: Colors.grey.shade400)),
+                                        ),
+                                        Text(
+                                          controller
+                                                  .myRequestResponse
+                                                  ?.data
+                                                  ?.myRequestList?[index]
+                                                  .rEQEMPLOYEE ??
+                                              " ",
+                                          style: GoogleFonts.poppins(
+                                              textStyle:
+                                                  TextStyle(fontSize: 18.sp)),
+                                        ),
+                                        Text(
+                                          "Durum",
+                                          style: GoogleFonts.poppins(
+                                              textStyle: TextStyle(
+                                                  fontSize: 16.sp,
+                                                  color: Colors.grey.shade400)),
+                                        ),
+                                        Text(
+                                          controller
+                                                  .myRequestResponse
+                                                  ?.data
+                                                  ?.myRequestList?[index]
+                                                  .sTATUNAME ??
+                                              "",
+                                          style: GoogleFonts.poppins(
+                                            textStyle:
+                                                TextStyle(fontSize: 18.sp),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),

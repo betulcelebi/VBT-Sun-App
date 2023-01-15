@@ -9,8 +9,6 @@ import 'package:vbt_sun_app_project/modules/notification/notification_screen.dar
 import 'package:vbt_sun_app_project/modules/my_request/my_request_binding.dart';
 import 'package:vbt_sun_app_project/modules/my_request/my_request_screen.dart';
 
-import 'package:vbt_sun_app_project/modules/my_request_detail/my_request_detail.controller.dart';
-
 import 'package:vbt_sun_app_project/modules/vacation/vacation_screen.dart';
 import 'package:vbt_sun_app_project/modules/work_detail/work_detail_binding.dart';
 import 'package:vbt_sun_app_project/modules/work_detail/work_detail_screen.dart';
@@ -25,6 +23,7 @@ import '../modules/login/login_screen.dart';
 
 import '../modules/my_request_detail/my_request_detail_binding.dart';
 
+import '../modules/my_request_detail/my_request_detail_screen.dart';
 import '../modules/notification/notification_binding.dart';
 
 import '../modules/vacation/vacation_binding.dart';
@@ -71,19 +70,13 @@ class AppPages {
         name: Routes.MYREQUEST,
         page: () => const MyRequestScreen(),
         binding: MyRequestBinding()),
-
-
-         GetPage(
+    GetPage(
         name: Routes.MYREQUESTDETAIL,
         page: () => const MyRequestDetail(),
         binding: MyRequestDetailBinding()),
-
-
-
     GetPage(
         name: Routes.WORKSDETAIL,
         page: () => const WorksDetailScreen(),
         binding: WorkDetailBinding())
-
   ];
 }
