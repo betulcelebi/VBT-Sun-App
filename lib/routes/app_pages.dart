@@ -10,6 +10,8 @@ import 'package:vbt_sun_app_project/modules/my_request/my_request_binding.dart';
 import 'package:vbt_sun_app_project/modules/my_request/my_request_screen.dart';
 
 import 'package:vbt_sun_app_project/modules/vacation/vacation_screen.dart';
+import 'package:vbt_sun_app_project/modules/work_detail/work_detail_binding.dart';
+import 'package:vbt_sun_app_project/modules/work_detail/work_detail_screen.dart';
 import 'package:vbt_sun_app_project/modules/works/works_screen.dart';
 
 import '../modules/approve/approve_binding.dart';
@@ -36,45 +38,36 @@ class AppPages {
     GetPage(
         name: Routes.DASHBOARD,
         page: () => DashboardScreen(),
-        binding: DashboardBinding())
-,
-        
-        GetPage(name: Routes.BORDRODETAIL,
+        binding: DashboardBinding()),
+    GetPage(
+        name: Routes.BORDRODETAIL,
         page: () => const BordroDetailScreen(),
         binding: BordroDetailBinding()),
-
-        GetPage(
-        name: Routes.BODRO,
-        page: () => const Bodro(),
-        binding: BodroBinding()),
-
-        GetPage(
+    GetPage(
+        name: Routes.BODRO, page: () => const Bodro(), binding: BodroBinding()),
+    GetPage(
         name: Routes.VACATION,
-        page: () => 
-        //const 
-        Vacation(),
+        page: () =>
+            //const
+            Vacation(),
         binding: VacationBinding()),
-
-        GetPage(
-
+    GetPage(
         name: Routes.APPROVE,
         page: () => const Approve(),
         binding: ApproveBinding()),
-
- GetPage(
+    GetPage(
         name: Routes.NOTIFICATION,
         page: () => const Notification(),
         binding: NotificationBinding()),
-  GetPage(
-        name: Routes.WORKS,
-        page: () => const Works(),
-        binding: WorksBinding()),
-         GetPage(
+    GetPage(
+        name: Routes.WORKS, page: () => const Works(), binding: WorksBinding()),
+    GetPage(
         name: Routes.MYREQUEST,
         page: () => const MyRequestScreen(),
         binding: MyRequestBinding()),
-
-
-
+    GetPage(
+        name: Routes.WORKSDETAIL,
+        page: () => const WorksDetailScreen(),
+        binding: WorkDetailBinding())
   ];
 }
