@@ -4,71 +4,71 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-import 'package:vbt_sun_app_project/modules/my_request/my_request_controller.dart';
 
-class MyRequestScreen extends GetView<MyRequestController> {
-  const MyRequestScreen({super.key});
+import 'approve_controller.dart';
+
+class Approve extends GetView<ApproveController> {
+  const Approve({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        resizeToAvoidBottomInset: true,
       backgroundColor: const Color(0xff567DF4),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              width: double.infinity,
-              height: 12.5.h,
-              color: Color(0xff567DF4),
-              child: Padding(
-                padding: const EdgeInsets.only(top: 20, left: 5, right: 15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.only(left: 3.0.h),
-                      child: GestureDetector(
+      body: Column(
+        children: [
+          Container(
+            width: double.infinity,
+            height: 12.5.h,
+            color: const Color(0xff567DF4),
+            child: Padding(
+              padding: EdgeInsets.only(top: 3.h, left: 1.h, right: 1.8.h),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(left: 3.0.h),
+                    child: GestureDetector(
                         onTap: () {
                           Get.back();
                         },
                         child: Icon(Icons.arrow_back,
-                            size: 4.h, color: Colors.white),
-                      ),
-                    ),
-                    GestureDetector(
+                            size: 4.h, color: Colors.white)),
+                  ),
+                  //  Padding(
+                  //    padding:  EdgeInsets.only(left:2.0.h),
+                  //    child: Text("Onaylarım",style: GoogleFonts.poppins(textStyle: TextStyle(fontSize: 20.sp,color: Colors.white)),),
+                  //  ),
+                  Padding(
+                    padding: EdgeInsets.only(left: 17.0.h),
+                    child: GestureDetector(
                       onTap: () {
                         Get.defaultDialog(
                           backgroundColor: Colors.grey.shade200,
                           title: "",
-                          content: Container(
-                            height: 350,
-                            width: 320,
-                            color: Colors.red,
-                            child: ListView.builder(
-                              itemCount: controller.filters.length,
-                              itemBuilder: (context, index) {
-                                return Container(
-                                  width: 7.5.h,
-                                  height: 3.125.h,
+                          content: SizedBox(
+                            height: 20.h,
+                            width: 20.h,
+                            child: ListView.builder(itemCount:controller.approvefilters.length,
+                            itemBuilder:(context, index) {
+                              return Container(
+                                width: 12.h,
+                                  height: 6.h,
                                   child: GestureDetector(
                                     onTap: () {
-                                      controller.getMyRequest(
-                                          controller.filters[index]["id"]);
-
-                                      Get.back();
+                                      controller.getApprove(controller.approvefilters[index]["id"]);
+                                       Get.back();
                                     },
-                                    child: Text(
-                                      controller.filters[index]["description"],
-                                      style: GoogleFonts.poppins(
-                                          color: Colors.black,
-                                          fontSize: 16.sp,
-                                          fontWeight: FontWeight.w500),
-                                    ),
+                                    child: Text(controller.approvefilters[index]["description"],
+                                        style: GoogleFonts.poppins(
+                                            color: Colors.black,
+                                            fontSize: 16.sp,
+                                            fontWeight: FontWeight.w500),
+                                      ),
                                   ),
-                                );
-                              },
-                            ),
-                          ),
+                              );
+                            },  ),
+                          )
                         );
                       },
                       child: Container(
@@ -80,12 +80,14 @@ class MyRequestScreen extends GetView<MyRequestController> {
                           height: 5.h,
                           child: Icon(Icons.filter_alt,
                               size: 4.h, color: Colors.white)),
-                    )
-                  ],
-                ),
+                    ),
+                  )
+                ],
               ),
             ),
-            Container(
+          ),
+          Expanded(
+            child: Container(
               decoration: const BoxDecoration(
                 color: Color(0xffF6F6F7),
                 borderRadius: BorderRadius.only(
@@ -93,25 +95,24 @@ class MyRequestScreen extends GetView<MyRequestController> {
                   topLeft: Radius.circular(40.0),
                 ),
               ),
-              child: GetBuilder<MyRequestController>(
-                init: MyRequestController(),
+              child: GetBuilder<ApproveController>(
+                init: ApproveController(),
                 builder: (controller) {
-                  if (controller.myRequestResponse?.data == null) {
+                  if (controller.approveResponse?.data == null) {
                     return const Center(
                       child: CircularProgressIndicator(),
                     );
                   }
                   return ListView.builder(
+                   // physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: controller
-                            .myRequestResponse?.data?.myRequestList?.length ??
+                    itemCount: controller.approveResponse?.data
+                            ?.pendingRequestList?.length ??
                         0,
                     scrollDirection: Axis.vertical,
                     itemBuilder: (context, index) {
                       return Padding(
-                        padding:
-                            const EdgeInsets.only(right: 5, top: 10, left: 5),
+                        padding: EdgeInsets.all(2.0.h),
                         child: Container(
                           decoration: BoxDecoration(
                             boxShadow: [
@@ -131,7 +132,7 @@ class MyRequestScreen extends GetView<MyRequestController> {
                           height: 40.h,
                           child: Padding(
                             padding: EdgeInsets.only(
-                                left: 2.0.h, top: 2.h, bottom: 2.h),
+                                left: 1.5.h, top: 3.h, bottom: 2.h),
                             child: Row(
                               children: [
                                 Container(
@@ -140,44 +141,49 @@ class MyRequestScreen extends GetView<MyRequestController> {
                                   color: Colors.blue,
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 10),
+                                  padding: EdgeInsets.only(left: 1.5.h),
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      SizedBox(
-                                        width: 85.w,
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              controller
-                                                      .myRequestResponse
-                                                      ?.data
-                                                      ?.myRequestList?[index]
-                                                      .rEQDATE ??
-                                                  "",
-                                              style: GoogleFonts.poppins(
+                                      Row(
+                                        children: [
+                                          Text(
+                                            "${controller.approveResponse?.data?.pendingRequestList?[index].rEQDATE?.split(" ").first.substring(0, 10) ?? " "}",
+                                            style: GoogleFonts.poppins(
                                                 textStyle: TextStyle(
                                                     fontSize: 16.sp,
                                                     color:
-                                                        Colors.grey.shade400),
-                                              ),
-                                            ),
-                                            Icon(
-                                              Icons.file_copy_outlined,
-                                              size: 4.3.h,
-                                              color: const Color(0xff567DF4),
-                                            )
-                                          ],
-                                        ),
+                                                        Colors.grey.shade400)),
+                                          ),
+                                          SizedBox(
+                                            width: 0.8.w,
+                                          ),
+                                          Text(
+                                            //"02.12.2022 19.45",
+                                            "${controller.approveResponse?.data?.pendingRequestList?[index].rEQDATE?.split(" ").first.substring(11, 19) ?? " "}",
+                                            style: GoogleFonts.poppins(
+                                                textStyle: TextStyle(
+                                                    fontSize: 16.sp,
+                                                    color:
+                                                        Colors.grey.shade400)),
+                                          ),
+                                          SizedBox(
+                                            width: 30.w,
+                                          ),
+                                          Icon(
+                                            Icons.check_box_outlined,
+                                            size: 4.5.h,
+                                            color: Color(0xff567DF4),
+                                          )
+                                        ],
                                       ),
                                       Text(
+                                        //"Performans Yönetimi",
                                         controller
-                                                .myRequestResponse
+                                                .approveResponse
                                                 ?.data
-                                                ?.myRequestList?[index]
+                                                ?.pendingRequestList?[index]
                                                 .rEQNAME ??
                                             "",
                                         style: GoogleFonts.poppins(
@@ -192,23 +198,44 @@ class MyRequestScreen extends GetView<MyRequestController> {
                                                 color: Colors.grey.shade400)),
                                       ),
                                       Text(
-                                        "${controller.myRequestResponse?.data?.myRequestList?[index].iDMASTER ?? ""}",
+                                        // "25",
+                                        "${controller.approveResponse?.data?.pendingRequestList?[index].iDMASTER ?? ""}",
                                         style: GoogleFonts.poppins(
                                             textStyle:
                                                 TextStyle(fontSize: 18.sp)),
                                       ),
                                       Text(
-                                        "Atanan kişi",
+                                        "Talep Eden",
                                         style: GoogleFonts.poppins(
                                             textStyle: TextStyle(
                                                 fontSize: 16.sp,
                                                 color: Colors.grey.shade400)),
                                       ),
                                       Text(
+                                        // "Kadir Aydoğan",
                                         controller
-                                                .myRequestResponse
+                                                .approveResponse
                                                 ?.data
-                                                ?.myRequestList?[index]
+                                                ?.pendingRequestList?[index]
+                                                .rEQEMPLOYEE ??
+                                            "",
+                                        style: GoogleFonts.poppins(
+                                            textStyle:
+                                                TextStyle(fontSize: 18.sp)),
+                                      ),
+                                      Text(
+                                        "Atanan Kişi",
+                                        style: GoogleFonts.poppins(
+                                            textStyle: TextStyle(
+                                                fontSize: 16.sp,
+                                                color: Colors.grey.shade400)),
+                                      ),
+                                      Text(
+                                        // "Mümin Sürer",
+                                        controller
+                                                .approveResponse
+                                                ?.data
+                                                ?.pendingRequestList?[index]
                                                 .aSSIGNEMPLOYEE ??
                                             "",
                                         style: GoogleFonts.poppins(
@@ -223,33 +250,16 @@ class MyRequestScreen extends GetView<MyRequestController> {
                                                 color: Colors.grey.shade400)),
                                       ),
                                       Text(
+                                        // "Açıklama yazısı gelecek",
                                         controller
-                                                .myRequestResponse
+                                                .approveResponse
                                                 ?.data
-                                                ?.myRequestList?[index]
-                                                .rEQEMPLOYEE ??
-                                            " ",
+                                                ?.pendingRequestList?[index]
+                                                .rEQUESTDETAIL ??
+                                            "",
                                         style: GoogleFonts.poppins(
                                             textStyle:
                                                 TextStyle(fontSize: 18.sp)),
-                                      ),
-                                      Text(
-                                        "Durum",
-                                        style: GoogleFonts.poppins(
-                                            textStyle: TextStyle(
-                                                fontSize: 16.sp,
-                                                color: Colors.grey.shade400)),
-                                      ),
-                                      Text(
-                                        controller
-                                                .myRequestResponse
-                                                ?.data
-                                                ?.myRequestList?[index]
-                                                .sTATUNAME ??
-                                            "",
-                                        style: GoogleFonts.poppins(
-                                          textStyle: TextStyle(fontSize: 18.sp),
-                                        ),
                                       ),
                                     ],
                                   ),
@@ -262,10 +272,11 @@ class MyRequestScreen extends GetView<MyRequestController> {
                     },
                   );
                 },
+                //child:
               ),
-            )
-          ],
-        ),
+            ),
+          )
+        ],
       ),
     );
   }

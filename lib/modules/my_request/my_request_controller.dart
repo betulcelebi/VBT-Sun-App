@@ -5,22 +5,29 @@ import '../../shared/services/services.dart';
 
 class MyRequestController extends GetxController {
   Services servis = Services();
-List filters=[{"id":"-1", "textt":"hepsi"},{"id":"0", "text":"dsds"}];
-    
-  MyRequestResponse? myRequestResponse = MyRequestResponse();
+  List filters = [
+    {"id": "-1", "description": "Hepsi"},
+    {"id": "0,4", "description": "Süreç Devam Ediyor / Revize edildi"},
+    {"id": "0", "description": "Süreç Devam Ediliyor"},
+    {"id": "1", "description": "Onaylandı"},
+    {"id": "2", "description": "Reddedildi"},
+    {"id": "4", "description": "Revize Edilsi"},
+    {"id": "6", "description": "Geri Gönderildi"},
+  ];
+
   @override
   void onInit() {
-    getMyRequest("-1");
+    getMyRequest("0,4");
     super.onInit();
   }
 
-void name(params) {
-  getMyRequest(filters[0]['id']);
-    ;
-}
+  void name(params) {
+    getMyRequest(filters[1]['id']);
+  }
 
-  getMyRequest(String statuArray) async {
-    myRequestResponse = await servis.getMyRequest(statuArray);
+  MyRequestResponse? myRequestResponse = MyRequestResponse();
+  getMyRequest(String workStatuArray) async {
+    myRequestResponse = await servis.getMyRequest(workStatuArray);
     update();
   }
 }
