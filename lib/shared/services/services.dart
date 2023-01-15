@@ -116,11 +116,11 @@ class Services extends GetConnect {
   //   return MyRequestResponse.fromJson(res.body);
   // }
 
-  Future<MyRequestResponse?> getMyRequest() async {
+  Future<MyRequestResponse?> getMyRequest(String workStatuArray) async {
     //String token = CacheManager.instance.getValue("token");
 
     var params = {
-      'statuArray': '-1',
+      'statuArray': workStatuArray,
     };
     var query = params.entries.map((p) => '${p.key}=${p.value}').join('&');
 

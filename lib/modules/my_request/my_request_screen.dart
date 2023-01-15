@@ -35,18 +35,42 @@ class MyRequestScreen extends GetView<MyRequestController> {
                             size: 4.h, color: Colors.white),
                       ),
                     ),
-                    // Padding(
-                    //   padding: EdgeInsets.only(
-                    //     left: 2.0.h,
-                    //   ),
-                    //   child: Text(
-                    //     "MyRequestScreen",
-                    //     style: GoogleFonts.poppins(
-                    //         textStyle:
-                    //             TextStyle(fontSize: 16.sp, color: Colors.white)),
-                    //   ),
-                    // ),
                     GestureDetector(
+                      onTap: () {
+                        Get.defaultDialog(
+                          backgroundColor: Colors.grey.shade200,
+                          title: "",
+                          content: Container(
+                            height: 350,
+                            width: 320,
+                            color: Colors.red,
+                            child: ListView.builder(
+                              itemCount: controller.filters.length,
+                              itemBuilder: (context, index) {
+                                return Container(
+                                  width: 7.5.h,
+                                  height: 3.125.h,
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      controller.getMyRequest(
+                                          controller.filters[index]["id"]);
+
+                                      Get.back();
+                                    },
+                                    child: Text(
+                                      controller.filters[index]["description"],
+                                      style: GoogleFonts.poppins(
+                                          color: Colors.black,
+                                          fontSize: 16.sp,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                        );
+                      },
                       child: Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
