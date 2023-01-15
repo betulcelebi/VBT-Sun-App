@@ -13,6 +13,7 @@ class Approve extends GetView<ApproveController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        resizeToAvoidBottomInset: true,
       backgroundColor: const Color(0xff567DF4),
       body: Column(
         children: [
@@ -40,15 +41,46 @@ class Approve extends GetView<ApproveController> {
                   //  ),
                   Padding(
                     padding: EdgeInsets.only(left: 17.0.h),
-                    child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5),
-                          color: Colors.white12,
-                        ),
-                        width: 10.w,
-                        height: 5.h,
-                        child: Icon(Icons.filter_alt,
-                            size: 4.h, color: Colors.white)),
+                    child: GestureDetector(
+                      onTap: () {
+                        Get.defaultDialog(
+                          backgroundColor: Colors.grey.shade200,
+                          title: "",
+                          content: SizedBox(
+                            height: 20.h,
+                            width: 20.h,
+                            child: ListView.builder(itemCount:controller.approvefilters.length,
+                            itemBuilder:(context, index) {
+                              return Container(
+                                width: 12.h,
+                                  height: 6.h,
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      controller.getApprove(controller.approvefilters[index]["id"]);
+                                       Get.back();
+                                    },
+                                    child: Text(controller.approvefilters[index]["description"],
+                                        style: GoogleFonts.poppins(
+                                            color: Colors.black,
+                                            fontSize: 16.sp,
+                                            fontWeight: FontWeight.w500),
+                                      ),
+                                  ),
+                              );
+                            },  ),
+                          )
+                        );
+                      },
+                      child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
+                            color: Colors.white12,
+                          ),
+                          width: 10.w,
+                          height: 5.h,
+                          child: Icon(Icons.filter_alt,
+                              size: 4.h, color: Colors.white)),
+                    ),
                   )
                 ],
               ),
@@ -72,7 +104,7 @@ class Approve extends GetView<ApproveController> {
                     );
                   }
                   return ListView.builder(
-                    physics: const NeverScrollableScrollPhysics(),
+                   // physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     itemCount: controller.approveResponse?.data
                             ?.pendingRequestList?.length ??
@@ -137,7 +169,7 @@ class Approve extends GetView<ApproveController> {
                                                         Colors.grey.shade400)),
                                           ),
                                           SizedBox(
-                                            width: 38.w,
+                                            width: 30.w,
                                           ),
                                           Icon(
                                             Icons.check_box_outlined,

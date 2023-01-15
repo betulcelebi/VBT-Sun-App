@@ -202,10 +202,11 @@ class Services extends GetConnect {
     return AccountResponse.fromJson(res.body);
   }
 
-  Future<ApproveResponse?> getApprove() async {
+  Future<ApproveResponse?> getApprove(String approveStatuArray) async {
     var params = {
-      'statu': '-1',
+      'statu': approveStatuArray,
     };
+
     var query = params.entries.map((p) => '${p.key}=${p.value}').join('&');
 
     var url =
@@ -217,3 +218,4 @@ class Services extends GetConnect {
     return ApproveResponse.fromJson(res.body);
   }
 }
+
