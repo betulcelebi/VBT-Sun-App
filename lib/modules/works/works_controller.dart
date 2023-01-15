@@ -19,9 +19,9 @@ class WorksController extends GetxController {
     super.onInit();
   }
 
-  void name(params) {
-    getMyWorkInfo(filters[1]['id']);
-  }
+  // void name(params) {
+  //   getMyWorkInfo(filters[1]['id'], '');
+  // }
 
   getMyWorkInfo(String workStatuArray) async {
     myWorksResponse = await servis.getMyWorks(workStatuArray);

@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:vbt_sun_app_project/modules/works/works_controller.dart';
+import 'package:vbt_sun_app_project/routes/app_pages.dart';
 
 class Works extends GetView<WorksController> {
   const Works({super.key});
@@ -105,140 +106,152 @@ class Works extends GetView<WorksController> {
                         return Padding(
                           padding: EdgeInsets.symmetric(
                               vertical: 1.25.h, horizontal: 2.8.h),
-                          child: Container(
-                            decoration: BoxDecoration(
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.shade200,
-                                    blurRadius: 1.25.h,
-                                    spreadRadius: 0.625.h,
-                                    offset: Offset(
-                                      2.5.h,
-                                      2.5.h,
-                                    ),
-                                  )
-                                ],
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(2.5.h)),
-                            //width:double.infinity,
-                            height: 30.h,
+                          child: GestureDetector(
+                            onTap: () {
+                              Get.toNamed(Routes.WORKSDETAIL, arguments: {
+                                'pendingJobsList': controller.myWorksResponse!
+                                    .data!.pendingJobsList![index]
+                              });
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.shade200,
+                                      blurRadius: 1.25.h,
+                                      spreadRadius: 0.625.h,
+                                      offset: Offset(
+                                        2.5.h,
+                                        2.5.h,
+                                      ),
+                                    )
+                                  ],
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(2.5.h)),
+                              //width:double.infinity,
+                              height: 30.h,
 
-                            child: Padding(
-                              padding: EdgeInsets.only(
-                                  left: 2.h, top: 2.h, bottom: 2.h),
-                              child: Row(
-                                children: [
-                                  Container(
-                                    width: 1.w,
-                                    height: 24.h,
-                                    color: Colors.blue,
-                                  ),
-                                  Padding(
-                                    padding:
-                                        EdgeInsets.only(left: 2.h, bottom: 1.h),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Row(
-                                          children: [
-                                            Text(
-                                              "İş No",
-                                              style: GoogleFonts.poppins(
-                                                  textStyle: TextStyle(
-                                                      fontSize: 15.sp,
-                                                      color: Colors
-                                                          .grey.shade400)),
-                                            ),
-                                            SizedBox(
-                                              width: 28.5.h,
-                                            ),
-                                            Container(
-                                                height: 5.5.h,
-                                                width: 5.5.h,
-                                                padding: EdgeInsets.all(0.25.h),
-                                                child: Image.asset(
-                                                    "assets/work.png"))
-                                          ],
-                                        ),
-                                        Text(
-                                          controller.myWorksResponse!.data!
-                                              .pendingJobsList![index].iDWORK
-                                              .toString(),
-                                          style: GoogleFonts.poppins(
-                                              textStyle:
-                                                  TextStyle(fontSize: 16.sp)),
-                                        ),
-                                        // Text(
-                                        //   "Talep No",
-                                        //   style: GoogleFonts.poppins(
-                                        //       textStyle: TextStyle(
-                                        //           fontSize: 16.sp,
-                                        //           color: Colors.grey.shade400)),
-                                        // ),
-                                        // Text(
-                                        //   "25",
-                                        //   style: GoogleFonts.poppins(
-                                        //       textStyle:
-                                        //           TextStyle(fontSize: 18.sp)),
-                                        // ),
-                                        Text(
-                                          "Talep Eden",
-                                          style: GoogleFonts.poppins(
-                                              textStyle: TextStyle(
-                                                  fontSize: 15.sp,
-                                                  color: Colors.grey.shade400)),
-                                        ),
-                                        Text(
-                                          // ignore: unnecessary_string_interpolations
-                                          '${controller.myWorksResponse?.data?.pendingJobsList?[index].aSSIGNEMPLOYEE ?? " "}',
-                                          style: GoogleFonts.poppins(
-                                              textStyle:
-                                                  TextStyle(fontSize: 16.sp)),
-                                        ),
-                                        Text(
-                                          "Durumu",
-                                          style: GoogleFonts.poppins(
-                                              textStyle: TextStyle(
-                                                  fontSize: 15.sp,
-                                                  color: Colors.grey.shade400)),
-                                        ),
-                                        Text(
-                                          '${controller.myWorksResponse!.data!.pendingJobsList![index].wORKSTATUSNAME ?? " "}',
-                                          style: GoogleFonts.poppins(
-                                              textStyle:
-                                                  TextStyle(fontSize: 16.sp)),
-                                        ),
-                                        Text(
-                                          "Tarih",
-                                          style: GoogleFonts.poppins(
-                                              textStyle: TextStyle(
-                                                  fontSize: 15.sp,
-                                                  color: Colors.grey.shade400)),
-                                        ),
-                                        Row(
-                                          children: [
-                                            Text(
-                                              '${controller.myWorksResponse?.data?.pendingJobsList?[index].wORKCREATIONDATE!.split(" ").first.substring(0, 10) ?? " "}',
-                                              style: GoogleFonts.poppins(
-                                                  textStyle: TextStyle(
-                                                      fontSize: 16.sp)),
-                                            ),
-                                            SizedBox(width: 0.8.h),
-                                            Text(
-                                              '${controller.myWorksResponse?.data?.pendingJobsList?[index].wORKCREATIONDATE!.split(" ").first.substring(11, 19) ?? " "}',
-                                              style: GoogleFonts.poppins(
-                                                  textStyle: TextStyle(
-                                                      fontSize: 16.sp)),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
+                              child: Padding(
+                                padding: EdgeInsets.only(
+                                    left: 2.h, top: 2.h, bottom: 2.h),
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      width: 1.w,
+                                      height: 24.h,
+                                      color: Colors.blue,
                                     ),
-                                  ),
-                                ],
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                          left: 2.h, bottom: 1.h),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Text(
+                                                "İş No",
+                                                style: GoogleFonts.poppins(
+                                                    textStyle: TextStyle(
+                                                        fontSize: 15.sp,
+                                                        color: Colors
+                                                            .grey.shade400)),
+                                              ),
+                                              SizedBox(
+                                                width: 28.5.h,
+                                              ),
+                                              Container(
+                                                  height: 5.5.h,
+                                                  width: 5.5.h,
+                                                  padding:
+                                                      EdgeInsets.all(0.25.h),
+                                                  child: Image.asset(
+                                                      "assets/work.png"))
+                                            ],
+                                          ),
+                                          Text(
+                                            controller.myWorksResponse!.data!
+                                                .pendingJobsList![index].iDWORK
+                                                .toString(),
+                                            style: GoogleFonts.poppins(
+                                                textStyle:
+                                                    TextStyle(fontSize: 16.sp)),
+                                          ),
+                                          // Text(
+                                          //   "Talep No",
+                                          //   style: GoogleFonts.poppins(
+                                          //       textStyle: TextStyle(
+                                          //           fontSize: 16.sp,
+                                          //           color: Colors.grey.shade400)),
+                                          // ),
+                                          // Text(
+                                          //   "25",
+                                          //   style: GoogleFonts.poppins(
+                                          //       textStyle:
+                                          //           TextStyle(fontSize: 18.sp)),
+                                          // ),
+                                          Text(
+                                            "Talep Eden",
+                                            style: GoogleFonts.poppins(
+                                                textStyle: TextStyle(
+                                                    fontSize: 15.sp,
+                                                    color:
+                                                        Colors.grey.shade400)),
+                                          ),
+                                          Text(
+                                            // ignore: unnecessary_string_interpolations
+                                            '${controller.myWorksResponse?.data?.pendingJobsList?[index].aSSIGNEMPLOYEE ?? " "}',
+                                            style: GoogleFonts.poppins(
+                                                textStyle:
+                                                    TextStyle(fontSize: 16.sp)),
+                                          ),
+                                          Text(
+                                            "Durumu",
+                                            style: GoogleFonts.poppins(
+                                                textStyle: TextStyle(
+                                                    fontSize: 15.sp,
+                                                    color:
+                                                        Colors.grey.shade400)),
+                                          ),
+                                          Text(
+                                            '${controller.myWorksResponse!.data!.pendingJobsList![index].wORKSTATUSNAME ?? " "}',
+                                            style: GoogleFonts.poppins(
+                                                textStyle:
+                                                    TextStyle(fontSize: 16.sp)),
+                                          ),
+                                          Text(
+                                            "Tarih",
+                                            style: GoogleFonts.poppins(
+                                                textStyle: TextStyle(
+                                                    fontSize: 15.sp,
+                                                    color:
+                                                        Colors.grey.shade400)),
+                                          ),
+                                          Row(
+                                            children: [
+                                              Text(
+                                                '${controller.myWorksResponse?.data?.pendingJobsList?[index].wORKCREATIONDATE!.split(" ").first.substring(0, 10) ?? " "}',
+                                                style: GoogleFonts.poppins(
+                                                    textStyle: TextStyle(
+                                                        fontSize: 16.sp)),
+                                              ),
+                                              SizedBox(width: 0.8.h),
+                                              Text(
+                                                '${controller.myWorksResponse?.data?.pendingJobsList?[index].wORKCREATIONDATE!.split(" ").first.substring(11, 19) ?? " "}',
+                                                style: GoogleFonts.poppins(
+                                                    textStyle: TextStyle(
+                                                        fontSize: 16.sp)),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),

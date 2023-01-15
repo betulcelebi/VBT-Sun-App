@@ -135,9 +135,8 @@ class Services extends GetConnect {
   ////////////////////MyJobs Service////////////////////
 
   Future<MyWorksResponse?> getMyWorks(String workStatuArray) async {
-    var params = {
-      'ID_WORK_STATUS_ARRAY': workStatuArray,
-    };
+    var params = {'ID_WORK_STATUS_ARRAY': workStatuArray};
+
     var query = params.entries.map((p) => '${p.key}=${p.value}').join('&');
 
     var url =
