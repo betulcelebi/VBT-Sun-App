@@ -25,6 +25,7 @@ class _MyRequestDetailState extends State<MyRequestDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       backgroundColor: const Color(0xff567DF4),
       body: GetBuilder<MyRequestDetailController>(
           init: MyRequestDetailController(idMaster: widget.idMaster),
@@ -34,198 +35,167 @@ class _MyRequestDetailState extends State<MyRequestDetail> {
                 child: CircularProgressIndicator(),
               );
             }
-            return SingleChildScrollView(
-              child: Column(
-                children: [
-                  SizedBox(
-                    width: double.infinity,
-                    height: 10.h,
+            return Column(
+              children: [
+                Container(
+                  width: 43.75.h,
+                  height: 13.h,
+                  color: const Color(0xff567DF4),
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 3.h, left: 1.h, right: 1.8.h),
                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Padding(
-                          padding: EdgeInsets.only(left: 2.0.h),
-                          child: GestureDetector(
-                              onTap: () {
-                                Get.back();
-                              },
-                              child: Icon(Icons.arrow_back,
-                                  size: 4.h, color: Colors.white)),
+                        GestureDetector(
+                          onTap: () {
+                            Get.back();
+                          },
+                          child: Icon(Icons.arrow_back,
+                              size: 4.h, color: Colors.white),
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(left: 12.0.h),
-                          child: Text(
-                            "Taleplerim",
-                            style: GoogleFonts.poppins(
-                              textStyle: TextStyle(
-                                fontSize: 18.sp,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                        )
+                        // Container(
+                        //     padding: EdgeInsets.all(1.3.h),
+                        //     decoration: BoxDecoration(
+                        //         borderRadius: BorderRadius.circular(1.25.h),
+                        //         color: Colors.white.withOpacity(0.15)),
+                        //     width: 5.h,
+                        //     height: 5.h,
+                        //     child: Image.asset(
+                        //       "assets/filter.png",
+                        //       color: Colors.white,
+                        //     )),
                       ],
                     ),
                   ),
-                  Container(
+                ),
+                Expanded(
+                  child: Container(
                     width: double.infinity,
-                    decoration: const BoxDecoration(
-                      color: Color(0xffF6F6F7),
-                      borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(40.0),
-                        topLeft: Radius.circular(40.0),
-                      ),
-                    ),
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(
-                              left: 2.0.h, right: 2.h, top: 5.h),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              color: Colors.white,
-                            ),
-                            width: 90.w,
-                            height: 20.h,
-                            child: Row(
-                              children: [
-                                Padding(
-                                  padding: EdgeInsets.only(left: 1.0.h),
-                                  child: Container(
-                                    width: 2.w,
-                                    height: 18.h,
-                                    color: Color(0xff567DF4),
-                                  ),
+                    decoration: BoxDecoration(
+                        color: const Color(0xffEEF0FC),
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(3.125.h),
+                          topLeft: Radius.circular(3.125.h),
+                        )),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                          vertical: 1.25.h, horizontal: 2.8.h),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.shade200,
+                                blurRadius: 1.25.h,
+                                spreadRadius: 0.625.h,
+                                offset: Offset(
+                                  2.5.h,
+                                  2.5.h,
                                 ),
-                                Padding(
-                                  padding: EdgeInsets.only(left: 2.0.h),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                              )
+                            ],
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(2.5.h)),
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                controller.myRequestDetailResponse == null
+                                    ? ""
+                                    : controller
+                                            .myRequestDetailResponse?["Data"]
+                                        ["REQ_NAME"],
+                                style: GoogleFonts.poppins(
+                                    textStyle: TextStyle(
+                                        fontSize: 16.sp,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w600)),
+                              ),
+                              Text(
+                                controller.myRequestDetailResponse == null
+                                    ? ""
+                                    : DateFormat("dd.MM.yyyy HH:mm").format(
+                                        DateTime.parse(
+                                          controller.myRequestDetailResponse?[
+                                                  "Data"]["REQ_DATE"] ??
+                                              DateTime.now().toString(),
+                                        ),
+                                      ),
+                                style: GoogleFonts.poppins(
+                                  textStyle: TextStyle(
+                                      fontSize: 15.sp,
+                                      color: Colors.grey.shade400),
+                                ),
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Row(
+                                    //mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
-                                      Row(
-                                        //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text(
-                                            "İzin talebi",
-                                            style: GoogleFonts.poppins(
-                                                textStyle: TextStyle(
-                                                    fontSize: 16.sp,
-                                                    color:
-                                                        Colors.grey.shade400)),
-                                          ),
-                                          Padding(
-                                            padding: EdgeInsets.only(
-                                                left: 25.0.h, top: 1.h),
-                                            child: Icon(
-                                              Icons.file_copy,
-                                              size: 4.h,
-                                              color: Color(0xff567DF4),
-                                            ),
-                                          ),
-                                        ],
+                                      Text(
+                                        "Talep Eden : ",
+                                        style: GoogleFonts.poppins(
+                                            textStyle: TextStyle(
+                                                fontSize: 14.sp,
+                                                color: Colors.grey.shade400)),
                                       ),
                                       Text(
                                         controller.myRequestDetailResponse ==
                                                 null
                                             ? ""
-                                            : DateFormat("dd.MM.yyyy HH:mm")
-                                                .format(
-                                                DateTime.parse(
-                                                  controller.myRequestDetailResponse?[
-                                                          "Data"]["REQ_DATE"] ??
-                                                      DateTime.now().toString(),
-                                                ),
-                                              ),
+                                            : controller
+                                                    .myRequestDetailResponse?[
+                                                "Data"]["REQ_EMPLOYEE"],
                                         style: GoogleFonts.poppins(
-                                          textStyle: TextStyle(
-                                            fontSize: 16.sp,
-                                          ),
-                                        ),
-                                      ),
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.end,
-                                        children: [
-                                          Row(
-                                            //mainAxisAlignment: MainAxisAlignment.end,
-                                            children: [
-                                              Text(
-                                                "Talep Eden : ",
-                                                style: GoogleFonts.poppins(
-                                                    textStyle: TextStyle(
-                                                        fontSize: 14.sp,
-                                                        color: Colors
-                                                            .grey.shade400)),
-                                              ),
-                                              Padding(
-                                                padding: EdgeInsets.only(
-                                                    left: 5.0.h),
-                                                child: Text(
-                                                  "Uğur İsmail Uçar",
-                                                  style: GoogleFonts.poppins(
-                                                      textStyle: TextStyle(
-                                                          fontSize: 16.sp)),
-                                                ),
-                                              )
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                      Row(
-                                        //mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                        children: [
-                                          Text(
-                                            "Atanan Kişi : ",
-                                            style: GoogleFonts.poppins(
-                                                textStyle: TextStyle(
-                                                    fontSize: 14.sp,
-                                                    color:
-                                                        Colors.grey.shade400)),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsets.only(left: 5.0.h),
-                                            child: Text(
-                                              "Bülent yönter",
-                                              style: GoogleFonts.poppins(
-                                                  textStyle: TextStyle(
-                                                      fontSize: 16.sp)),
-                                            ),
-                                          )
-                                        ],
+                                            textStyle:
+                                                TextStyle(fontSize: 14.sp)),
                                       )
                                     ],
                                   ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(top: 1.0.h),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(5),
-                              color: Colors.white,
-                            ),
-                            width: 90.w,
-                            child: MediaQuery.removePadding(
-                              context: context,
-                              removeTop: true,
-                              child: ListView.builder(
-                                itemCount: controller
-                                        .myRequestDetailResponse?["Data"]
-                                            ["REQUEST_DETAIL_KEY_VALUE"]
-                                        .length ??
-                                    0,
-                                shrinkWrap: true,
-                                scrollDirection: Axis.vertical,
-                                itemBuilder: (context, index) {
-                                  return Padding(
-                                    padding: EdgeInsets.only(
-                                        left: 1.0.h, right: 1.h),
-                                    child: Row(
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    "Atanan Kişi : ",
+                                    style: GoogleFonts.poppins(
+                                        textStyle: TextStyle(
+                                            fontSize: 14.sp,
+                                            color: Colors.grey.shade400)),
+                                  ),
+                                  Text(
+                                    controller.myRequestDetailResponse == null
+                                        ? ""
+                                        : controller.myRequestDetailResponse?[
+                                            "Data"]["ASSIGN_EMPLOYEE"],
+                                    style: GoogleFonts.poppins(
+                                        textStyle: TextStyle(fontSize: 14.sp)),
+                                  )
+                                ],
+                              ),
+                              Divider(
+                                color: const Color(0xff567DF4).withOpacity(0.8),
+                                height: 1.5.h,
+                                thickness: 0.2.h,
+                                indent: 0,
+                                endIndent: 0,
+                              ),
+                              MediaQuery.removePadding(
+                                context: context,
+                                removeTop: true,
+                                child: ListView.builder(
+                                  physics: NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true,
+                                  scrollDirection: Axis.vertical,
+                                  itemCount: controller
+                                          .myRequestDetailResponse?["Data"]
+                                              ["REQUEST_DETAIL_KEY_VALUE"]
+                                          .length ??
+                                      0,
+                                  itemBuilder: (context, index) {
+                                    return Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
@@ -242,145 +212,125 @@ class _MyRequestDetailState extends State<MyRequestDetail> {
                                           ),
                                         ),
                                         Expanded(
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(left:8.0),
-                                            child: Align(alignment:Alignment.bottomRight,
-                                              child: Text(
-                                                controller.myRequestDetailResponse?[
-                                                            "Data"]
-                                                        ["REQUEST_DETAIL_KEY_VALUE"]
-                                                    [index]["Value"],
-                                                style: GoogleFonts.poppins(
-                                                    textStyle:
-                                                        TextStyle(fontSize: 15.sp)),
-                                              ),
+                                          child: Align(
+                                            alignment: Alignment.bottomRight,
+                                            child: Text(
+                                              controller.myRequestDetailResponse?[
+                                                          "Data"][
+                                                      "REQUEST_DETAIL_KEY_VALUE"]
+                                                  [index]["Value"],
+                                              style: GoogleFonts.poppins(
+                                                  textStyle: TextStyle(
+                                                      fontSize: 15.sp)),
                                             ),
                                           ),
                                         )
                                       ],
-                                    ),
-                                  );
-                                },
+                                    );
+                                  },
+                                ),
                               ),
-                            ),
+                              Divider(
+                                color: const Color(0xff567DF4).withOpacity(0.8),
+                                height: 2.h,
+                                thickness: 0.25.h,
+                                indent: 0,
+                                endIndent: 0,
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        controller.myRequestDetailResponse ==
+                                                null
+                                            ? ""
+                                            : DateFormat("dd.MM.yyyy HH:mm")
+                                                .format(
+                                                DateTime.parse(
+                                                  controller.myRequestDetailResponse?[
+                                                              "Data"]["HISTORY"]
+                                                          [0]["CONFIRM_DATE"] ??
+                                                      DateTime.now().toString(),
+                                                ),
+                                              ),
+                                        style: GoogleFonts.poppins(
+                                            textStyle: TextStyle(
+                                                fontSize: 16.sp,
+                                                color: Colors.grey.shade400)),
+                                      ),
+                                      Text(
+                                        controller.myRequestDetailResponse ==
+                                                null
+                                            ? ""
+                                            : controller
+                                                        .myRequestDetailResponse?[
+                                                    "Data"]["HISTORY"][0]
+                                                ["DESCRIPTION"],
+                                        style: GoogleFonts.poppins(
+                                            textStyle: TextStyle(
+                                                fontSize: 16.sp,
+                                                color: Colors.grey.shade400)),
+                                      ),
+                                      Icon(
+                                        Icons.date_range,
+                                        color: const Color(0xff567DF4),
+                                        size: 4.h,
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        controller.myRequestDetailResponse ==
+                                                null
+                                            ? ""
+                                            : controller
+                                                        .myRequestDetailResponse?[
+                                                    "Data"]["HISTORY"][0]
+                                                ["EMPLOYEE_NAME_SURNAME"],
+                                        style: GoogleFonts.poppins(
+                                            textStyle:
+                                                TextStyle(fontSize: 16.sp)),
+                                      ),
+                                      Text(
+                                        controller.myRequestDetailResponse ==
+                                                null
+                                            ? ""
+                                            : controller
+                                                        .myRequestDetailResponse?[
+                                                    "Data"]["HISTORY"][0]
+                                                ["CONFIRM_DESCRIPTION"],
+                                        style: GoogleFonts.poppins(
+                                            textStyle:
+                                                TextStyle(fontSize: 16.sp)),
+                                      ),
+                                    ],
+                                  ),
+                                  Text(
+                                    controller.myRequestDetailResponse == null
+                                        ? ""
+                                        : controller.myRequestDetailResponse?[
+                                                "Data"]["HISTORY"][0]
+                                            ["POSITION_NAME"],
+                                    style: GoogleFonts.poppins(
+                                        textStyle: TextStyle(fontSize: 16.sp)),
+                                  )
+                                ],
+                              ),
+                            ],
                           ),
                         ),
-                        // Padding(
-                        //   padding:  EdgeInsets.only(top:1.0.h),
-                        //   child: Container(
-                        //     width: 90.w,
-                        //     height: 5.h,
-                        //     color:  Color(0xffF6F6F7),
-                        //     child: Padding(
-                        //       padding:  EdgeInsets.all(1.0.h),
-                        //       child: Text("Tarihçe",style: GoogleFonts.poppins(
-                        //                                 textStyle: TextStyle(
-                        //                                     fontSize: 16.sp,
-                        //                                     color:  Colors.white)),),
-                        //     ),
-                        //   ),
-
-                        // ),
-                        Padding(
-                          padding: EdgeInsets.only(top: 1.0.h),
-                          child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15),
-                                color: Colors.white,
-                              ),
-                              width: 90.w,
-                              height: 15.h,
-                              child: Row(
-                                children: [
-                                  Padding(
-                                    padding: EdgeInsets.only(left: 1.0.h),
-                                    child: Container(
-                                      width: 2.w,
-                                      height: 14.h,
-                                      color: Color(0xff567DF4),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(left: 1.0.h),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        //Text("tarihçe"),
-                                        Row(
-//mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                          children: [
-                                            Text(
-                                              "13.01.2022  12:12",
-                                              style: GoogleFonts.poppins(
-                                                  textStyle: TextStyle(
-                                                      fontSize: 16.sp,
-                                                      color: Colors
-                                                          .grey.shade400)),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  EdgeInsets.only(left: 1.0.h),
-                                              child: Text(
-                                                "Talep başlamıştır",
-                                                style: GoogleFonts.poppins(
-                                                    textStyle: TextStyle(
-                                                        fontSize: 16.sp,
-                                                        color: Colors
-                                                            .grey.shade400)),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  EdgeInsets.only(left: 1.0.h),
-                                              child: Icon(
-                                                Icons.date_range,
-                                                color: Color(0xff567DF4),
-                                                size: 4.h,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              "Uğur İsmail Uçar ",
-                                              style: GoogleFonts.poppins(
-                                                  textStyle: TextStyle(
-                                                      fontSize: 18.sp)),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  EdgeInsets.only(left: 1.0.h),
-                                              child: Text(
-                                                "Talep başlamıştır",
-                                                style: GoogleFonts.poppins(
-                                                    textStyle: TextStyle(
-                                                        fontSize: 18.sp)),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        Text(
-                                          "Mali İşler Arşiv Personeli",
-                                          style: GoogleFonts.poppins(
-                                              textStyle:
-                                                  TextStyle(fontSize: 16.sp)),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              )),
-                        )
-                      ],
+                      ),
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             );
           }),
     );
