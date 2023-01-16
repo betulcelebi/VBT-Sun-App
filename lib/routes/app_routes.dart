@@ -19,5 +19,6 @@ abstract class Routes {
 
 
   static const WORKSDETAIL = '/work_detail';
+  static const VACATIONDETAIL = '/vacationdetail';
 
 }
