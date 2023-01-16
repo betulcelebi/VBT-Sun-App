@@ -8,6 +8,8 @@ import 'package:vbt_sun_app_project/modules/bodro_detail/bordro_detail_binding.d
 import 'package:vbt_sun_app_project/modules/notification/notification_screen.dart';
 import 'package:vbt_sun_app_project/modules/my_request/my_request_binding.dart';
 import 'package:vbt_sun_app_project/modules/my_request/my_request_screen.dart';
+import 'package:vbt_sun_app_project/modules/team/team_binding.dart';
+import 'package:vbt_sun_app_project/modules/team/team_screen.dart';
 
 import 'package:vbt_sun_app_project/modules/vacation/vacation_screen.dart';
 import 'package:vbt_sun_app_project/modules/work_detail/work_detail_binding.dart';
@@ -82,6 +84,12 @@ class AppPages {
     page:()=>VacationDetail(),
     binding:VacationDetailBinding(),
   ),
+
+GetPage(
+        name: Routes.TEAM,
+        page: () => const TeamScreen(),
+        binding: TeamBinding()),
+  
   
   ];
 }
