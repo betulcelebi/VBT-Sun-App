@@ -27,6 +27,8 @@ import '../modules/my_request_detail/my_request_detail_screen.dart';
 import '../modules/notification/notification_binding.dart';
 
 import '../modules/vacation/vacation_binding.dart';
+import '../modules/vacation_detail/vacation_detail.screen.dart';
+import '../modules/vacation_detail/vacation_detail_binding.dart';
 import '../modules/works/works_binding.dart';
 
 part 'app_routes.dart';
@@ -74,6 +76,12 @@ class AppPages {
     GetPage(
         name: Routes.WORKSDETAIL,
         page: () => const WorksDetailScreen(),
-        binding: WorkDetailBinding())
+        binding: WorkDetailBinding()),
+        GetPage( 
+    name:Routes.VACATIONDETAIL,
+    page:()=>VacationDetail(),
+    binding:VacationDetailBinding(),
+  ),
+  
   ];
 }
