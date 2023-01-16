@@ -5,6 +5,7 @@ import 'package:vbt_sun_app_project/init/cache_manager.dart';
 import 'package:vbt_sun_app_project/models/employee_leave_model.dart';
 import 'package:vbt_sun_app_project/models/home_page_info_model.dart';
 import 'package:vbt_sun_app_project/models/my_request_detail_model.dart';
+import 'package:vbt_sun_app_project/models/read_push_message_model.dart';
 import 'package:vbt_sun_app_project/modules/approve/approve_screen.dart';
 
 import '../../models/approve_model.dart';
@@ -236,5 +237,35 @@ class Services extends GetConnect {
       throw Exception('http.post error: statusCode= ${res.statusCode}');
     print(res.body);
     return res.body;
+  }
+
+  Future<ReadPushMessageResponse> getReadPushMessage(int id) async {
+    var url =
+        'https://suniktest.suntekstil.com.tr/mobileapi/api/PushNotification/ReadPushMessage?ID_PUSH_NOTIFICATION_DETAIL=$id';
+    var res = await post(url, {}, headers: getHeader());
+    if (res.statusCode != 200)
+      throw Exception('http.post error: statusCode= ${res.statusCode}');
+    print(res.body);
+    return ReadPushMessageResponse.fromJson(res.body);
+  }
+
+  Future<ReadPushMessageResponse> deletePushMessage(int id) async {
+    var url =
+        'https://suniktest.suntekstil.com.tr/mobileapi/api/PushNotification/DeletePushMessage?ID_PUSH_NOTIFICATION_DETAIL=$id';
+    var res = await post(url, {}, headers: getHeader());
+    if (res.statusCode != 200)
+      throw Exception('http.post error: statusCode= ${res.statusCode}');
+    print(res.body);
+    return ReadPushMessageResponse.fromJson(res.body);
+  }
+
+   Future<ReadPushMessageResponse> deleteBulkPushMessages(int allOrReaded) async {
+    var url =
+        'https://suniktest.suntekstil.com.tr/mobileapi/api/PushNotification/BulkDeletePushMessage?AllOrReaded=$allOrReaded';
+    var res = await post(url, {}, headers: getHeader());
+    if (res.statusCode != 200)
+      throw Exception('http.post error: statusCode= ${res.statusCode}');
+    print(res.body);
+    return ReadPushMessageResponse.fromJson(res.body);
   }
 }
