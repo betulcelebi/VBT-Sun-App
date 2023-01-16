@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:vbt_sun_app_project/modules/vacation/vacation_controller.dart';
+import 'package:vbt_sun_app_project/routes/app_pages.dart';
 
 class Vacation extends GetView<VacationController> {
   //const
@@ -39,7 +40,9 @@ class Vacation extends GetView<VacationController> {
                       child: Icon(Icons.arrow_back,
                           size: 4.h, color: Colors.white)),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Get.toNamed(Routes.VACATIONDETAIL);
+                    },
                     child: Container(
                         padding: EdgeInsets.all(1.3.h),
                         decoration: BoxDecoration(

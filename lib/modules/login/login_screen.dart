@@ -217,7 +217,7 @@ class LoginScreen extends GetView<LoginController> {
                                                 return null;
                                               },
                                               controller:
-                                                  controller.kullaniciAdi,
+                                                  controller.kullaniciAdi..text="uguru",
                                               decoration: InputDecoration(
                                                 suffixIcon:
                                                     const Icon(Icons.person),
@@ -286,7 +286,7 @@ class LoginScreen extends GetView<LoginController> {
                                                     LengthLimitingTextInputFormatter(
                                                         8)
                                                   ],
-                                                  controller: controller.sifre,
+                                                  controller: controller.sifre..text="Vbt1993.",
                                                   decoration: InputDecoration(
                                                       suffixIcon:
                                                           GestureDetector(
