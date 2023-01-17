@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:vbt_sun_app_project/routes/app_pages.dart';
 
 import 'approve_controller.dart';
 
@@ -13,7 +14,7 @@ class Approve extends GetView<ApproveController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        resizeToAvoidBottomInset: true,
+      resizeToAvoidBottomInset: true,
       backgroundColor: const Color(0xff567DF4),
       body: Column(
         children: [
@@ -44,32 +45,36 @@ class Approve extends GetView<ApproveController> {
                     child: GestureDetector(
                       onTap: () {
                         Get.defaultDialog(
-                          backgroundColor: Colors.grey.shade200,
-                          title: "",
-                          content: SizedBox(
-                            height: 20.h,
-                            width: 20.h,
-                            child: ListView.builder(itemCount:controller.approvefilters.length,
-                            itemBuilder:(context, index) {
-                              return Container(
-                                width: 12.h,
-                                  height: 6.h,
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      controller.getApprove(controller.approvefilters[index]["id"]);
-                                       Get.back();
-                                    },
-                                    child: Text(controller.approvefilters[index]["description"],
+                            backgroundColor: Colors.grey.shade200,
+                            title: "",
+                            content: SizedBox(
+                              height: 20.h,
+                              width: 20.h,
+                              child: ListView.builder(
+                                itemCount: controller.approvefilters.length,
+                                itemBuilder: (context, index) {
+                                  return Container(
+                                    width: 12.h,
+                                    height: 6.h,
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        controller.getApprove(controller
+                                            .approvefilters[index]["id"]);
+                                        Get.back();
+                                      },
+                                      child: Text(
+                                        controller.approvefilters[index]
+                                            ["description"],
                                         style: GoogleFonts.poppins(
                                             color: Colors.black,
                                             fontSize: 16.sp,
                                             fontWeight: FontWeight.w500),
                                       ),
-                                  ),
-                              );
-                            },  ),
-                          )
-                        );
+                                    ),
+                                  );
+                                },
+                              ),
+                            ));
                       },
                       child: Container(
                           decoration: BoxDecoration(
@@ -104,7 +109,7 @@ class Approve extends GetView<ApproveController> {
                     );
                   }
                   return ListView.builder(
-                   // physics: const NeverScrollableScrollPhysics(),
+                    // physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     itemCount: controller.approveResponse?.data
                             ?.pendingRequestList?.length ??
@@ -113,158 +118,163 @@ class Approve extends GetView<ApproveController> {
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: EdgeInsets.all(2.0.h),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.shade200,
-                                blurRadius: 10.0,
-                                spreadRadius: 5,
-                                offset: const Offset(
-                                  20,
-                                  20,
-                                ),
-                              )
-                            ],
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          height: 40.h,
-                          child: Padding(
-                            padding: EdgeInsets.only(
-                                left: 1.5.h, top: 3.h, bottom: 2.h),
-                            child: Row(
-                              children: [
-                                Container(
-                                  width: 1.w,
-                                  height: 40.h,
-                                  color: Colors.blue,
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(left: 1.5.h),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Text(
-                                            "${controller.approveResponse?.data?.pendingRequestList?[index].rEQDATE?.split(" ").first.substring(0, 10) ?? " "}",
-                                            style: GoogleFonts.poppins(
-                                                textStyle: TextStyle(
-                                                    fontSize: 16.sp,
-                                                    color:
-                                                        Colors.grey.shade400)),
-                                          ),
-                                          SizedBox(
-                                            width: 0.8.w,
-                                          ),
-                                          Text(
-                                            //"02.12.2022 19.45",
-                                            "${controller.approveResponse?.data?.pendingRequestList?[index].rEQDATE?.split(" ").first.substring(11, 19) ?? " "}",
-                                            style: GoogleFonts.poppins(
-                                                textStyle: TextStyle(
-                                                    fontSize: 16.sp,
-                                                    color:
-                                                        Colors.grey.shade400)),
-                                          ),
-                                          SizedBox(
-                                            width: 30.w,
-                                          ),
-                                          Icon(
-                                            Icons.check_box_outlined,
-                                            size: 4.5.h,
-                                            color: Color(0xff567DF4),
-                                          )
-                                        ],
-                                      ),
-                                      Text(
-                                        //"Performans Yönetimi",
-                                        controller
-                                                .approveResponse
-                                                ?.data
-                                                ?.pendingRequestList?[index]
-                                                .rEQNAME ??
-                                            "",
-                                        style: GoogleFonts.poppins(
-                                            textStyle:
-                                                TextStyle(fontSize: 18.sp)),
-                                      ),
-                                      Text(
-                                        "Talep No",
-                                        style: GoogleFonts.poppins(
-                                            textStyle: TextStyle(
-                                                fontSize: 16.sp,
-                                                color: Colors.grey.shade400)),
-                                      ),
-                                      Text(
-                                        // "25",
-                                        "${controller.approveResponse?.data?.pendingRequestList?[index].iDMASTER ?? ""}",
-                                        style: GoogleFonts.poppins(
-                                            textStyle:
-                                                TextStyle(fontSize: 18.sp)),
-                                      ),
-                                      Text(
-                                        "Talep Eden",
-                                        style: GoogleFonts.poppins(
-                                            textStyle: TextStyle(
-                                                fontSize: 16.sp,
-                                                color: Colors.grey.shade400)),
-                                      ),
-                                      Text(
-                                        // "Kadir Aydoğan",
-                                        controller
-                                                .approveResponse
-                                                ?.data
-                                                ?.pendingRequestList?[index]
-                                                .rEQEMPLOYEE ??
-                                            "",
-                                        style: GoogleFonts.poppins(
-                                            textStyle:
-                                                TextStyle(fontSize: 18.sp)),
-                                      ),
-                                      Text(
-                                        "Atanan Kişi",
-                                        style: GoogleFonts.poppins(
-                                            textStyle: TextStyle(
-                                                fontSize: 16.sp,
-                                                color: Colors.grey.shade400)),
-                                      ),
-                                      Text(
-                                        // "Mümin Sürer",
-                                        controller
-                                                .approveResponse
-                                                ?.data
-                                                ?.pendingRequestList?[index]
-                                                .aSSIGNEMPLOYEE ??
-                                            "",
-                                        style: GoogleFonts.poppins(
-                                            textStyle:
-                                                TextStyle(fontSize: 18.sp)),
-                                      ),
-                                      Text(
-                                        "Açıklama",
-                                        style: GoogleFonts.poppins(
-                                            textStyle: TextStyle(
-                                                fontSize: 16.sp,
-                                                color: Colors.grey.shade400)),
-                                      ),
-                                      Text(
-                                        // "Açıklama yazısı gelecek",
-                                        controller
-                                                .approveResponse
-                                                ?.data
-                                                ?.pendingRequestList?[index]
-                                                .rEQUESTDETAIL ??
-                                            "",
-                                        style: GoogleFonts.poppins(
-                                            textStyle:
-                                                TextStyle(fontSize: 18.sp)),
-                                      ),
-                                    ],
+                        child: GestureDetector(
+                          onTap: () {
+                            Get.toNamed(Routes.APPROVEDETAIL);
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.shade200,
+                                  blurRadius: 10.0,
+                                  spreadRadius: 5,
+                                  offset: const Offset(
+                                    20,
+                                    20,
                                   ),
-                                ),
+                                )
                               ],
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            height: 40.h,
+                            child: Padding(
+                              padding: EdgeInsets.only(
+                                  left: 1.5.h, top: 3.h, bottom: 2.h),
+                              child: Row(
+                                children: [
+                                  Container(
+                                    width: 1.w,
+                                    height: 40.h,
+                                    color: Colors.blue,
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 1.5.h),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Text(
+                                              "${controller.approveResponse?.data?.pendingRequestList?[index].rEQDATE?.split(" ").first.substring(0, 10) ?? " "}",
+                                              style: GoogleFonts.poppins(
+                                                  textStyle: TextStyle(
+                                                      fontSize: 16.sp,
+                                                      color: Colors
+                                                          .grey.shade400)),
+                                            ),
+                                            SizedBox(
+                                              width: 0.8.w,
+                                            ),
+                                            Text(
+                                              //"02.12.2022 19.45",
+                                              "${controller.approveResponse?.data?.pendingRequestList?[index].rEQDATE?.split(" ").first.substring(11, 19) ?? " "}",
+                                              style: GoogleFonts.poppins(
+                                                  textStyle: TextStyle(
+                                                      fontSize: 16.sp,
+                                                      color: Colors
+                                                          .grey.shade400)),
+                                            ),
+                                            SizedBox(
+                                              width: 30.w,
+                                            ),
+                                            Icon(
+                                              Icons.check_box_outlined,
+                                              size: 4.5.h,
+                                              color: Color(0xff567DF4),
+                                            )
+                                          ],
+                                        ),
+                                        Text(
+                                          //"Performans Yönetimi",
+                                          controller
+                                                  .approveResponse
+                                                  ?.data
+                                                  ?.pendingRequestList?[index]
+                                                  .rEQNAME ??
+                                              "",
+                                          style: GoogleFonts.poppins(
+                                              textStyle:
+                                                  TextStyle(fontSize: 18.sp)),
+                                        ),
+                                        Text(
+                                          "Talep No",
+                                          style: GoogleFonts.poppins(
+                                              textStyle: TextStyle(
+                                                  fontSize: 16.sp,
+                                                  color: Colors.grey.shade400)),
+                                        ),
+                                        Text(
+                                          // "25",
+                                          "${controller.approveResponse?.data?.pendingRequestList?[index].iDMASTER ?? ""}",
+                                          style: GoogleFonts.poppins(
+                                              textStyle:
+                                                  TextStyle(fontSize: 18.sp)),
+                                        ),
+                                        Text(
+                                          "Talep Eden",
+                                          style: GoogleFonts.poppins(
+                                              textStyle: TextStyle(
+                                                  fontSize: 16.sp,
+                                                  color: Colors.grey.shade400)),
+                                        ),
+                                        Text(
+                                          // "Kadir Aydoğan",
+                                          controller
+                                                  .approveResponse
+                                                  ?.data
+                                                  ?.pendingRequestList?[index]
+                                                  .rEQEMPLOYEE ??
+                                              "",
+                                          style: GoogleFonts.poppins(
+                                              textStyle:
+                                                  TextStyle(fontSize: 18.sp)),
+                                        ),
+                                        Text(
+                                          "Atanan Kişi",
+                                          style: GoogleFonts.poppins(
+                                              textStyle: TextStyle(
+                                                  fontSize: 16.sp,
+                                                  color: Colors.grey.shade400)),
+                                        ),
+                                        Text(
+                                          // "Mümin Sürer",
+                                          controller
+                                                  .approveResponse
+                                                  ?.data
+                                                  ?.pendingRequestList?[index]
+                                                  .aSSIGNEMPLOYEE ??
+                                              "",
+                                          style: GoogleFonts.poppins(
+                                              textStyle:
+                                                  TextStyle(fontSize: 18.sp)),
+                                        ),
+                                        Text(
+                                          "Açıklama",
+                                          style: GoogleFonts.poppins(
+                                              textStyle: TextStyle(
+                                                  fontSize: 16.sp,
+                                                  color: Colors.grey.shade400)),
+                                        ),
+                                        Text(
+                                          // "Açıklama yazısı gelecek",
+                                          controller
+                                                  .approveResponse
+                                                  ?.data
+                                                  ?.pendingRequestList?[index]
+                                                  .rEQUESTDETAIL ??
+                                              "",
+                                          style: GoogleFonts.poppins(
+                                              textStyle:
+                                                  TextStyle(fontSize: 18.sp)),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
