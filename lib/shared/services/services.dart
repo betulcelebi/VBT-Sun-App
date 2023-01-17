@@ -18,6 +18,7 @@ import '../../models/notifications_model.dart';
 import '../../models/payroll_document_model.dart';
 import '../../models/payroll_view_model.dart';
 import '../../models/send_approval_model.dart' as sendApprovalModel;
+import '../../models/sub_employees_leave_model.dart';
 
 class Services extends GetConnect {
   Services() {
@@ -335,7 +336,7 @@ class Services extends GetConnect {
     print(res.body);
   }
 
-    Future<Map> getApproveDetail(int idMaster) async {
+  Future<Map> getApproveDetail(int idMaster) async {
     String token = CacheManager.instance.getValue("token");
     var headers = {
       'Accept': 'application/json',
@@ -355,4 +356,13 @@ class Services extends GetConnect {
     return res.body;
   }
 
+  Future<SubEmployeesLeaveResponse> getSubEmployeesLeave(int? id) async {
+    var url =
+        'https://suniktest.suntekstil.com.tr/mobileapi/api/EmployeeLeave/GetSubEmployeesLeave?IdHrEmployee=$id';
+    var res = await post(url, {}, headers: getHeader());
+    if (res.statusCode != 200)
+      throw Exception('http.post error: statusCode= ${res.statusCode}');
+    print(res.body);
+    return SubEmployeesLeaveResponse.fromJson(res.body);
+  }
 }
