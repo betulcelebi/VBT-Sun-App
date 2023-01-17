@@ -21,74 +21,70 @@ class Approve extends GetView<ApproveController> {
       body: Column(
         children: [
           Container(
-            width: double.infinity,
-            height: 12.5.h,
-            color: const Color(0xff567DF4),
+            width: 43.75.h,
+            height: 13.h,
+            color: Color(0xff567DF4),
             child: Padding(
               padding: EdgeInsets.only(top: 3.h, left: 1.h, right: 1.8.h),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Padding(
-                    padding: EdgeInsets.only(left: 3.0.h),
-                    child: GestureDetector(
-                        onTap: () {
-                          Get.back();
-                        },
-                        child: Icon(Icons.arrow_back,
-                            size: 4.h, color: Colors.white)),
+                  GestureDetector(
+                    onTap: () {
+                      Get.back();
+                    },
+                    child:
+                        Icon(Icons.arrow_back, size: 4.h, color: Colors.white),
                   ),
-                  //  Padding(
-                  //    padding:  EdgeInsets.only(left:2.0.h),
-                  //    child: Text("Onaylarım",style: GoogleFonts.poppins(textStyle: TextStyle(fontSize: 20.sp,color: Colors.white)),),
-                  //  ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 17.0.h),
-                    child: GestureDetector(
-                      onTap: () {
-                        Get.defaultDialog(
-                            backgroundColor: Colors.grey.shade200,
-                            title: "",
-                            content: SizedBox(
-                              height: 20.h,
-                              width: 20.h,
-                              child: ListView.builder(
-                                itemCount: controller.approvefilters.length,
-                                itemBuilder: (context, index) {
-                                  return Container(
-                                    width: 12.h,
-                                    height: 6.h,
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        controller.getApprove(controller
-                                            .approvefilters[index]["id"]);
-                                        Get.back();
-                                      },
-                                      child: Text(
-                                        controller.approvefilters[index]
-                                            ["description"],
-                                        style: GoogleFonts.poppins(
-                                            color: Colors.black,
-                                            fontSize: 16.sp,
-                                            fontWeight: FontWeight.w500),
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ),
-                            ));
-                      },
-                      child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(5),
-                            color: Colors.white12,
+                  GestureDetector(
+                    onTap: () {
+                      Get.defaultDialog(
+                        contentPadding: EdgeInsets.all(2.5.h),
+                        backgroundColor: Colors.grey.shade200,
+                        title: "",
+                        content: SizedBox(
+                          height: 25.h,
+                          width: 40.h,
+                          child: ListView.builder(
+                            itemCount: controller.approvefilters.length,
+                            itemBuilder: (context, index) {
+                              return Container(
+                                width: 10.w,
+                                height: 3.5.h,
+                                child: GestureDetector(
+                                  onTap: () {
+                                    controller.getApprove(
+                                        controller.approvefilters[index]["id"]);
+
+                                    Get.back();
+                                  },
+                                  child: Text(
+                                    controller.approvefilters[index]
+                                        ["description"],
+                                    style: GoogleFonts.poppins(
+                                        color: Colors.black,
+                                        fontSize: 16.sp,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                ),
+                              );
+                            },
                           ),
-                          width: 10.w,
-                          height: 5.h,
-                          child: Icon(Icons.filter_alt,
-                              size: 4.h, color: Colors.white)),
-                    ),
-                  )
+                        ),
+                      );
+                    },
+                    child: Container(
+                        padding: EdgeInsets.all(1.3.h),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(1.25.h),
+                            color: Colors.white.withOpacity(0.15)),
+                        width: 5.h,
+                        height: 5.h,
+                        child: Image.asset(
+                          "assets/filter.png",
+                          color: Colors.white,
+                        )),
+                  ),
                 ],
               ),
             ),
@@ -173,7 +169,7 @@ class Approve extends GetView<ApproveController> {
                                                           .grey.shade400)),
                                             ),
                                             SizedBox(
-                                              width: 0.8.w,
+                                              width: 1.h,
                                             ),
                                             Text(
                                               //"02.12.2022 19.45",
@@ -184,14 +180,14 @@ class Approve extends GetView<ApproveController> {
                                                       color: Colors
                                                           .grey.shade400)),
                                             ),
-                                            SizedBox(
-                                              width: 30.w,
-                                            ),
-                                            Icon(
-                                              Icons.check_box_outlined,
-                                              size: 4.5.h,
-                                              color: Color(0xff567DF4),
-                                            )
+                                            Container(
+                                                margin:
+                                                    EdgeInsets.only(left: 14.h),
+                                                height: 5.5.h,
+                                                width: 5.5.h,
+                                                padding: EdgeInsets.all(0.25.h),
+                                                child: Image.asset(
+                                                    "assets/stamp.png")),
                                           ],
                                         ),
                                         Text(
