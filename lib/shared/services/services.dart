@@ -334,4 +334,25 @@ class Services extends GetConnect {
     //throw Exception('http.post error: statusCode= ${res.statusCode}');
     print(res.body);
   }
+
+    Future<Map> getApproveDetail(int idMaster) async {
+    String token = CacheManager.instance.getValue("token");
+    var headers = {
+      'Accept': 'application/json',
+      'vbtauthorization': token,
+    };
+    var url =
+        'https://suniktest.suntekstil.com.tr/mobileapi/api/RequestManagement/GetRequestById?IdMaster=$idMaster&DetailType=2';
+    var res = await post(
+      url,
+      {},
+      headers: headers,
+    );
+    if (res.statusCode != 200) {
+      throw Exception('http.post error: statusCode= ${res.statusCode}');
+    }
+    print(res.body);
+    return res.body;
+  }
+
 }

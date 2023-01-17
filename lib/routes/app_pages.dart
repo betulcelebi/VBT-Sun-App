@@ -83,10 +83,10 @@ class AppPages {
       page: () => VacationDetail(),
       binding: VacationDetailBinding(),
     ),
-    GetPage(
-      name: Routes.APPROVEDETAIL,
-      page: () => const ApproveDetailScreen(),
-      binding: ApproveDetailBinding(),
-    )
+    // GetPage(
+    //   name: Routes.APPROVEDETAIL,
+    //   page: () => ApproveDetailScreen(),
+    //   binding: ApproveDetailBinding(),
+    // )
   ];
 }

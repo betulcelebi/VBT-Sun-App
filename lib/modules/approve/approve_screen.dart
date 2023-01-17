@@ -4,6 +4,8 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:vbt_sun_app_project/modules/approve_detail/approve_detail_controller.dart';
+import 'package:vbt_sun_app_project/modules/approve_detail/approve_detail_screen.dart';
 import 'package:vbt_sun_app_project/routes/app_pages.dart';
 
 import 'approve_controller.dart';
@@ -120,7 +122,12 @@ class Approve extends GetView<ApproveController> {
                         padding: EdgeInsets.all(2.0.h),
                         child: GestureDetector(
                           onTap: () {
-                            Get.toNamed(Routes.APPROVEDETAIL);
+                            Get.put(ApproveDetailController(
+                                idMaster: controller.approveResponse!.data!
+                                    .pendingRequestList![index].iDMASTER!));
+                            Get.to(() => ApproveDetailScreen(
+                                idMaster: controller.approveResponse!.data!
+                                    .pendingRequestList![index].iDMASTER!));
                           },
                           child: Container(
                             decoration: BoxDecoration(
