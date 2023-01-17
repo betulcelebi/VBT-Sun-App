@@ -10,6 +10,8 @@ import 'package:vbt_sun_app_project/modules/bodro_detail/bordro_detail_binding.d
 import 'package:vbt_sun_app_project/modules/notification/notification_screen.dart';
 import 'package:vbt_sun_app_project/modules/my_request/my_request_binding.dart';
 import 'package:vbt_sun_app_project/modules/my_request/my_request_screen.dart';
+import 'package:vbt_sun_app_project/modules/teamdetail/teamdetail_binding.dart';
+import 'package:vbt_sun_app_project/modules/teamdetail/teamdetailscreen.dart';
 
 import 'package:vbt_sun_app_project/modules/vacation/vacation_screen.dart';
 import 'package:vbt_sun_app_project/modules/work_detail/work_detail_binding.dart';
@@ -87,6 +89,12 @@ class AppPages {
       name: Routes.APPROVEDETAIL,
       page: () => const ApproveDetailScreen(),
       binding: ApproveDetailBinding(),
+    ),
+
+    GetPage(
+      name: Routes.TEAMDETAIL,
+      page: () => const TeamDetail(),
+      binding: TeamDetaiilBinding(),
     )
   ];
 }
