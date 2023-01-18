@@ -19,5 +19,10 @@ abstract class Routes {
 
   static const WORKSDETAIL = '/work_detail';
   static const VACATIONDETAIL = '/vacationdetail';
+
+  static const TEAM = '/team';
+
+
   static const APPROVEDETAIL = '/approve_detail';
+
 }
