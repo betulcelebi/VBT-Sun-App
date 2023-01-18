@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 import 'package:vbt_sun_app_project/modules/approve/approve_screen.dart';
+import 'package:vbt_sun_app_project/modules/approve_detail/approve_detail_binding.dart';
+import 'package:vbt_sun_app_project/modules/approve_detail/approve_detail_screen.dart';
 import 'package:vbt_sun_app_project/modules/dashboard/dashboard_binding.dart';
 import 'package:vbt_sun_app_project/modules/dashboard/dashboard_screen.dart';
 
@@ -74,11 +76,11 @@ class AppPages {
         name: Routes.MYREQUEST,
         page: () => const MyRequestScreen(),
         binding: MyRequestBinding()),
-   
     GetPage(
         name: Routes.WORKSDETAIL,
         page: () => const WorksDetailScreen(),
         binding: WorkDetailBinding()),
+
         GetPage( 
     name:Routes.VACATIONDETAIL,
     page:()=>VacationDetail(),
@@ -91,5 +93,13 @@ GetPage(
         binding: TeamBinding()),
   
   
+
+  
+    // GetPage(
+    //   name: Routes.APPROVEDETAIL,
+    //   page: () => ApproveDetailScreen(),
+    //   binding: ApproveDetailBinding(),
+    // )
+
   ];
 }

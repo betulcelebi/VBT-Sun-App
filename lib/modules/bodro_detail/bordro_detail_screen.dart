@@ -19,44 +19,29 @@ class BordroDetailScreen extends GetView<BordroDetailController> {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              Padding(
-                padding: EdgeInsets.only(top: 6.h, left: 4.h),
-                child: SizedBox(
-                    width: double.infinity,
-                    height: 5.h,
-                    child: Row(
-                      children: [
-                        GestureDetector(
-                            onTap: () {
-                              Get.back();
-                            },
-                            child: const Icon(
-                              Icons.arrow_back,
-                              color: BordroDetailConstant.whiteC,
-                            )),
-                        SizedBox(
-                          width: 2.w,
-                        ),
-                        Text("Bordro",
-                            style:
-                                //   TextStyle(color: Colors.white, fontSize: 16.sp),
-                                BordroDetailConstant().appBarText)
-                      ],
-                    )),
-              ),
-              SizedBox(
-                height: 2.h,
+              Container(
+                width: 43.75.h,
+                height: 13.h,
+                color: const Color(0xff567DF4),
+                child: Padding(
+                  padding: EdgeInsets.only(top: 3.h, left: 1.h, right: 1.8.h),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      GestureDetector(
+                          onTap: () {
+                            Get.back();
+                          },
+                          child: Icon(Icons.arrow_back,
+                              size: 4.h, color: Colors.white)),
+                    ],
+                  ),
+                ),
               ),
 
               Container(
                 height: MediaQuery.of(context).size.height,
                 decoration: BordroDetailConstant().generalContainer,
-                // BoxDecoration(
-                //     color: Color(0xffF6F6F7),
-                //     borderRadius: BorderRadius.only(
-                //       topRight: Radius.circular(40.0),
-                //       topLeft: Radius.circular(40.0),
-                //     )),
                 child: Obx(() => controller.isLoading.value
                     ? ListView.builder(
                         physics: const NeverScrollableScrollPhysics(),

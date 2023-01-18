@@ -10,12 +10,15 @@ import 'package:vbt_sun_app_project/modules/approve/approve_screen.dart';
 
 import '../../models/approve_model.dart';
 import '../../models/firms_model.dart';
+import '../../models/get_leaves_types_model.dart';
 import '../../models/login_model.dart';
 import '../../models/my_request_model.dart';
 import '../../models/my_works_model.dart';
 import '../../models/notifications_model.dart';
 import '../../models/payroll_document_model.dart';
 import '../../models/payroll_view_model.dart';
+import '../../models/send_approval_model.dart' as sendApprovalModel;
+import '../../models/sub_employees_leave_model.dart';
 
 class Services extends GetConnect {
   Services() {
@@ -259,7 +262,8 @@ class Services extends GetConnect {
     return ReadPushMessageResponse.fromJson(res.body);
   }
 
-   Future<ReadPushMessageResponse> deleteBulkPushMessages(int allOrReaded) async {
+  Future<ReadPushMessageResponse> deleteBulkPushMessages(
+      int allOrReaded) async {
     var url =
         'https://suniktest.suntekstil.com.tr/mobileapi/api/PushNotification/BulkDeletePushMessage?AllOrReaded=$allOrReaded';
     var res = await post(url, {}, headers: getHeader());
@@ -267,5 +271,98 @@ class Services extends GetConnect {
       throw Exception('http.post error: statusCode= ${res.statusCode}');
     print(res.body);
     return ReadPushMessageResponse.fromJson(res.body);
+  }
+
+  Future<GetLeavesTypesResponse> getLeavesTypes() async {
+    var url =
+        'https://suniktest.suntekstil.com.tr/mobileapi/api/EmployeeLeave/GetLeaveTypes';
+    var res = await post(url, {}, headers: getHeader());
+    if (res.statusCode != 200)
+      throw Exception('http.post error: statusCode= ${res.statusCode}');
+    print(res.body);
+    return GetLeavesTypesResponse.fromJson(res.body);
+  }
+
+  Future<sendApprovalModel.SendForApprovalResponse> sendForApprovals({
+    required int? vacation,
+    required int? picklistType,
+    required String sDate,
+    required String eDate,
+    required int differenceDay,
+    required String startDate,
+    required String? addres,
+    required String? comment,
+  }) async {
+    var url =
+        'https://suniktest.suntekstil.com.tr/mobileapi/api/EmployeeLeave/SendForApproval';
+    var res = await post(
+        url,
+        {
+          "ID_EMPLOYEE_VACATION": vacation,
+          "ID_GN_PICKLIST_DETAIL_VACATION_TYPE": picklistType,
+          "SDATE": sDate,
+          "EDATE": eDate,
+          "SHOUR": "00:00",
+          "EHOUR": "00:00",
+          "DAY": differenceDay,
+          "HOUR": 0,
+          "MINUTE": 0,
+          "WDATE": startDate,
+          "EARNED_DATE": startDate,
+          "EARNED_DAY": differenceDay,
+          "ADDRESS": addres,
+          "COMMENT": comment,
+          "ATTACHMENT": []
+        },
+        headers: getHeader());
+    if (res.statusCode == 200) {
+      print(res.body);
+
+      return sendApprovalModel.SendForApprovalResponse(
+        data: sendApprovalModel.Data(
+            message: res.body["Data"]["MESSAGE"],
+            success: res.body["Data"]["SUCCESS"]),
+      );
+    } else {
+      return sendApprovalModel.SendForApprovalResponse(
+        data: sendApprovalModel.Data(
+          message: res.body["Message"],
+          success: false,
+        ),
+      );
+    }
+    //if (res.statusCode != 200)
+    //throw Exception('http.post error: statusCode= ${res.statusCode}');
+    print(res.body);
+  }
+
+  Future<Map> getApproveDetail(int idMaster) async {
+    String token = CacheManager.instance.getValue("token");
+    var headers = {
+      'Accept': 'application/json',
+      'vbtauthorization': token,
+    };
+    var url =
+        'https://suniktest.suntekstil.com.tr/mobileapi/api/RequestManagement/GetRequestById?IdMaster=$idMaster&DetailType=2';
+    var res = await post(
+      url,
+      {},
+      headers: headers,
+    );
+    if (res.statusCode != 200) {
+      throw Exception('http.post error: statusCode= ${res.statusCode}');
+    }
+    print(res.body);
+    return res.body;
+  }
+
+  Future<SubEmployeesLeaveResponse> getSubEmployeesLeave(int? id) async {
+    var url =
+        'https://suniktest.suntekstil.com.tr/mobileapi/api/EmployeeLeave/GetSubEmployeesLeave?IdHrEmployee=$id';
+    var res = await post(url, {}, headers: getHeader());
+    if (res.statusCode != 200)
+      throw Exception('http.post error: statusCode= ${res.statusCode}');
+    print(res.body);
+    return SubEmployeesLeaveResponse.fromJson(res.body);
   }
 }
