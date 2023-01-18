@@ -12,7 +12,8 @@ class WorkDetailController extends GetxController {
 
   @override
   void onInit() {
-    var argumentData = Get.arguments;
+    var 
+    argumentData = Get.arguments;
     getPendingJobsList(argumentData['pendingJobsList']);
     super.onInit();
   }

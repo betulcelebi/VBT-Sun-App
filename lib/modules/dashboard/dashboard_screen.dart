@@ -98,7 +98,7 @@ class DashboardScreen extends GetView<DashboardController> {
                                   controller.homeInfoResponse!.data!
                                       .unReadedNotificationCount
                                       .toString(),
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       color: Colors.white,
                                       fontSize: 15,
                                       fontWeight: FontWeight.bold),
@@ -169,12 +169,12 @@ class DashboardScreen extends GetView<DashboardController> {
                                       onTap: () {
                                         if (index == 0) {
                                           Get.toNamed(Routes.MYREQUEST);
-                                        } 
-                                        else if (index == 1) {
+                                        } else if (index == 1) {
                                           Get.toNamed(Routes.APPROVE);
-                                        }
-                                        else if (index == 2) {
+                                        } else if (index == 2) {
                                           Get.toNamed(Routes.WORKS);
+                                        } else if (index == 3) {
+                                          Get.toNamed(Routes.TEAM,arguments: {'id':controller.homeInfoResponse!.data!.idHrEmployee});
                                         }
                                       },
                                       child: Container(
@@ -239,13 +239,6 @@ class DashboardScreen extends GetView<DashboardController> {
                                       return const SizedBox();
                                     }
                                     return GestureDetector(
-                                      // onTap: index == 0
-                                      //     ? () {
-                                      //         Get.toNamed(Routes.BORDRODETAIL);
-                                      //       }
-                                      //     : () {
-                                      //         null;
-                                      //       },
                                       onTap: () {
                                         if (index == 0) {
                                           Get.toNamed(Routes.BORDRODETAIL);

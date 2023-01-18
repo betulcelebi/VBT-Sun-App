@@ -81,25 +81,21 @@ class AppPages {
         page: () => const WorksDetailScreen(),
         binding: WorkDetailBinding()),
 
-        GetPage( 
-    name:Routes.VACATIONDETAIL,
-    page:()=>VacationDetail(),
-    binding:VacationDetailBinding(),
-  ),
+    GetPage(
+      name: Routes.VACATIONDETAIL,
+      page: () => VacationDetail(),
+      binding: VacationDetailBinding(),
+    ),
 
-GetPage(
+    GetPage(
         name: Routes.TEAM,
         page: () => const TeamScreen(),
         binding: TeamBinding()),
-  
-  
 
-  
     // GetPage(
     //   name: Routes.APPROVEDETAIL,
     //   page: () => ApproveDetailScreen(),
     //   binding: ApproveDetailBinding(),
     // )
-
   ];
 }

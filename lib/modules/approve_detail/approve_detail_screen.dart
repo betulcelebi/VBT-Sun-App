@@ -375,10 +375,10 @@ class _ApproveDetailScreenState extends State<ApproveDetailScreen> {
                                                     ),
                                                   ),
                                                   Container(
-                                                    padding: EdgeInsets.all(0),
+                                                    padding:
+                                                        const EdgeInsets.all(0),
                                                     height: 35.h,
                                                     width: 38.h,
-                                                    //color: Colors.amber,
                                                     child: MediaQuery
                                                         .removePadding(
                                                       context: context,

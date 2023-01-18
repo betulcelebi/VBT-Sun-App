@@ -5,6 +5,7 @@ import 'package:vbt_sun_app_project/init/cache_manager.dart';
 import 'package:vbt_sun_app_project/models/employee_leave_model.dart';
 import 'package:vbt_sun_app_project/models/home_page_info_model.dart';
 import 'package:vbt_sun_app_project/models/my_request_detail_model.dart';
+import 'package:vbt_sun_app_project/models/my_team_model.dart';
 import 'package:vbt_sun_app_project/models/read_push_message_model.dart';
 import 'package:vbt_sun_app_project/modules/approve/approve_screen.dart';
 
@@ -13,6 +14,7 @@ import '../../models/firms_model.dart';
 import '../../models/get_leaves_types_model.dart';
 import '../../models/login_model.dart';
 import '../../models/my_request_model.dart';
+
 import '../../models/my_works_model.dart';
 import '../../models/notifications_model.dart';
 import '../../models/payroll_document_model.dart';
@@ -364,5 +366,22 @@ class Services extends GetConnect {
       throw Exception('http.post error: statusCode= ${res.statusCode}');
     print(res.body);
     return SubEmployeesLeaveResponse.fromJson(res.body);
+  }
+
+  Future<MyTeamResponse> myTeam(int idHrEmployee) async {
+    var data = {
+      "DATE": "2023-01-18T07:36:08.689Z",
+      "ID_GN_LANGUAGE": 1,
+      "SUB_EMPLOYEE_TYPE": 1,
+      "ID_HR_EMPLOYEE": idHrEmployee
+    };
+
+    var url =
+        'https://suniktest.suntekstil.com.tr/mobileapi/api/Team/GetMyTeam';
+    var res = await post(url, data, headers: getHeader());
+    if (res.statusCode != 200)
+      throw Exception('http.post error: statusCode= ${res.statusCode}');
+    print(res.body);
+    return MyTeamResponse.fromJson(res.body);
   }
 }
