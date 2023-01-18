@@ -134,8 +134,10 @@ class _ApproveDetailScreenState extends State<ApproveDetailScreen> {
                                                                   null
                                                               ? ""
                                                               : controller.approveDetailResponse?[
-                                                                      "Data"]
-                                                                  ["REQ_NAME"],
+                                                                          "Data"]
+                                                                      [
+                                                                      "REQ_NAME"] ??
+                                                                  "",
                                                           style: GoogleFonts.poppins(
                                                               textStyle:
                                                                   TextStyle(
@@ -193,8 +195,9 @@ class _ApproveDetailScreenState extends State<ApproveDetailScreen> {
                                                                 null
                                                             ? ""
                                                             : controller.approveDetailResponse?[
-                                                                    'Data'][
-                                                                'REQ_EMPLOYEE'],
+                                                                        'Data'][
+                                                                    'REQ_EMPLOYEE'] ??
+                                                                "",
                                                         style: GoogleFonts.poppins(
                                                             textStyle:
                                                                 TextStyle(
@@ -222,8 +225,9 @@ class _ApproveDetailScreenState extends State<ApproveDetailScreen> {
                                                                 null
                                                             ? ""
                                                             : controller.approveDetailResponse?[
-                                                                    'Data'][
-                                                                'ASSIGN_EMPLOYEE'],
+                                                                        'Data'][
+                                                                    'ASSIGN_EMPLOYEE'] ??
+                                                                "",
                                                         style: GoogleFonts.poppins(
                                                             textStyle:
                                                                 TextStyle(
@@ -404,11 +408,10 @@ class _ApproveDetailScreenState extends State<ApproveDetailScreen> {
                                                                 controller.approveDetailResponse ==
                                                                         null
                                                                     ? ''
-                                                                    : controller.approveDetailResponse?['Data']['REQUEST_DETAIL_KEY_VALUE']
+                                                                    : controller.approveDetailResponse?['Data']['REQUEST_DETAIL_KEY_VALUE'][index]
                                                                             [
-                                                                            index]
-                                                                        [
-                                                                        'Name'],
+                                                                            'Name'] ??
+                                                                        "",
                                                                 style:
                                                                     GoogleFonts
                                                                         .poppins(
@@ -431,9 +434,8 @@ class _ApproveDetailScreenState extends State<ApproveDetailScreen> {
                                                                     controller.approveDetailResponse ==
                                                                             null
                                                                         ? ''
-                                                                        : controller.approveDetailResponse?['Data']['REQUEST_DETAIL_KEY_VALUE'][index]
-                                                                            [
-                                                                            'Value'],
+                                                                        : controller.approveDetailResponse?['Data']['REQUEST_DETAIL_KEY_VALUE'][index]['Value'] ??
+                                                                            "",
                                                                     style: GoogleFonts
                                                                         .poppins(
                                                                       textStyle:
@@ -667,15 +669,15 @@ class _ApproveDetailScreenState extends State<ApproveDetailScreen> {
                                                       ],
                                                     ),
                                                   ),
-                                                  Container(
-                                                      margin: EdgeInsets.only(
-                                                          left: 10.h),
-                                                      height: 5.5.h,
-                                                      width: 5.5.h,
-                                                      padding:
-                                                          EdgeInsets.all(0.3.h),
-                                                      child: Image.asset(
-                                                          "assets/history.png")),
+                                                  // Container(
+                                                  //     margin: EdgeInsets.only(
+                                                  //         right: 7.h),
+                                                  //     height: 5.h,
+                                                  //     width: 5.h,
+                                                  //     padding:
+                                                  //         EdgeInsets.all(0.8.h),
+                                                  //     child: Image.asset(
+                                                  //         "assets/history.png")),
                                                 ],
                                               ),
                                             ),

@@ -47,24 +47,24 @@ class TeamScreen extends GetView<TeamController> {
               ),
             ),
           ),
-          GetBuilder<TeamController>(
-              init: TeamController(),
-              builder: (context) {
-                if (controller.myTeam?.data == null) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
-                return Expanded(
-                  child: Container(
-                    decoration: const BoxDecoration(
-                      color: Color(0xffF6F6F7),
-                      borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(40.0),
-                        topLeft: Radius.circular(40.0),
-                      ),
-                    ),
-                    child: GridView.builder(
+          Expanded(
+            child: Container(
+              width: double.infinity,
+              decoration: BoxDecoration(
+                  color: const Color(0xffEEF0FC),
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(3.125.h),
+                    topLeft: Radius.circular(3.125.h),
+                  )),
+              child: GetBuilder<TeamController>(
+                  init: TeamController(),
+                  builder: (context) {
+                    if (controller.myTeam?.data == null) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                    return GridView.builder(
                       padding: EdgeInsets.only(top: 6.h, left: 2.h, right: 2.h),
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
@@ -77,9 +77,19 @@ class TeamScreen extends GetView<TeamController> {
                       itemBuilder: (BuildContext ctx, index) {
                         return Container(
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(2.w),
-                            color: const Color(0xff567DF4).withOpacity(0.70),
-                          ),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.shade200,
+                                  blurRadius: 1.25.h,
+                                  spreadRadius: 0.625.h,
+                                  offset: Offset(
+                                    2.5.h,
+                                    2.5.h,
+                                  ),
+                                )
+                              ],
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(2.5.h)),
                           child: Padding(
                             padding: EdgeInsets.only(
                                 top: 2.5.h, left: 2.5.w, right: 2.5.w),
@@ -92,15 +102,15 @@ class TeamScreen extends GetView<TeamController> {
                                   width: 10.h,
                                   height: 10.h,
                                   decoration: BoxDecoration(
-                                      color: Colors.blue.shade100,
-                                      borderRadius: BorderRadius.circular(60),
+                                      color: Colors.white60,
+                                      shape: BoxShape.circle,
                                       boxShadow: [
                                         BoxShadow(
                                           color: const Color(0xff567DF4)
                                               .withOpacity(0.3),
-                                          spreadRadius: 5,
-                                          blurRadius: 7,
-                                          offset: const Offset(0, 3),
+                                          spreadRadius: 0.8.h,
+                                          blurRadius: 0.5.h,
+                                          offset: Offset(0, 0.3.h),
                                         ),
                                       ]),
                                   child: const Icon(
@@ -119,7 +129,7 @@ class TeamScreen extends GetView<TeamController> {
                                       style: GoogleFonts.poppins(
                                         textStyle: TextStyle(
                                             fontSize: 15.sp,
-                                            color: Colors.white,
+                                            color: Colors.black,
                                             fontWeight: FontWeight.w600),
                                       ),
                                     ),
@@ -132,22 +142,21 @@ class TeamScreen extends GetView<TeamController> {
                                       style: GoogleFonts.poppins(
                                         textStyle: TextStyle(
                                             fontSize: 15.sp,
-                                            color: Colors.white,
+                                            color: Colors.black,
                                             fontWeight: FontWeight.w600),
                                       ),
                                     ),
                                   ],
                                 ),
-                                Center(
-                                  child: Text(
-                                    controller
-                                        .myTeam!.data![index]!.positionName!,
-                                    style: GoogleFonts.poppins(
-                                      textStyle: TextStyle(
-                                          fontSize: 15.sp,
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w600),
-                                    ),
+                                Text(
+                                  controller
+                                      .myTeam!.data![index]!.positionName!,
+                                  textAlign: TextAlign.center,
+                                  style: GoogleFonts.poppins(
+                                    textStyle: TextStyle(
+                                        fontSize: 15.sp,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w600),
                                   ),
                                 ),
                               ],
@@ -155,10 +164,10 @@ class TeamScreen extends GetView<TeamController> {
                           ),
                         );
                       },
-                    ),
-                  ),
-                );
-              }),
+                    );
+                  }),
+            ),
+          ),
         ],
       ),
     );

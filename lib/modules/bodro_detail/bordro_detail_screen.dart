@@ -141,11 +141,7 @@ class BordroDetailScreen extends GetView<BordroDetailController> {
                           );
                         },
                       )
-                    : const Center(
-                        child: CircularProgressIndicator(
-                        strokeWidth: 2,
-                        color: Colors.blue,
-                      ))),
+                    : const Center(child: CircularProgressIndicator())),
               )
               // ),
             ],

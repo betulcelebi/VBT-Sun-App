@@ -1,4 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:vbt_sun_app_project/models/my_request_model.dart';
 
 import '../../shared/services/services.dart';
@@ -28,6 +30,22 @@ class MyRequestController extends GetxController {
   MyRequestResponse? myRequestResponse = MyRequestResponse();
   getMyRequest(String workStatuArray) async {
     myRequestResponse = await servis.getMyRequest(workStatuArray);
+    myRequestResponse!.data!.myRequestList!.length == 0
+        ? Get.defaultDialog(
+            title: "Mesaj",
+            titleStyle: GoogleFonts.poppins(color: Color(0xff567DF4)),
+            middleText: "Veri Bulunamadı",
+            middleTextStyle: GoogleFonts.poppins(color: Colors.black),
+            confirm: TextButton(
+                onPressed: () {
+                  Get.back();
+                },
+                child: Text(
+                  "Tamam",
+                  style: GoogleFonts.poppins(color: Color(0xff567DF4)),
+                )),
+          )
+        : null;
     update();
   }
 }

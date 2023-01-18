@@ -53,17 +53,28 @@ class DashboardScreen extends GetView<DashboardController> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "Merhaba, Betul",
-                            style: GoogleFonts.poppins(
-                                color: Colors.white, fontSize: 2.h),
-                          ),
-                          Text(
-                            "Günaydın",
+                            "Merhaba, ",
                             style: GoogleFonts.poppins(
                                 color: Colors.white,
                                 fontSize: 2.25.h,
                                 fontWeight: FontWeight.w600),
-                          )
+                          ),
+                          GetBuilder<DashboardController>(
+                              init: DashboardController(),
+                              builder: (controller) {
+                                if (controller.homeInfoResponse?.data == null) {
+                                  return const Center(
+                                    child: CircularProgressIndicator(),
+                                  );
+                                }
+                                return Text(
+                                  "${controller.homeInfoResponse!.data!.nameSurname!.toUpperCase().capitalize}",
+                                  style: GoogleFonts.poppins(
+                                      color: Colors.white,
+                                      fontSize: 2.h,
+                                      fontWeight: FontWeight.w600),
+                                );
+                              })
                         ],
                       ),
                     ],
@@ -174,7 +185,10 @@ class DashboardScreen extends GetView<DashboardController> {
                                         } else if (index == 2) {
                                           Get.toNamed(Routes.WORKS);
                                         } else if (index == 3) {
-                                          Get.toNamed(Routes.TEAM,arguments: {'id':controller.homeInfoResponse!.data!.idHrEmployee});
+                                          Get.toNamed(Routes.TEAM, arguments: {
+                                            'id': controller.homeInfoResponse!
+                                                .data!.idHrEmployee
+                                          });
                                         }
                                       },
                                       child: Container(

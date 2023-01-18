@@ -91,13 +91,12 @@ class Approve extends GetView<ApproveController> {
           ),
           Expanded(
             child: Container(
-              decoration: const BoxDecoration(
-                color: Color(0xffF6F6F7),
-                borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(40.0),
-                  topLeft: Radius.circular(40.0),
-                ),
-              ),
+              decoration: BoxDecoration(
+                  color: const Color(0xffEEF0FC),
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(3.125.h),
+                    topLeft: Radius.circular(3.125.h),
+                  )),
               child: GetBuilder<ApproveController>(
                 init: ApproveController(),
                 builder: (controller) {
@@ -107,44 +106,49 @@ class Approve extends GetView<ApproveController> {
                     );
                   }
                   return ListView.builder(
-                    // physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
+                    // physics: const NeverScrollableScrollPhysics(),
                     itemCount: controller.approveResponse?.data
                             ?.pendingRequestList?.length ??
                         0,
                     scrollDirection: Axis.vertical,
                     itemBuilder: (context, index) {
                       return Padding(
-                        padding: EdgeInsets.all(2.0.h),
+                        padding: EdgeInsets.symmetric(
+                            vertical: 1.25.h, horizontal: 2.8.h),
                         child: GestureDetector(
                           onTap: () {
-                            Get.put(ApproveDetailController(
+                            Get.put(
+                              ApproveDetailController(
+                                  idMaster: controller.approveResponse!.data!
+                                      .pendingRequestList![index].iDMASTER!),
+                            );
+                            Get.to(
+                              () => ApproveDetailScreen(
                                 idMaster: controller.approveResponse!.data!
-                                    .pendingRequestList![index].iDMASTER!));
-                            Get.to(() => ApproveDetailScreen(
-                                idMaster: controller.approveResponse!.data!
-                                    .pendingRequestList![index].iDMASTER!));
+                                    .pendingRequestList![index].iDMASTER!,
+                              ),
+                            );
                           },
                           child: Container(
+                            height: 35.h,
                             decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey.shade200,
-                                  blurRadius: 10.0,
-                                  spreadRadius: 5,
-                                  offset: const Offset(
-                                    20,
-                                    20,
-                                  ),
-                                )
-                              ],
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            height: 40.h,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.shade200,
+                                    blurRadius: 1.25.h,
+                                    spreadRadius: 0.625.h,
+                                    offset: Offset(
+                                      2.5.h,
+                                      2.5.h,
+                                    ),
+                                  )
+                                ],
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(2.5.h)),
                             child: Padding(
                               padding: EdgeInsets.only(
-                                  left: 1.5.h, top: 3.h, bottom: 2.h),
+                                  left: 2.h, top: 2.h, bottom: 1.h),
                               child: Row(
                                 children: [
                                   Container(
@@ -153,78 +157,98 @@ class Approve extends GetView<ApproveController> {
                                     color: Colors.blue,
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(left: 1.5.h),
+                                    padding:
+                                        EdgeInsets.only(left: 2.h, bottom: 1.h),
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
                                         Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
-                                            Text(
-                                              "${controller.approveResponse?.data?.pendingRequestList?[index].rEQDATE?.split(" ").first.substring(0, 10) ?? " "}",
-                                              style: GoogleFonts.poppins(
-                                                  textStyle: TextStyle(
-                                                      fontSize: 16.sp,
-                                                      color: Colors
-                                                          .grey.shade400)),
+                                            Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Row(
+                                                  children: [
+                                                    Text(
+                                                      '${controller.approveResponse?.data?.pendingRequestList?[index].rEQDATE?.split(" ").first.substring(0, 10) ?? ""}',
+                                                      style:
+                                                          GoogleFonts.poppins(
+                                                        textStyle: TextStyle(
+                                                            fontSize: 15.sp,
+                                                            color: Colors
+                                                                .grey.shade400),
+                                                      ),
+                                                    ),
+                                                    SizedBox(width: 0.8.h),
+                                                    Text(
+                                                      '${controller.approveResponse?.data?.pendingRequestList?[index].rEQDATE?.split(" ").first.substring(11, 19) ?? ""}',
+                                                      style:
+                                                          GoogleFonts.poppins(
+                                                        textStyle: TextStyle(
+                                                            fontSize: 15.sp,
+                                                            color: Colors
+                                                                .grey.shade400),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                Text(
+                                                  controller
+                                                          .approveResponse
+                                                          ?.data
+                                                          ?.pendingRequestList?[
+                                                              index]
+                                                          .rEQNAME ??
+                                                      "",
+                                                  style: GoogleFonts.poppins(
+                                                      textStyle: TextStyle(
+                                                          fontSize: 16.sp,
+                                                          fontWeight:
+                                                              FontWeight.w600)),
+                                                ),
+                                              ],
                                             ),
                                             SizedBox(
-                                              width: 1.h,
-                                            ),
-                                            Text(
-                                              //"02.12.2022 19.45",
-                                              "${controller.approveResponse?.data?.pendingRequestList?[index].rEQDATE?.split(" ").first.substring(11, 19) ?? " "}",
-                                              style: GoogleFonts.poppins(
-                                                  textStyle: TextStyle(
-                                                      fontSize: 16.sp,
-                                                      color: Colors
-                                                          .grey.shade400)),
+                                              width: 32.w,
                                             ),
                                             Container(
-                                                margin:
-                                                    EdgeInsets.only(left: 14.h),
-                                                height: 5.5.h,
-                                                width: 5.5.h,
-                                                padding: EdgeInsets.all(0.25.h),
+                                                height: 5.h,
+                                                width: 5.h,
                                                 child: Image.asset(
-                                                    "assets/stamp.png")),
+                                                    "assets/stamp.png"))
                                           ],
                                         ),
-                                        Text(
-                                          //"Performans Yönetimi",
-                                          controller
-                                                  .approveResponse
-                                                  ?.data
-                                                  ?.pendingRequestList?[index]
-                                                  .rEQNAME ??
-                                              "",
-                                          style: GoogleFonts.poppins(
-                                              textStyle:
-                                                  TextStyle(fontSize: 18.sp)),
-                                        ),
+                                        SizedBox(height: 0.8.h),
                                         Text(
                                           "Talep No",
                                           style: GoogleFonts.poppins(
                                               textStyle: TextStyle(
-                                                  fontSize: 16.sp,
+                                                  fontSize: 15.sp,
                                                   color: Colors.grey.shade400)),
                                         ),
                                         Text(
-                                          // "25",
                                           "${controller.approveResponse?.data?.pendingRequestList?[index].iDMASTER ?? ""}",
                                           style: GoogleFonts.poppins(
                                               textStyle:
-                                                  TextStyle(fontSize: 18.sp)),
+                                                  TextStyle(fontSize: 16.sp)),
                                         ),
                                         Text(
                                           "Talep Eden",
                                           style: GoogleFonts.poppins(
                                               textStyle: TextStyle(
-                                                  fontSize: 16.sp,
+                                                  fontSize: 15.sp,
                                                   color: Colors.grey.shade400)),
                                         ),
                                         Text(
-                                          // "Kadir Aydoğan",
                                           controller
                                                   .approveResponse
                                                   ?.data
@@ -233,45 +257,46 @@ class Approve extends GetView<ApproveController> {
                                               "",
                                           style: GoogleFonts.poppins(
                                               textStyle:
-                                                  TextStyle(fontSize: 18.sp)),
+                                                  TextStyle(fontSize: 16.sp)),
                                         ),
                                         Text(
                                           "Atanan Kişi",
                                           style: GoogleFonts.poppins(
                                               textStyle: TextStyle(
-                                                  fontSize: 16.sp,
+                                                  fontSize: 15.sp,
                                                   color: Colors.grey.shade400)),
                                         ),
                                         Text(
-                                          // "Mümin Sürer",
                                           controller
                                                   .approveResponse
                                                   ?.data
                                                   ?.pendingRequestList?[index]
                                                   .aSSIGNEMPLOYEE ??
-                                              "",
+                                              " ",
                                           style: GoogleFonts.poppins(
                                               textStyle:
-                                                  TextStyle(fontSize: 18.sp)),
+                                                  TextStyle(fontSize: 16.sp)),
                                         ),
                                         Text(
                                           "Açıklama",
                                           style: GoogleFonts.poppins(
                                               textStyle: TextStyle(
-                                                  fontSize: 16.sp,
+                                                  fontSize: 15.sp,
                                                   color: Colors.grey.shade400)),
                                         ),
                                         Text(
-                                          // "Açıklama yazısı gelecek",
                                           controller
                                                   .approveResponse
                                                   ?.data
                                                   ?.pendingRequestList?[index]
                                                   .rEQUESTDETAIL ??
                                               "",
+                                          overflow: TextOverflow.ellipsis,
+                                          maxLines: 2,
                                           style: GoogleFonts.poppins(
-                                              textStyle:
-                                                  TextStyle(fontSize: 18.sp)),
+                                            textStyle:
+                                                TextStyle(fontSize: 16.sp),
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -285,7 +310,6 @@ class Approve extends GetView<ApproveController> {
                     },
                   );
                 },
-                //child:
               ),
             ),
           )
