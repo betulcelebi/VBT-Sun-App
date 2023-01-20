@@ -251,13 +251,13 @@ class UserPermissions extends StatelessWidget {
                         ),
                       ),
                       Container(
-                        padding: EdgeInsets.all(8),
+                        padding: const EdgeInsets.all(8),
                         decoration: BoxDecoration(
                             color: Colors.green,
                             borderRadius: BorderRadius.circular(20)),
                         child: Text(
                             "${c.subEmployeesLeaveResponse?.data?.employeeEarnedRightsList?[index].aNNUALLEAVEBALANCE ?? ""}",
-                            style: TextStyle(color: Colors.white)),
+                            style: const TextStyle(color: Colors.white)),
                       ),
                     ],
                   ),

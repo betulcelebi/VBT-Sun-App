@@ -24,10 +24,10 @@ class DashboardConstant {
       borderRadius: BorderRadius.circular(1.25.h), color: Colors.white70);
 
   List<String> gimagePath = [
-    "assets/profile.png",
-    "assets/code.png",
+    "assets/request.png",
     "assets/stamp.png",
-    "assets/deadline.png",
+    "assets/code.png",
+    "assets/work.png",
     "assets/stamp.png",
     "assets/deadline.png",
     "assets/stamp.png",

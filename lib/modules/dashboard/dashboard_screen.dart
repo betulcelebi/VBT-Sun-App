@@ -1,5 +1,7 @@
 // ignore_for_file: avoid_unnecessary_containers
 
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -44,8 +46,15 @@ class DashboardScreen extends GetView<DashboardController> {
                       Padding(
                         padding: EdgeInsets.only(right: 1.5.h),
                         child: CircleAvatar(
-                          radius: 3.75.h,
-                          backgroundImage: const AssetImage("assets/user.jpg"),
+                          radius: 21.5.sp,
+                          child: Image.asset(
+                            "assets/profile.png",
+                            width: 11.w,
+                          ),
+                          // backgroundImage: const AssetImage(
+                          //   "assets/profile.png",
+                          // ),
+                          backgroundColor: Colors.white70,
                         ),
                       ),
                       Column(

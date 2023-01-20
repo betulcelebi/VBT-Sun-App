@@ -62,7 +62,8 @@ class VacationInfoScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text("İlgili Yıl Hakediş Tarihi:"),
-                  Text("${item?.nEXTLEAVEALLOWANCEDATE ?? ""}"),
+                  Text(
+                      "${item?.nEXTLEAVEALLOWANCEDATE!.split(" ").first.substring(0, 10) ?? ""}"),
                 ],
               ),
             ),
@@ -113,8 +114,10 @@ class VacationInfoScreen extends StatelessWidget {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text("${e.sDATE ?? ""}"),
-                                      Text("${e.eDATE ?? ""}"),
+                                      Text(
+                                          "${e.sDATE!.split(" ").first.substring(0, 10) ?? ""}"),
+                                      Text(
+                                          "${e.eDATE!.split(" ").first.substring(0, 10) ?? ""}"),
                                     ],
                                   ),
                                 ),
