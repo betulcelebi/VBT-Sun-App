@@ -49,8 +49,9 @@ class Approve extends GetView<ApproveController> {
                             itemCount: controller.approvefilters.length,
                             itemBuilder: (context, index) {
                               return Container(
+                                alignment: Alignment.centerLeft,
                                 width: 10.w,
-                                height: 3.5.h,
+                                height: 5.h,
                                 child: GestureDetector(
                                   onTap: () {
                                     controller.getApprove(
@@ -58,13 +59,18 @@ class Approve extends GetView<ApproveController> {
 
                                     Get.back();
                                   },
-                                  child: Text(
-                                    controller.approvefilters[index]
-                                        ["description"],
-                                    style: GoogleFonts.poppins(
-                                        color: Colors.black,
-                                        fontSize: 16.sp,
-                                        fontWeight: FontWeight.w500),
+                                  child: Container(
+                                    margin: EdgeInsets.all(10.sp),
+                                    decoration:
+                                        BoxDecoration(color: Colors.white70),
+                                    child: Text(
+                                      controller.approvefilters[index]
+                                          ["description"],
+                                      style: GoogleFonts.poppins(
+                                          color: Colors.black,
+                                          fontSize: 16.sp,
+                                          fontWeight: FontWeight.w500),
+                                    ),
                                   ),
                                 ),
                               );
@@ -147,160 +153,180 @@ class Approve extends GetView<ApproveController> {
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(2.5.h)),
                             child: Padding(
-                              padding: EdgeInsets.only(
-                                  left: 2.h, top: 2.h, bottom: 1.h),
+                              padding: EdgeInsets.only(top: 2.h, bottom: 1.h),
                               child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Container(
-                                    width: 1.w,
-                                    height: 40.h,
-                                    color: Colors.blue,
-                                  ),
-                                  Padding(
-                                    padding:
-                                        EdgeInsets.only(left: 2.h, bottom: 1.h),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Row(
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsets.only(left: 4.w),
+                                        child: Container(
+                                          width: 1.w,
+                                          height: 40.h,
+                                          color: Colors.blue,
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(left: 3.w),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           children: [
-                                            Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
+                                            Row(
                                               mainAxisAlignment:
                                                   MainAxisAlignment
                                                       .spaceBetween,
                                               children: [
-                                                Row(
+                                                Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
                                                   children: [
-                                                    Text(
-                                                      '${controller.approveResponse?.data?.pendingRequestList?[index].rEQDATE?.split(" ").first.substring(0, 10) ?? ""}',
-                                                      style:
-                                                          GoogleFonts.poppins(
-                                                        textStyle: TextStyle(
-                                                            fontSize: 15.sp,
-                                                            color: Colors
-                                                                .grey.shade400),
-                                                      ),
+                                                    Row(
+                                                      children: [
+                                                        Text(
+                                                          '${controller.approveResponse?.data?.pendingRequestList?[index].rEQDATE?.split(" ").first.substring(0, 10) ?? ""}',
+                                                          style: GoogleFonts
+                                                              .poppins(
+                                                            textStyle: TextStyle(
+                                                                fontSize: 15.sp,
+                                                                color: Colors
+                                                                    .grey
+                                                                    .shade400),
+                                                          ),
+                                                        ),
+                                                        SizedBox(width: 0.8.h),
+                                                        Text(
+                                                          '${controller.approveResponse?.data?.pendingRequestList?[index].rEQDATE?.split(" ").first.substring(11, 19) ?? ""}',
+                                                          style: GoogleFonts
+                                                              .poppins(
+                                                            textStyle: TextStyle(
+                                                                fontSize: 15.sp,
+                                                                color: Colors
+                                                                    .grey
+                                                                    .shade400),
+                                                          ),
+                                                        ),
+                                                      ],
                                                     ),
-                                                    SizedBox(width: 0.8.h),
                                                     Text(
-                                                      '${controller.approveResponse?.data?.pendingRequestList?[index].rEQDATE?.split(" ").first.substring(11, 19) ?? ""}',
-                                                      style:
-                                                          GoogleFonts.poppins(
-                                                        textStyle: TextStyle(
-                                                            fontSize: 15.sp,
-                                                            color: Colors
-                                                                .grey.shade400),
-                                                      ),
+                                                      controller
+                                                              .approveResponse
+                                                              ?.data
+                                                              ?.pendingRequestList?[
+                                                                  index]
+                                                              .rEQNAME ??
+                                                          "",
+                                                      style: GoogleFonts.poppins(
+                                                          textStyle: TextStyle(
+                                                              fontSize: 16.sp,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w600)),
                                                     ),
                                                   ],
                                                 ),
-                                                Text(
-                                                  controller
-                                                          .approveResponse
-                                                          ?.data
-                                                          ?.pendingRequestList?[
-                                                              index]
-                                                          .rEQNAME ??
-                                                      "",
-                                                  style: GoogleFonts.poppins(
-                                                      textStyle: TextStyle(
-                                                          fontSize: 16.sp,
-                                                          fontWeight:
-                                                              FontWeight.w600)),
-                                                ),
                                               ],
                                             ),
-                                            SizedBox(
-                                              width: 32.w,
+                                            SizedBox(height: 0.8.h),
+                                            Text(
+                                              "Talep No",
+                                              style: GoogleFonts.poppins(
+                                                  textStyle: TextStyle(
+                                                      fontSize: 15.sp,
+                                                      color: Colors
+                                                          .grey.shade400)),
                                             ),
-                                            Container(
-                                                height: 5.h,
-                                                width: 5.h,
-                                                child: Image.asset(
-                                                    "assets/stamp.png"))
+                                            Text(
+                                              "${controller.approveResponse?.data?.pendingRequestList?[index].iDMASTER ?? ""}",
+                                              style: GoogleFonts.poppins(
+                                                  textStyle: TextStyle(
+                                                      fontSize: 16.sp)),
+                                            ),
+                                            Text(
+                                              "Talep Eden",
+                                              style: GoogleFonts.poppins(
+                                                  textStyle: TextStyle(
+                                                      fontSize: 15.sp,
+                                                      color: Colors
+                                                          .grey.shade400)),
+                                            ),
+                                            Text(
+                                              controller
+                                                      .approveResponse
+                                                      ?.data
+                                                      ?.pendingRequestList?[
+                                                          index]
+                                                      .rEQEMPLOYEE ??
+                                                  "",
+                                              style: GoogleFonts.poppins(
+                                                  textStyle: TextStyle(
+                                                      fontSize: 16.sp)),
+                                            ),
+                                            Text(
+                                              "Atanan Kişi",
+                                              style: GoogleFonts.poppins(
+                                                  textStyle: TextStyle(
+                                                      fontSize: 15.sp,
+                                                      color: Colors
+                                                          .grey.shade400)),
+                                            ),
+                                            Text(
+                                              controller
+                                                      .approveResponse
+                                                      ?.data
+                                                      ?.pendingRequestList?[
+                                                          index]
+                                                      .aSSIGNEMPLOYEE ??
+                                                  " ",
+                                              style: GoogleFonts.poppins(
+                                                  textStyle: TextStyle(
+                                                      fontSize: 16.sp)),
+                                            ),
+                                            Text(
+                                              "Açıklama",
+                                              style: GoogleFonts.poppins(
+                                                  textStyle: TextStyle(
+                                                      fontSize: 15.sp,
+                                                      color: Colors
+                                                          .grey.shade400)),
+                                            ),
+                                            Text(
+                                              controller
+                                                      .approveResponse
+                                                      ?.data
+                                                      ?.pendingRequestList?[
+                                                          index]
+                                                      .rEQUESTDETAIL ??
+                                                  "",
+                                              overflow: TextOverflow.ellipsis,
+                                              maxLines: 2,
+                                              style: GoogleFonts.poppins(
+                                                textStyle:
+                                                    TextStyle(fontSize: 16.sp),
+                                              ),
+                                            ),
                                           ],
                                         ),
-                                        SizedBox(height: 0.8.h),
-                                        Text(
-                                          "Talep No",
-                                          style: GoogleFonts.poppins(
-                                              textStyle: TextStyle(
-                                                  fontSize: 15.sp,
-                                                  color: Colors.grey.shade400)),
-                                        ),
-                                        Text(
-                                          "${controller.approveResponse?.data?.pendingRequestList?[index].iDMASTER ?? ""}",
-                                          style: GoogleFonts.poppins(
-                                              textStyle:
-                                                  TextStyle(fontSize: 16.sp)),
-                                        ),
-                                        Text(
-                                          "Talep Eden",
-                                          style: GoogleFonts.poppins(
-                                              textStyle: TextStyle(
-                                                  fontSize: 15.sp,
-                                                  color: Colors.grey.shade400)),
-                                        ),
-                                        Text(
-                                          controller
-                                                  .approveResponse
-                                                  ?.data
-                                                  ?.pendingRequestList?[index]
-                                                  .rEQEMPLOYEE ??
-                                              "",
-                                          style: GoogleFonts.poppins(
-                                              textStyle:
-                                                  TextStyle(fontSize: 16.sp)),
-                                        ),
-                                        Text(
-                                          "Atanan Kişi",
-                                          style: GoogleFonts.poppins(
-                                              textStyle: TextStyle(
-                                                  fontSize: 15.sp,
-                                                  color: Colors.grey.shade400)),
-                                        ),
-                                        Text(
-                                          controller
-                                                  .approveResponse
-                                                  ?.data
-                                                  ?.pendingRequestList?[index]
-                                                  .aSSIGNEMPLOYEE ??
-                                              " ",
-                                          style: GoogleFonts.poppins(
-                                              textStyle:
-                                                  TextStyle(fontSize: 16.sp)),
-                                        ),
-                                        Text(
-                                          "Açıklama",
-                                          style: GoogleFonts.poppins(
-                                              textStyle: TextStyle(
-                                                  fontSize: 15.sp,
-                                                  color: Colors.grey.shade400)),
-                                        ),
-                                        Text(
-                                          controller
-                                                  .approveResponse
-                                                  ?.data
-                                                  ?.pendingRequestList?[index]
-                                                  .rEQUESTDETAIL ??
-                                              "",
-                                          overflow: TextOverflow.ellipsis,
-                                          maxLines: 2,
-                                          style: GoogleFonts.poppins(
-                                            textStyle:
-                                                TextStyle(fontSize: 16.sp),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ),
+                                  Padding(
+                                    padding: EdgeInsets.only(right: 4.w),
+                                    child: Container(
+                                        height: 5.h,
+                                        width: 5.h,
+                                        child: Image.asset("assets/stamp.png")),
+                                  )
                                 ],
                               ),
                             ),

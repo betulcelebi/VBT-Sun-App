@@ -33,7 +33,7 @@ class _MyRequestDetailState extends State<MyRequestDetail> {
             return Column(
               children: [
                 Container(
-                  width: 43.75.h,
+                  width: 90.w,
                   height: 13.h,
                   color: const Color(0xff567DF4),
                   child: Padding(
@@ -72,13 +72,13 @@ class _MyRequestDetailState extends State<MyRequestDetail> {
                           return SingleChildScrollView(
                             child: Padding(
                               padding: EdgeInsets.symmetric(
-                                  vertical: 3.h, horizontal: 2.8.h),
+                                  vertical: 3.h, horizontal: 5.7.w),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Container(
                                     width: double.infinity,
-                                    height: 31.h,
+                                    height: 33.h,
                                     decoration: BoxDecoration(
                                         boxShadow: [
                                           BoxShadow(
@@ -102,149 +102,162 @@ class _MyRequestDetailState extends State<MyRequestDetail> {
                                         children: [
                                           Padding(
                                             padding: EdgeInsets.only(
-                                                left: 2.h,
-                                                top: 2.h,
-                                                bottom: 1.5.h),
+                                                top: 2.h, bottom: 1.5.h),
                                             child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                Container(
-                                                  width: 1.w,
-                                                  height: 19.h,
-                                                  color: Colors.blue,
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsets.symmetric(
-                                                      vertical: 1.h,
-                                                      horizontal: 1.h),
-                                                  child: Column(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsets.only(
-                                                                bottom: 1.h),
-                                                        child: Text(
-                                                          controller.myRequestDetailResponse ==
-                                                                  null
-                                                              ? ""
-                                                              : controller.myRequestDetailResponse?[
-                                                                          "Data"]
-                                                                      [
-                                                                      "REQ_NAME"] ??
-                                                                  "",
-                                                          style: GoogleFonts.poppins(
-                                                              textStyle:
-                                                                  TextStyle(
-                                                                      fontSize: 16
-                                                                          .sp),
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                              color: const Color(
-                                                                  0xff567DF4)),
-                                                        ),
+                                                Row(
+                                                  children: [
+                                                    Padding(
+                                                      padding: EdgeInsets.only(
+                                                          left: 4.w),
+                                                      child: Container(
+                                                        width: 1.w,
+                                                        height: 20.h,
+                                                        color: Colors.blue,
                                                       ),
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsets.only(
-                                                                bottom: 1.h),
-                                                        child: Text(
-                                                          controller.myRequestDetailResponse ==
-                                                                  null
-                                                              ? ""
-                                                              : DateFormat(
-                                                                      "dd.MM.yyyy  HH:mm")
-                                                                  .format(DateTime.parse(controller
-                                                                              .myRequestDetailResponse?["Data"]
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsets.symmetric(
+                                                              vertical: 1.h,
+                                                              horizontal: 1.h),
+                                                      child: Column(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    bottom:
+                                                                        1.h),
+                                                            child: Text(
+                                                              controller.myRequestDetailResponse ==
+                                                                      null
+                                                                  ? ""
+                                                                  : controller.myRequestDetailResponse?[
+                                                                              "Data"]
                                                                           [
-                                                                          "REQ_DATE"] ??
-                                                                      DateTime.now()
-                                                                          .toString())),
-                                                          style: GoogleFonts.poppins(
-                                                              textStyle:
-                                                                  TextStyle(
+                                                                          "REQ_NAME"] ??
+                                                                      "",
+                                                              style: GoogleFonts.poppins(
+                                                                  textStyle: TextStyle(
                                                                       fontSize: 16
                                                                           .sp),
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500,
-                                                              color:
-                                                                  Colors.black),
-                                                        ),
-                                                      ),
-                                                      Text(
-                                                        "Talep Eden",
-                                                        style: GoogleFonts.poppins(
-                                                            textStyle:
-                                                                TextStyle(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  color: const Color(
+                                                                      0xff567DF4)),
+                                                            ),
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    bottom:
+                                                                        1.h),
+                                                            child: Text(
+                                                              controller.myRequestDetailResponse ==
+                                                                      null
+                                                                  ? ""
+                                                                  : DateFormat(
+                                                                          "dd.MM.yyyy  HH:mm")
+                                                                      .format(DateTime.parse(controller.myRequestDetailResponse?["Data"]
+                                                                              [
+                                                                              "REQ_DATE"] ??
+                                                                          DateTime.now()
+                                                                              .toString())),
+                                                              style: GoogleFonts.poppins(
+                                                                  textStyle: TextStyle(
+                                                                      fontSize: 16
+                                                                          .sp),
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                  color: Colors
+                                                                      .black),
+                                                            ),
+                                                          ),
+                                                          Text(
+                                                            "Talep Eden",
+                                                            style: GoogleFonts.poppins(
+                                                                textStyle: TextStyle(
                                                                     fontSize:
                                                                         15.sp),
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                            color: Colors
-                                                                .grey.shade400),
-                                                      ),
-                                                      Text(
-                                                        controller.myRequestDetailResponse ==
-                                                                null
-                                                            ? ""
-                                                            : controller.myRequestDetailResponse?[
-                                                                        'Data'][
-                                                                    'REQ_EMPLOYEE'] ??
-                                                                "",
-                                                        style: GoogleFonts.poppins(
-                                                            textStyle:
-                                                                TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
+                                                                color: Colors
+                                                                    .grey
+                                                                    .shade400),
+                                                          ),
+                                                          Text(
+                                                            controller.myRequestDetailResponse ==
+                                                                    null
+                                                                ? ""
+                                                                : controller.myRequestDetailResponse?[
+                                                                            'Data']
+                                                                        [
+                                                                        'REQ_EMPLOYEE'] ??
+                                                                    "",
+                                                            style: GoogleFonts.poppins(
+                                                                textStyle: TextStyle(
                                                                     fontSize:
                                                                         16.sp),
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                            color:
-                                                                Colors.black),
-                                                      ),
-                                                      Text(
-                                                        "Atanan Kişi",
-                                                        style: GoogleFonts.poppins(
-                                                            textStyle:
-                                                                TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
+                                                                color: Colors
+                                                                    .black),
+                                                          ),
+                                                          Text(
+                                                            "Atanan Kişi",
+                                                            style: GoogleFonts.poppins(
+                                                                textStyle: TextStyle(
                                                                     fontSize:
                                                                         15.sp),
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                            color: Colors
-                                                                .grey.shade400),
-                                                      ),
-                                                      Text(
-                                                        controller.myRequestDetailResponse ==
-                                                                null
-                                                            ? ""
-                                                            : controller.myRequestDetailResponse?[
-                                                                        'Data'][
-                                                                    'ASSIGN_EMPLOYEE'] ??
-                                                                "",
-                                                        style: GoogleFonts.poppins(
-                                                            textStyle:
-                                                                TextStyle(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
+                                                                color: Colors
+                                                                    .grey
+                                                                    .shade400),
+                                                          ),
+                                                          Text(
+                                                            controller.myRequestDetailResponse ==
+                                                                    null
+                                                                ? ""
+                                                                : controller.myRequestDetailResponse?[
+                                                                            'Data']
+                                                                        [
+                                                                        'ASSIGN_EMPLOYEE'] ??
+                                                                    "",
+                                                            style: GoogleFonts.poppins(
+                                                                textStyle: TextStyle(
                                                                     fontSize:
                                                                         16.sp),
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                            color:
-                                                                Colors.black),
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
+                                                                color: Colors
+                                                                    .black),
+                                                          ),
+                                                        ],
                                                       ),
-                                                    ],
-                                                  ),
+                                                    ),
+                                                  ],
                                                 ),
                                                 Container(
                                                     margin: EdgeInsets.only(
-                                                        left: 7.h),
+                                                        right: 5.w),
                                                     height: 5.5.h,
                                                     width: 5.5.h,
                                                     padding:
@@ -256,7 +269,7 @@ class _MyRequestDetailState extends State<MyRequestDetail> {
                                           ),
                                           Padding(
                                             padding: EdgeInsets.symmetric(
-                                              horizontal: 4.h,
+                                              horizontal: 8.w,
                                             ),
                                             child: Container(
                                               margin:
@@ -305,7 +318,7 @@ class _MyRequestDetailState extends State<MyRequestDetail> {
                                     padding: EdgeInsets.only(top: 2.h),
                                     child: Container(
                                       width: double.infinity,
-                                      height: 47.h,
+                                      height: 58.h,
                                       decoration: BoxDecoration(
                                           boxShadow: [
                                             BoxShadow(
@@ -330,7 +343,7 @@ class _MyRequestDetailState extends State<MyRequestDetail> {
                                           children: [
                                             Container(
                                               width: 1.w,
-                                              height: 45.h,
+                                              height: 54.h,
                                               color: Colors.blue,
                                             ),
                                             Padding(
@@ -382,13 +395,15 @@ class _MyRequestDetailState extends State<MyRequestDetail> {
                                                   Container(
                                                     padding:
                                                         const EdgeInsets.all(0),
-                                                    height: 35.h,
+                                                    height: 45.h,
                                                     width: 38.h,
                                                     child: MediaQuery
                                                         .removePadding(
                                                       context: context,
                                                       removeTop: true,
                                                       child: ListView.builder(
+                                                        physics:
+                                                            NeverScrollableScrollPhysics(),
                                                         shrinkWrap: true,
                                                         scrollDirection:
                                                             Axis.vertical,

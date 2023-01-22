@@ -43,11 +43,11 @@ class VacationDetail extends GetView<VacationDetailController> {
               Expanded(
                 child: Container(
                   height: 200.h,
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     color: Color(0xffF6F6F7),
                     borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(40.0),
-                      topLeft: Radius.circular(40.0),
+                      topRight: Radius.circular(3.125.h),
+                      topLeft: Radius.circular(3.125.h),
                     ),
                   ),
                   child: Padding(
@@ -70,14 +70,15 @@ class VacationDetail extends GetView<VacationDetailController> {
                                     color: Colors.grey.shade200,
                                     blurRadius: 10.0,
                                     spreadRadius: 5,
-                                    offset: const Offset(
+                                    offset: Offset(
                                       20,
                                       20,
                                     ),
                                   )
                                 ],
                                 color: Colors.white,
-                                borderRadius: BorderRadius.circular(20),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(3.125.h)),
                               ),
                               child: Padding(
                                 padding: EdgeInsets.all(2.h),
@@ -150,37 +151,52 @@ class VacationDetail extends GetView<VacationDetailController> {
                                         ),
                                       ),
                                     ),
-                                    MaterialButton(
-                                      padding: EdgeInsets.all(0),
-                                      onPressed: () {
-                                        showDatePicker(
-                                          context: context,
-                                          initialDate: DateTime.now(),
-                                          firstDate: DateTime.now(),
-                                          lastDate:
-                                              DateTime(DateTime.now().year + 1),
-                                        ).then(
-                                          (value) {
-                                            if (value != null) {
-                                              controller.selectedStartDate =
-                                                  value.toString();
-                                              controller.update();
-                                            }
-                                          },
-                                        );
-                                      },
-                                      child: Text(
-                                        controller.selectedStartDate !=
-                                                "Tarih Seç"
-                                            ? DateFormat("dd.MM.yyyy").format(
-                                                DateTime.parse(
-                                                  controller.selectedStartDate,
-                                                ),
-                                              )
-                                            : "Tarih Seçiniz",
-                                        style: GoogleFonts.poppins(
-                                            fontSize: 15.sp,
-                                            color: Colors.grey.shade500),
+                                    Container(
+                                      alignment: Alignment.centerLeft,
+                                      padding: EdgeInsets.only(left: 1.h),
+                                      margin: EdgeInsets.only(
+                                          right: 1.h), //dropdownbutton right
+                                      width: MediaQuery.of(context).size.width,
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(2.h),
+                                        border: Border.all(
+                                          color: const Color(0xFFE8E8E8),
+                                        ),
+                                      ),
+                                      child: MaterialButton(
+                                        padding: EdgeInsets.all(0),
+                                        onPressed: () {
+                                          showDatePicker(
+                                            context: context,
+                                            initialDate: DateTime.now(),
+                                            firstDate: DateTime.now(),
+                                            lastDate: DateTime(
+                                                DateTime.now().year + 1),
+                                          ).then(
+                                            (value) {
+                                              if (value != null) {
+                                                controller.selectedStartDate =
+                                                    value.toString();
+                                                controller.update();
+                                              }
+                                            },
+                                          );
+                                        },
+                                        child: Text(
+                                          controller.selectedStartDate !=
+                                                  "Tarih Seç"
+                                              ? DateFormat("dd.MM.yyyy").format(
+                                                  DateTime.parse(
+                                                    controller
+                                                        .selectedStartDate,
+                                                  ),
+                                                )
+                                              : "Tarih Seçiniz",
+                                          style: GoogleFonts.poppins(
+                                              fontSize: 15.sp,
+                                              color: Colors.grey.shade500),
+                                        ),
                                       ),
                                     ),
                                     Text(
@@ -192,37 +208,53 @@ class VacationDetail extends GetView<VacationDetailController> {
                                             fontWeight: FontWeight.w600),
                                       ),
                                     ),
-                                    MaterialButton(
-                                      padding: EdgeInsets.all(0),
-                                      onPressed: () {
-                                        showDatePicker(
-                                          context: context,
-                                          initialDate: DateTime.now(),
-                                          firstDate: DateTime.now(),
-                                          lastDate:
-                                              DateTime(DateTime.now().year + 1),
-                                        ).then(
-                                          (value) {
-                                            if (value != null) {
-                                              controller.selectedEndDate =
-                                                  value.toString();
-                                              controller.update();
-                                            }
-                                          },
-                                        );
-                                      },
-                                      child: Text(
-                                          controller.selectedEndDate !=
-                                                  "Tarih Seç"
-                                              ? DateFormat("dd.MM.yyyy").format(
-                                                  DateTime.parse(
-                                                    controller.selectedEndDate,
-                                                  ),
-                                                )
-                                              : "Tarih Seçiniz",
-                                          style: GoogleFonts.poppins(
-                                              fontSize: 15.sp,
-                                              color: Colors.grey.shade500)),
+                                    Container(
+                                      alignment: Alignment.centerLeft,
+                                      padding: EdgeInsets.only(left: 1.h),
+                                      margin: EdgeInsets.only(
+                                          right: 1.h), //dropdownbutton right
+                                      width: MediaQuery.of(context).size.width,
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(2.h),
+                                        border: Border.all(
+                                          color: const Color(0xFFE8E8E8),
+                                        ),
+                                      ),
+                                      child: MaterialButton(
+                                        padding: EdgeInsets.all(0),
+                                        onPressed: () {
+                                          showDatePicker(
+                                            context: context,
+                                            initialDate: DateTime.now(),
+                                            firstDate: DateTime.now(),
+                                            lastDate: DateTime(
+                                                DateTime.now().year + 1),
+                                          ).then(
+                                            (value) {
+                                              if (value != null) {
+                                                controller.selectedEndDate =
+                                                    value.toString();
+                                                controller.update();
+                                              }
+                                            },
+                                          );
+                                        },
+                                        child: Text(
+                                            controller.selectedEndDate !=
+                                                    "Tarih Seç"
+                                                ? DateFormat("dd.MM.yyyy")
+                                                    .format(
+                                                    DateTime.parse(
+                                                      controller
+                                                          .selectedEndDate,
+                                                    ),
+                                                  )
+                                                : "Tarih Seçiniz",
+                                            style: GoogleFonts.poppins(
+                                                fontSize: 15.sp,
+                                                color: Colors.grey.shade500)),
+                                      ),
                                     ),
                                     SizedBox(
                                       width: 80.w,
@@ -263,40 +295,45 @@ class VacationDetail extends GetView<VacationDetailController> {
                                       ),
                                     ),
                                     Container(
-                                      child: controller.selectedEndDate !=
-                                                  "Tarih Seç" &&
-                                              controller.selectedStartDate !=
-                                                  "Tarih Seç"
-                                          ? Text(
-                                              DateTime.parse(
-                                                controller.selectedEndDate,
-                                              )
-                                                  .add(
-                                                    const Duration(days: 1),
-                                                  )
-                                                  .difference(
-                                                    DateTime.parse(
-                                                      controller
-                                                          .selectedStartDate,
-                                                    ),
-                                                  )
-                                                  .inDays
-                                                  .toString(),
-                                              style: GoogleFonts.poppins(
-                                                  fontSize: 15.sp,
-                                                  color: Colors.grey.shade500))
-                                          : Container(),
-                                    ),
-                                    Padding(
-                                      padding: EdgeInsets.only(top: 2.h),
-                                      child: Text(
-                                        "İzni Geçirdiği Adres/Telefon",
-                                        style: GoogleFonts.poppins(
-                                          textStyle: TextStyle(
-                                              fontSize: 16.sp,
-                                              color: Color(0xff567DF4),
-                                              fontWeight: FontWeight.w600),
-                                        ),
+                                        child: controller.selectedEndDate !=
+                                                    "Tarih Seç" &&
+                                                controller.selectedStartDate !=
+                                                    "Tarih Seç"
+                                            ? Text(
+                                                DateTime.parse(
+                                                  controller.selectedEndDate,
+                                                )
+                                                    .add(
+                                                      const Duration(days: 1),
+                                                    )
+                                                    .difference(
+                                                      DateTime.parse(
+                                                        controller
+                                                            .selectedStartDate,
+                                                      ),
+                                                    )
+                                                    .inDays
+                                                    .toString(),
+                                                style: GoogleFonts.poppins(
+                                                    fontSize: 15.sp,
+                                                    color:
+                                                        Colors.grey.shade500))
+                                            : Padding(
+                                                padding:
+                                                    const EdgeInsets.all(8.0),
+                                                child: Text("-",
+                                                    style: GoogleFonts.poppins(
+                                                        fontSize: 15.sp,
+                                                        color: Colors
+                                                            .grey.shade500)),
+                                              )),
+                                    Text(
+                                      "İzni Geçirdiği Adres/Telefon",
+                                      style: GoogleFonts.poppins(
+                                        textStyle: TextStyle(
+                                            fontSize: 16.sp,
+                                            color: Color(0xff567DF4),
+                                            fontWeight: FontWeight.w600),
                                       ),
                                     ),
                                     TextFormField(

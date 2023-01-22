@@ -82,55 +82,59 @@ class Vacation extends GetView<VacationController> {
                       Container(
                         alignment: Alignment.center,
                         width: MediaQuery.of(context).size.width,
-                        height: 80,
-                        padding: EdgeInsets.all(4),
+                        height: 10.h,
+                        //color: Colors.amber,
+                        padding: EdgeInsets.symmetric(
+                            vertical: 1.25.h, horizontal: 5.5.w),
                         child: CupertinoSlidingSegmentedControl<int>(
                           backgroundColor: CupertinoColors.white,
                           thumbColor: const Color(0xff567DF4),
-                          padding: EdgeInsets.all(8),
+                          padding: EdgeInsets.all(13.sp),
                           groupValue: controller.groupValue,
                           children: isManager == true
                               ? {
                                   0: Text(
                                     "İzinlerim",
-                                    style: TextStyle(
+                                    style: GoogleFonts.poppins(
                                       color: controller.groupValue == 0
                                           ? Colors.white
                                           : Colors.black,
+                                      fontSize: 15.5.sp,
                                     ),
                                   ),
                                   1: Text(
                                     "Kullanıcı İzinleri",
-                                    style: TextStyle(
-                                      color: controller.groupValue == 1
-                                          ? Colors.white
-                                          : Colors.black,
-                                    ),
+                                    style: GoogleFonts.poppins(
+                                        color: controller.groupValue == 1
+                                            ? Colors.white
+                                            : Colors.black,
+                                        fontSize: 15.5.sp),
                                   ),
                                   2: Text(
                                     "İzin Takvimi",
-                                    style: TextStyle(
-                                      color: controller.groupValue == 2
-                                          ? Colors.white
-                                          : Colors.black,
-                                    ),
+                                    style: GoogleFonts.poppins(
+                                        color: controller.groupValue == 2
+                                            ? Colors.white
+                                            : Colors.black,
+                                        fontSize: 15.5.sp),
                                   ),
                                 }
                               : {
                                   0: Text(
                                     "İzinlerim",
-                                    style: TextStyle(
-                                      color: controller.groupValue == 0
-                                          ? Colors.white
-                                          : Colors.black,
-                                    ),
+                                    style: GoogleFonts.poppins(
+                                        color: controller.groupValue == 0
+                                            ? Colors.white
+                                            : Colors.black,
+                                        fontSize: 15.5.sp),
                                   ),
                                   1: Text(
                                     "İzin Takvimi",
-                                    style: TextStyle(
+                                    style: GoogleFonts.poppins(
                                       color: controller.groupValue == 1
                                           ? Colors.white
                                           : Colors.black,
+                                      fontSize: 15.5.sp,
                                     ),
                                   )
                                 },
@@ -202,13 +206,14 @@ class UserPermissions extends StatelessWidget {
           return const SizedBox();
         }
         return ListView.builder(
+          padding: EdgeInsets.only(top: 1.h),
           shrinkWrap: true,
           itemCount: c.subEmployeesLeaveResponse?.data?.employeeEarnedRightsList
                   ?.length ??
               0,
           itemBuilder: (context, index) {
             return Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: EdgeInsets.symmetric(horizontal: 5.7.w, vertical: 1.h),
               child: GestureDetector(
                 onTap: () {
                   Get.to(
@@ -222,10 +227,10 @@ class UserPermissions extends StatelessWidget {
                   width: Get.width,
                   decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(8),
+                    borderRadius: BorderRadius.circular(12.sp),
                     boxShadow: kElevationToShadow[1],
                   ),
-                  padding: EdgeInsets.all(8),
+                  padding: EdgeInsets.all(14.sp),
                   child: Row(
                     children: [
                       Expanded(
@@ -235,9 +240,8 @@ class UserPermissions extends StatelessWidget {
                           children: [
                             Text(
                               "${c.subEmployeesLeaveResponse?.data?.employeeEarnedRightsList?[index].eMPLOYEENAME ?? ""} ${c.subEmployeesLeaveResponse?.data?.employeeEarnedRightsList?[index].eMPLOYEESURNAME ?? ""}",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                              ),
+                              style: GoogleFonts.poppins(
+                                  fontWeight: FontWeight.w600, fontSize: 15.sp),
                             ),
                             Text(
                               c
@@ -246,6 +250,7 @@ class UserPermissions extends StatelessWidget {
                                       ?.employeeEarnedRightsList?[index]
                                       .pOSITIONNAME ??
                                   "",
+                              style: GoogleFonts.poppins(fontSize: 15.sp),
                             ),
                           ],
                         ),
@@ -253,11 +258,13 @@ class UserPermissions extends StatelessWidget {
                       Container(
                         padding: const EdgeInsets.all(8),
                         decoration: BoxDecoration(
-                            color: Colors.green,
-                            borderRadius: BorderRadius.circular(20)),
+                            color: Color.fromARGB(255, 2, 234, 95),
+                            borderRadius: BorderRadius.circular(12.sp)),
                         child: Text(
                             "${c.subEmployeesLeaveResponse?.data?.employeeEarnedRightsList?[index].aNNUALLEAVEBALANCE ?? ""}",
-                            style: const TextStyle(color: Colors.white)),
+                            style: GoogleFonts.poppins(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600)),
                       ),
                     ],
                   ),
@@ -279,91 +286,75 @@ class VacationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<VacationController>(builder: (controller) {
-      return Column(
-        children: [
-          Padding(
-            padding: EdgeInsets.only(top: 8.0.h),
-            child: Container(
+      return Padding(
+        padding: EdgeInsets.symmetric(vertical: 1.25.h, horizontal: 5.7.w),
+        child: Column(
+          children: [
+            Container(
               decoration: BoxDecoration(
-                color: Colors.white,
-                border: Border.all(
-                  width: 0.45.w,
-                  color: Colors.grey.shade300,
-                ),
-              ),
-              width: 90.w,
-              height: 5.h,
-              child: Row(
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                        color: const Color(0xff48D380),
-                        borderRadius: BorderRadius.circular(15)),
-                    width: 7.w,
-                    height: 3.5.h,
-                    child: const Icon(
-                      Icons.check,
-                      color: Colors.white,
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 2.0.h),
-                    child: Text(
-                      "İzin hak ediş tarihi : ",
-                      style: GoogleFonts.poppins(
-                          textStyle: TextStyle(
-                        fontSize: 16.sp,
-                        color: const Color(0xff48D380),
-                      )),
-                    ),
-                  ),
-                  Text(
-                    '${controller.dashboardController.homeInfoResponse?.data?.vacationInfo?.employeeEarnedRightsList?[0].nEXTLEAVEALLOWANCEDATE?.split(" ").first.substring(0, 10) ?? ""}',
-                    style: GoogleFonts.poppins(
-                      textStyle: TextStyle(
-                        fontSize: 16.sp,
-                        color: Color(0xff567DF4),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.shade200,
+                      blurRadius: 1.25.h,
+                      spreadRadius: 0.625.h,
+                      offset: Offset(
+                        2.5.h,
+                        2.5.h,
                       ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 0.1.h),
-            child: Container(
-              decoration: BoxDecoration(
-                color: Colors.white,
-                border: Border(
-                  right: BorderSide(
-                    width: 0.45.w,
-                    color: Colors.grey.shade300,
-                  ),
-                  left: BorderSide(
-                    width: 0.45.w,
-                    color: Colors.grey.shade300,
-                  ),
-                  bottom: BorderSide(
-                    width: 0.45.w,
-                    color: Colors.grey.shade300,
-                  ),
-                ),
-              ),
+                    )
+                  ],
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(2.5.h)),
               width: 90.w,
-              height: 10.h,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(left: 2.0.h, top: 1.h),
-                    child: Row(
+              height: 12.h,
+              child: Padding(
+                padding: EdgeInsets.only(left: 3.w, top: 1.h, bottom: 1.h),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        CircleAvatar(
+                          backgroundColor: Color.fromARGB(255, 2, 234, 95),
+                          radius: 15.sp,
+                          child: Icon(
+                            Icons.check,
+                            size: 20.sp,
+                            color: Colors.white,
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(left: 1.w),
+                          child: Text(
+                            "İzin hak ediş tarihi  : ",
+                            style: GoogleFonts.poppins(
+                                textStyle: TextStyle(
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.w600,
+                              color: Color.fromARGB(255, 2, 234, 95),
+                            )),
+                          ),
+                        ),
+                        Text(
+                          '${controller.dashboardController.homeInfoResponse?.data?.vacationInfo?.employeeEarnedRightsList?[0].nEXTLEAVEALLOWANCEDATE?.split(" ").first.substring(0, 10) ?? ""}',
+                          style: GoogleFonts.poppins(
+                            textStyle: TextStyle(
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.w500,
+                              color: Color(0xff567DF4),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
                       children: [
                         Text(
                           " İzin hak ediş gün sayısı      : ",
                           style: GoogleFonts.poppins(
                             textStyle: TextStyle(
                               fontSize: 15.sp,
+                              fontWeight: FontWeight.w600,
                               color: Colors.black,
                             ),
                           ),
@@ -380,22 +371,21 @@ class VacationScreen extends StatelessWidget {
                           style: GoogleFonts.poppins(
                             textStyle: TextStyle(
                               fontSize: 15.sp,
+                              fontWeight: FontWeight.w500,
                               color: Color(0xff567DF4),
                             ),
                           ),
                         ),
                       ],
                     ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(left: 2.0.h, top: 1.h),
-                    child: Row(
+                    Row(
                       children: [
                         Text(
-                          " İzin bakiyesi                          : ",
+                          " İzin bakiyesi                             : ",
                           style: GoogleFonts.poppins(
                             textStyle: TextStyle(
                               fontSize: 15.sp,
+                              fontWeight: FontWeight.w600,
                               color: Colors.black,
                             ),
                           ),
@@ -412,118 +402,148 @@ class VacationScreen extends StatelessWidget {
                           style: GoogleFonts.poppins(
                             textStyle: TextStyle(
                               fontSize: 15.sp,
+                              fontWeight: FontWeight.w500,
                               color: Color(0xff567DF4),
                             ),
                           ),
                         ),
                       ],
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              border: Border.all(
-                width: 0.45.w,
-                color: Colors.grey.shade300,
-              ),
-            ),
-            width: 90.w,
-            child: GetBuilder<VacationController>(
-              init: VacationController(),
-              builder: (controller) {
-                if (controller.employeeLeaveResponse!.data == null) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                }
+            Padding(
+              padding: EdgeInsets.only(top: 1.5.h),
+              child: Container(
+                decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.shade200,
+                        blurRadius: 1.25.h,
+                        spreadRadius: 0.625.h,
+                        offset: Offset(
+                          2.5.h,
+                          2.5.h,
+                        ),
+                      )
+                    ],
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(2.5.h)),
+                width: 90.w,
+                height: 18.h,
+                child: GetBuilder<VacationController>(
+                  init: VacationController(),
+                  builder: (controller) {
+                    if (controller.employeeLeaveResponse!.data == null) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
 
-                return ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: controller
-                      .employeeLeaveResponse!.data!.employeeLeaveList!.length,
-                  scrollDirection: Axis.vertical,
-                  itemBuilder: (context, index) {
-                    return Card(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    controller
-                                            .employeeLeaveResponse!
-                                            .data!
-                                            .employeeLeaveList![index]
-                                            .pICKLISTVACATIONTYPENAME ??
-                                        "",
-                                    style: GoogleFonts.poppins(
-                                      textStyle: TextStyle(
-                                        fontSize: 15.sp,
-                                      ),
-                                    ),
-                                  ),
-                                  Text(
-                                    '${controller.employeeLeaveResponse?.data?.employeeLeaveList?[index].sDATE?.split(" ").first.substring(0, 10) ?? " "} / ${controller.employeeLeaveResponse?.data?.employeeLeaveList?[index].eDATE?.split(" ").first.substring(0, 10) ?? " "} ',
-                                    style: GoogleFonts.poppins(
-                                      textStyle: TextStyle(
-                                        fontSize: 14.sp,
-                                      ),
-                                    ),
-                                  ),
-                                  Text(
-                                    controller
-                                                .employeeLeaveResponse!
-                                                .data!
-                                                .employeeLeaveList![index]
-                                                .iSUSED ==
-                                            true
-                                        ? "Kullandım"
-                                        : "Kullanmadım",
-                                    style: GoogleFonts.poppins(
-                                      textStyle: TextStyle(
-                                          fontSize: 15.sp,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  )
-                                ],
-                              ),
+                    return ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: controller.employeeLeaveResponse!.data!
+                          .employeeLeaveList!.length,
+                      scrollDirection: Axis.vertical,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: EdgeInsets.only(left: 2.w, right: 2.w),
+                          child: Card(
+                            elevation: 9.sp,
+                            shadowColor: Color(0xff567DF4),
+                            surfaceTintColor: Color(0xff567DF4),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(2.5.h),
                             ),
-                            Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(5),
-                                color: Color(0xff48D380),
-                              ),
-                              width: 18.w,
-                              height: 5.h,
-                              child: Center(
-                                child: Text(
-                                  '${controller.employeeLeaveResponse?.data?.employeeLeaveList?[index].dAY ?? ""}',
-                                  style: GoogleFonts.poppins(
-                                    textStyle: TextStyle(
-                                      fontSize: 16.sp,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Expanded(
+                                  child: Padding(
+                                    padding: EdgeInsets.only(
+                                      left: 3.w,
+                                      top: 1.h,
+                                      bottom: 1.h,
+                                    ),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          controller
+                                                  .employeeLeaveResponse!
+                                                  .data!
+                                                  .employeeLeaveList![index]
+                                                  .pICKLISTVACATIONTYPENAME ??
+                                              "",
+                                          style: GoogleFonts.poppins(
+                                            textStyle: TextStyle(
+                                              fontSize: 15.sp,
+                                            ),
+                                          ),
+                                        ),
+                                        Text(
+                                          '${controller.employeeLeaveResponse?.data?.employeeLeaveList?[index].sDATE?.split(" ").first.substring(0, 10) ?? " "} / ${controller.employeeLeaveResponse?.data?.employeeLeaveList?[index].eDATE?.split(" ").first.substring(0, 10) ?? " "} ',
+                                          style: GoogleFonts.poppins(
+                                            textStyle: TextStyle(
+                                              fontSize: 14.sp,
+                                            ),
+                                          ),
+                                        ),
+                                        Text(
+                                          controller
+                                                      .employeeLeaveResponse!
+                                                      .data!
+                                                      .employeeLeaveList![index]
+                                                      .iSUSED ==
+                                                  true
+                                              ? "Kullandım"
+                                              : "Kullanmadım",
+                                          style: GoogleFonts.poppins(
+                                            textStyle: TextStyle(
+                                                fontSize: 15.sp,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        )
+                                      ],
                                     ),
                                   ),
                                 ),
-                              ),
+                                Padding(
+                                  padding: EdgeInsets.only(right: 1.5.w),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius:
+                                          BorderRadius.circular(1.25.h),
+                                      color: Color.fromARGB(255, 2, 234, 95),
+                                    ),
+                                    width: 6.h,
+                                    height: 6.h,
+                                    child: Center(
+                                      child: Text(
+                                        '${controller.employeeLeaveResponse?.data?.employeeLeaveList?[index].dAY ?? ""}',
+                                        style: GoogleFonts.poppins(
+                                          textStyle: TextStyle(
+                                              fontSize: 16.sp,
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                      ),
+                          ),
+                        );
+                      },
                     );
                   },
-                );
-              },
+                ),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       );
     });
   }

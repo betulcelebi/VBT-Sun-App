@@ -52,72 +52,58 @@ class BordroDetailScreen extends GetView<BordroDetailController> {
                             children: [
                               Padding(
                                 padding: EdgeInsets.all(1.h),
-                                child: Container(
-                                  decoration:
-                                      BordroDetailConstant().insideCotainer,
-                                  // BoxDecoration(
-                                  //     color: Colors.white,
-                                  //     //color: Colors.red,
-
-                                  //     borderRadius: BorderRadius.circular(15),
-                                  //     border: Border.all(
-                                  //         color: Colors.grey.shade300,
-                                  //         width: 0.5.w)),
-                                  width: 85.w,
-                                  height: 12.h,
-                                  child: Padding(
-                                    padding:
-                                        EdgeInsets.only(left: 2.h, top: 1.7.h),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "Bordro Özeti",
-                                          style: BordroDetailConstant()
-                                              .salarytext1,
-                                          // TextStyle(
-                                          //   fontWeight: FontWeight.bold,
-                                          // ),
-                                        ),
-                                        ListTile(
-                                          contentPadding:
-                                              const EdgeInsets.only(right: 25),
-                                          minLeadingWidth: 2,
-                                          enabled: true,
-                                          leading: Container(
-                                            width: 1.w,
-                                            height: 3.h,
-                                            // color: Color(0xff567DF4),
-                                            color:
-                                                BordroDetailConstant.mainColor,
-                                          ),
-                                          title: Text(
-                                            controller.documentResponse
-                                                .data![index].dOCUMENTPERIOD
-                                                .toString(),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    controller.bordro.getPayrollViewDocument(
+                                        controller.documentResponse.data![index]
+                                            .dOCUMENTYEAR,
+                                        controller.documentResponse.data![index]
+                                            .dOCUMENTMONTH,
+                                        controller
+                                            .documentResponse.data![index].uID);
+                                    Get.toNamed(Routes.BODRO);
+                                  },
+                                  child: Container(
+                                    decoration:
+                                        BordroDetailConstant().insideCotainer,
+                                    width: 85.w,
+                                    height: 12.h,
+                                    child: Padding(
+                                      padding: EdgeInsets.only(
+                                          left: 2.h, top: 1.7.h),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "Bordro Özeti",
                                             style: BordroDetailConstant()
-                                                .salarytext2,
+                                                .salarytext1,
+                                            // TextStyle(
+                                            //   fontWeight: FontWeight.bold,
+                                            // ),
                                           ),
-                                          trailing: GestureDetector(
-                                            onTap: () {
-                                              controller.bordro
-                                                  .getPayrollViewDocument(
-                                                      controller
-                                                          .documentResponse
-                                                          .data![index]
-                                                          .dOCUMENTYEAR,
-                                                      controller
-                                                          .documentResponse
-                                                          .data![index]
-                                                          .dOCUMENTMONTH,
-                                                      controller
-                                                          .documentResponse
-                                                          .data![index]
-                                                          .uID);
-                                              Get.toNamed(Routes.BODRO);
-                                            },
-                                            child: Container(
+                                          ListTile(
+                                            contentPadding:
+                                                const EdgeInsets.only(
+                                                    right: 25),
+                                            minLeadingWidth: 2,
+                                            enabled: true,
+                                            leading: Container(
+                                              width: 1.w,
+                                              height: 3.h,
+                                              // color: Color(0xff567DF4),
+                                              color: BordroDetailConstant
+                                                  .mainColor,
+                                            ),
+                                            title: Text(
+                                              controller.documentResponse
+                                                  .data![index].dOCUMENTPERIOD
+                                                  .toString(),
+                                              style: BordroDetailConstant()
+                                                  .salarytext2,
+                                            ),
+                                            trailing: Container(
                                               decoration: BordroDetailConstant()
                                                   .downloadContainer,
                                               width: 8.w,
@@ -131,8 +117,8 @@ class BordroDetailScreen extends GetView<BordroDetailController> {
                                               )),
                                             ),
                                           ),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),

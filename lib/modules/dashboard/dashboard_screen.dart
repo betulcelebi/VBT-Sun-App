@@ -31,10 +31,10 @@ class DashboardScreen extends GetView<DashboardController> {
           ),
           Padding(
             padding:
-                EdgeInsets.symmetric(horizontal: 1.875.h, vertical: 1.875.h),
+                EdgeInsets.symmetric(horizontal: 3.75.w, vertical: 1.875.h),
             child: Container(
               //alignment: Alignment.center,
-              width: 43.75.h,
+              width: 90.w,
               height: 12.5.h,
               color: const Color(0xff567DF4),
               child: Row(
@@ -44,7 +44,7 @@ class DashboardScreen extends GetView<DashboardController> {
                   Row(
                     children: [
                       Padding(
-                        padding: EdgeInsets.only(right: 1.5.h),
+                        padding: EdgeInsets.only(right: 3.w),
                         child: CircleAvatar(
                           radius: 21.5.sp,
                           child: Image.asset(
@@ -65,7 +65,7 @@ class DashboardScreen extends GetView<DashboardController> {
                             "Merhaba, ",
                             style: GoogleFonts.poppins(
                                 color: Colors.white,
-                                fontSize: 2.25.h,
+                                fontSize: 17.5.sp,
                                 fontWeight: FontWeight.w600),
                           ),
                           GetBuilder<DashboardController>(
@@ -80,7 +80,7 @@ class DashboardScreen extends GetView<DashboardController> {
                                   "${controller.homeInfoResponse!.data!.nameSurname!.toUpperCase().capitalize}",
                                   style: GoogleFonts.poppins(
                                       color: Colors.white,
-                                      fontSize: 2.h,
+                                      fontSize: 16.sp,
                                       fontWeight: FontWeight.w600),
                                 );
                               })
@@ -113,14 +113,14 @@ class DashboardScreen extends GetView<DashboardController> {
                                       color: Colors.white)),
                               CircleAvatar(
                                 backgroundColor: Colors.red.withOpacity(0.9),
-                                radius: 9,
+                                radius: 12.5.sp,
                                 child: Text(
                                   controller.homeInfoResponse!.data!
                                       .unReadedNotificationCount
                                       .toString(),
-                                  style: const TextStyle(
+                                  style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 15,
+                                      fontSize: 15.sp,
                                       fontWeight: FontWeight.bold),
                                 ),
                               ),
@@ -139,8 +139,7 @@ class DashboardScreen extends GetView<DashboardController> {
             child: Container(
               decoration: DashboardConstant().decExpand,
               child: Padding(
-                padding:
-                    EdgeInsets.only(right: 2.5.h, left: 2.5.h, top: 1.25.h),
+                padding: EdgeInsets.only(right: 5.w, left: 5.w, top: 1.25.h),
                 child: GetBuilder<DashboardController>(
                     init: DashboardController(),
                     builder: (controller) {
@@ -177,7 +176,7 @@ class DashboardScreen extends GetView<DashboardController> {
                                     crossAxisCount: 2,
                                     childAspectRatio: 0.18.h,
                                     crossAxisSpacing: 2.5.h,
-                                    mainAxisSpacing: 2.5.h,
+                                    mainAxisSpacing: 5.w,
                                   ),
                                   shrinkWrap: true,
                                   itemCount: list!.isEmpty ? 1 : list.length,
@@ -204,7 +203,7 @@ class DashboardScreen extends GetView<DashboardController> {
                                         decoration: DashboardConstant().decType,
                                         child: Padding(
                                           padding: EdgeInsets.only(
-                                              left: 1.5.h, top: 2.5.h),
+                                              left: 3.w, top: 2.5.h),
                                           child: Column(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
@@ -212,8 +211,7 @@ class DashboardScreen extends GetView<DashboardController> {
                                                 MainAxisAlignment.start,
                                             children: [
                                               Container(
-                                                  padding:
-                                                      const EdgeInsets.all(3),
+                                                  padding: EdgeInsets.all(7.sp),
                                                   width: 5.h,
                                                   height: 5.h,
                                                   decoration:
@@ -271,14 +269,14 @@ class DashboardScreen extends GetView<DashboardController> {
                                       },
                                       child: Container(
                                         alignment: Alignment.center,
-                                        width: 43.75.h,
+                                        width: 90.w,
                                         height: 10.h,
                                         margin:
                                             EdgeInsets.only(bottom: 1.875.h),
                                         decoration: DashboardConstant().decType,
                                         child: Padding(
                                           padding: EdgeInsets.only(
-                                              left: 1.5.h, right: 1.5.h),
+                                              left: 3.w, right: 3.w),
                                           child: Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
@@ -289,7 +287,7 @@ class DashboardScreen extends GetView<DashboardController> {
                                                     width: 5.h,
                                                     height: 5.h,
                                                     padding:
-                                                        const EdgeInsets.all(3),
+                                                        EdgeInsets.all(7.sp),
                                                     decoration:
                                                         DashboardConstant()
                                                             .miniDec,
@@ -299,7 +297,7 @@ class DashboardScreen extends GetView<DashboardController> {
                                                     ),
                                                   ),
                                                   SizedBox(
-                                                    width: 0.8.h,
+                                                    width: 1.6.w,
                                                   ),
                                                   Text(
                                                     list[index].mENUNAME ?? "",
@@ -309,7 +307,7 @@ class DashboardScreen extends GetView<DashboardController> {
                                                 ],
                                               ),
                                               Icon(Icons.chevron_right,
-                                                  size: 3.75.h,
+                                                  size: 24.sp,
                                                   color: Colors.white
                                                   //color:
                                                   //    DashboardConstant.mainColor,

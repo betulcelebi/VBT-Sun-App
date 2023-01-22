@@ -115,9 +115,9 @@ class VacationInfoScreen extends StatelessWidget {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                          "${e.sDATE!.split(" ").first.substring(0, 10) ?? ""}"),
+                                          "${e.sDATE?.split(" ").first.substring(0, 10) ?? ""}"),
                                       Text(
-                                          "${e.eDATE!.split(" ").first.substring(0, 10) ?? ""}"),
+                                          "${e.eDATE?.split(" ").first.substring(0, 10) ?? ""}"),
                                     ],
                                   ),
                                 ),

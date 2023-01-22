@@ -23,11 +23,11 @@ class MyRequestScreen extends GetView<MyRequestController> {
       body: Column(
         children: [
           Container(
-            width: 43.75.h,
+            width: 90.w,
             height: 13.h,
             color: Color(0xff567DF4),
             child: Padding(
-              padding: EdgeInsets.only(top: 3.h, left: 1.h, right: 1.8.h),
+              padding: EdgeInsets.only(top: 3.h, left: 3.w, right: 3.6.w),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -35,24 +35,25 @@ class MyRequestScreen extends GetView<MyRequestController> {
                     onTap: () {
                       Get.back();
                     },
-                    child:
-                        Icon(Icons.arrow_back, size: 4.h, color: Colors.white),
+                    child: Icon(Icons.arrow_back,
+                        size: 24.sp, color: Colors.white),
                   ),
                   GestureDetector(
                     onTap: () {
                       Get.defaultDialog(
-                        contentPadding: EdgeInsets.all(2.5.h),
+                        contentPadding: EdgeInsets.all(9.sp),
                         backgroundColor: Colors.grey.shade200,
                         title: "",
                         content: SizedBox(
-                          height: 25.h,
-                          width: 40.h,
+                          height: 40.h,
+                          width: 75.w,
                           child: ListView.builder(
                             itemCount: controller.filters.length,
                             itemBuilder: (context, index) {
                               return Container(
+                                alignment: Alignment.centerLeft,
                                 width: 10.w,
-                                height: 3.5.h,
+                                height: 5.h,
                                 child: GestureDetector(
                                   onTap: () {
                                     controller.getMyRequest(
@@ -60,12 +61,17 @@ class MyRequestScreen extends GetView<MyRequestController> {
 
                                     Get.back();
                                   },
-                                  child: Text(
-                                    controller.filters[index]["description"],
-                                    style: GoogleFonts.poppins(
-                                        color: Colors.black,
-                                        fontSize: 16.sp,
-                                        fontWeight: FontWeight.w500),
+                                  child: Container(
+                                    margin: EdgeInsets.all(10.sp),
+                                    decoration:
+                                        BoxDecoration(color: Colors.white70),
+                                    child: Text(
+                                      controller.filters[index]["description"],
+                                      style: GoogleFonts.poppins(
+                                          color: Colors.black,
+                                          fontSize: 16.sp,
+                                          fontWeight: FontWeight.w500),
+                                    ),
                                   ),
                                 ),
                               );
@@ -116,7 +122,7 @@ class MyRequestScreen extends GetView<MyRequestController> {
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: EdgeInsets.symmetric(
-                            vertical: 1.25.h, horizontal: 2.8.h),
+                            vertical: 1.25.h, horizontal: 5.7.w),
                         child: GestureDetector(
                           onTap: () {
                             Get.put(
@@ -132,7 +138,7 @@ class MyRequestScreen extends GetView<MyRequestController> {
                             );
                           },
                           child: Container(
-                            height: 35.h,
+                            height: 36.h,
                             decoration: BoxDecoration(
                                 boxShadow: [
                                   BoxShadow(
@@ -149,7 +155,7 @@ class MyRequestScreen extends GetView<MyRequestController> {
                                 borderRadius: BorderRadius.circular(2.5.h)),
                             child: Padding(
                               padding: EdgeInsets.only(
-                                  left: 2.h, top: 2.h, bottom: 2.h),
+                                  left: 4.w, top: 2.h, bottom: 2.h),
                               child: Row(
                                 children: [
                                   Container(
@@ -189,7 +195,7 @@ class MyRequestScreen extends GetView<MyRequestController> {
                                                                 .grey.shade400),
                                                       ),
                                                     ),
-                                                    SizedBox(width: 0.8.h),
+                                                    SizedBox(width: 1.6.w),
                                                     Text(
                                                       '${controller.myRequestResponse?.data?.myRequestList?[index].rEQDATE?.split(" ").first.substring(11, 19) ?? ""}',
                                                       style:

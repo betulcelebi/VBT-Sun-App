@@ -38,14 +38,15 @@ class Works extends GetView<WorksController> {
                           backgroundColor: Colors.grey.shade200,
                           title: "",
                           content: SizedBox(
-                            height: 13.h,
-                            width: 13.h,
+                            height: 25.h,
+                            width: 30.h,
                             child: ListView.builder(
                               itemCount: controller.filters.length,
                               itemBuilder: (context, index) {
                                 return Container(
-                                  width: 7.5.h,
-                                  height: 3.125.h,
+                                  alignment: Alignment.centerLeft,
+                                  width: 10.w,
+                                  height: 5.h,
                                   child: GestureDetector(
                                     onTap: () {
                                       controller.getMyWorkInfo(
@@ -53,12 +54,18 @@ class Works extends GetView<WorksController> {
 
                                       Get.back();
                                     },
-                                    child: Text(
-                                      controller.filters[index]["description"],
-                                      style: GoogleFonts.poppins(
-                                          color: Colors.black,
-                                          fontSize: 16.sp,
-                                          fontWeight: FontWeight.w500),
+                                    child: Container(
+                                      margin: EdgeInsets.all(10.sp),
+                                      decoration:
+                                          BoxDecoration(color: Colors.white70),
+                                      child: Text(
+                                        controller.filters[index]
+                                            ["description"],
+                                        style: GoogleFonts.poppins(
+                                            color: Colors.black,
+                                            fontSize: 16.sp,
+                                            fontWeight: FontWeight.w500),
+                                      ),
                                     ),
                                   ),
                                 );

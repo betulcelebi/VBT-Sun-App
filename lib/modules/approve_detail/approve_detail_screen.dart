@@ -241,15 +241,17 @@ class _ApproveDetailScreenState extends State<ApproveDetailScreen> {
                                                     ],
                                                   ),
                                                 ),
-                                                Container(
-                                                    margin: EdgeInsets.only(
-                                                        left: 14.h),
-                                                    height: 5.5.h,
-                                                    width: 5.5.h,
-                                                    padding:
-                                                        EdgeInsets.all(0.25.h),
-                                                    child: Image.asset(
-                                                        "assets/stamp.png")),
+                                                Expanded(
+                                                  child: Container(
+                                                      margin: EdgeInsets.only(
+                                                          left: 33.w),
+                                                      height: 5.5.h,
+                                                      width: 5.5.h,
+                                                      padding: EdgeInsets.all(
+                                                          0.25.h),
+                                                      child: Image.asset(
+                                                          "assets/stamp.png")),
+                                                ),
                                               ],
                                             ),
                                           ),
@@ -304,7 +306,7 @@ class _ApproveDetailScreenState extends State<ApproveDetailScreen> {
                                     padding: EdgeInsets.only(top: 2.h),
                                     child: Container(
                                       width: double.infinity,
-                                      height: 47.h,
+                                      height: 58.h,
                                       decoration: BoxDecoration(
                                           boxShadow: [
                                             BoxShadow(
@@ -329,7 +331,7 @@ class _ApproveDetailScreenState extends State<ApproveDetailScreen> {
                                           children: [
                                             Container(
                                               width: 1.w,
-                                              height: 45.h,
+                                              height: 54.h,
                                               color: Colors.blue,
                                             ),
                                             Padding(
@@ -381,13 +383,15 @@ class _ApproveDetailScreenState extends State<ApproveDetailScreen> {
                                                   Container(
                                                     padding:
                                                         const EdgeInsets.all(0),
-                                                    height: 35.h,
+                                                    height: 45.h,
                                                     width: 38.h,
                                                     child: MediaQuery
                                                         .removePadding(
                                                       context: context,
                                                       removeTop: true,
                                                       child: ListView.builder(
+                                                        physics:
+                                                            NeverScrollableScrollPhysics(),
                                                         shrinkWrap: true,
                                                         scrollDirection:
                                                             Axis.vertical,
